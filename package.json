@@ -40,9 +40,21 @@
     "portable": {
       "artifactName": "${productName}.exe"
     },
-    "icon": "UI temp/kaguya_real.png"
+    "icon": "UI temp/kaguya_real.png",
+    "extraResources": [
+      {
+        "from": ".env",
+        "to": ".env",
+        "filter": ["**/*"]
+      }
+    ],
+    "asar": true,
+    "env": {
+      "VITE_GOOGLE_GEMINI_API_KEY": "AIzaSyDaBJoVU0WjOXiu89kbpATL-EHyNTpDz1k"
+    }
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "ecc-universal": "^1.10.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.8.0",

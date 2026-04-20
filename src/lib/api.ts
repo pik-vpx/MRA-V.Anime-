@@ -551,73 +551,59 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
 
 // 2b. Google AI Overview Fallback (uses Gemini API to identify anime from song info)
 async function findAnimeFromGoogle(_title: string, _artist: string): Promise<AnimeData[]> {
-  // Try to get from env, fallback to hardcoded for dev
+  // Try Electron API first (when running in Electron app)
+  const electronAPI = (window as Window & { electronAPI?: { askGemini: (t: string, a: string) => Promise<{title?: string; type?: string; error?: string}> } }).electronAPI;
+  
+  if (electronAPI?.askGemini) {
+    try {
+      console.log('[MRA] Using Electron Gemini API...');
+      const result = await electronAPI.askGemini(_title, _artist);
+      if (result && result.title) {
+        return [{ title: result.title, type: result.type || 'Theme', url: '', imageUrl: '' }];
+      }
+      console.log('[MRA] Electron Gemini result:', result);
+    } catch (e) {
+      console.warn('[MRA] Electron Gemini failed:', e);
+    }
+  }
+  
+  // Fallback: Direct web call (for web browser dev)
+  console.log('[MRA] Using web fallback...');
   let apiKey = import.meta?.env?.VITE_GOOGLE_GEMINI_API_KEY;
   
-  // Debug: log what's in import.meta.env
-  console.log('[MRA] import.meta.env keys:', Object.keys(import.meta?.env || {}));
-  console.log('[MRA] VITE_ vars:', Object.keys(import.meta?.env || {}).filter(k => k.startsWith('VITE_')));
-  
-  // If not found, try hardcoded fallback (for dev testing only)
   if (!apiKey) {
-    apiKey = 'AIzaSyDaBJoVU0WjOXiu89kbpATL-EHyNTpDz1k';
-    console.log('[MRA] Using fallback API key');
-  }
-
-  if (!apiKey) {
-    console.warn('[MRA] Google Gemini API key not configured. Set VITE_GOOGLE_GEMINI_API_KEY in .env');
+    console.warn('[MRA] Google Gemini API key not configured');
     return [];
   }
 
-  const maxRetries = 3;
-  for (let attempt = 0; attempt < maxRetries; attempt++) {
-    try {
-      // Simple prompt asking Gemini to recall from its knowledge
-      const prompt = `"${_title}" by "${_artist}" is an anime song. Which anime uses this as OP or ED? Answer format: "AnimeName (OP)" or just "AnimeName"`;
+  try {
+    const prompt = `"${_title}" by "${_artist}" is an anime song. Which anime uses this as OP or ED? Answer format: "AnimeName"`;
 
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?alt=json&key=${apiKey}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: {
-              temperature: 0.2,
-              maxOutputTokens: 30
-            }
-          })
-        }
-      );
-      if (res.status === 429) {
-        const waitTime = (attempt + 1) * 2000;
-        console.log(`[MRA] Rate limited, waiting ${waitTime}ms...`);
-        await new Promise(r => setTimeout(r, waitTime));
-        continue;
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?alt=json&key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.2, maxOutputTokens: 30 }
+        })
       }
-      if (!res.ok) return [];
-      const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
-      
-      if (!text || text === 'UNKNOWN') return [];
-      
-      // Parse response - expect "AnimeName (OP)" or "AnimeName (ED)"
-      const match = text.match(/(.+?)\s*\(?(OP|ED)\)?/i);
-      if (match && match[1]) {
-        console.log('[MRA] Gemini found:', text);
-        return [{
-          title: match[1].trim(),
-          type: match[2] ? match[2].toUpperCase() : 'Theme',
-          url: '',
-          imageUrl: '' // Will be fetched later by AnisongDB if needed
-        }];
-      }
-      return [];
-    } catch (e) {
-      console.warn('[MRA] Google AI attempt failed:', e);
+    );
+    
+    if (!res.ok) return [];
+    const data = await res.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
+    if (!text) return [];
+    
+    const match = text.match(/(.+?)\s*\(?(OP|ED)\)?/i);
+    if (match && match[1]) {
+      return [{ title: match[1].trim(), type: match[2] ? match[2].toUpperCase() : 'Theme', url: '', imageUrl: '' }];
     }
+  } catch (e) {
+    console.warn('[MRA] Google AI fallback failed:', e);
   }
-  console.warn('[MRA] Google AI all retries exhausted');
+  
   return [];
 }
 

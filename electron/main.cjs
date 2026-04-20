@@ -1,8 +1,10 @@
 const { app, BrowserWindow, ipcMain, desktopCapturer, globalShortcut, Tray, Menu, nativeImage } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const isDev = process.env.NODE_ENV === 'development';
+const GEMINI_API_KEY = process.env.VITE_GOOGLE_GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY;
 
 const settingsPath = path.join(app.getPath('userData'), 'window-settings.json');
 
@@ -208,4 +210,36 @@ ipcMain.on('save-settings', (event, settings) => {
 
 ipcMain.on('trigger-listen', (event, mode) => {
   mainWindow?.webContents.send('trigger-listen', mode);
+});
+
+// Gemini AI API handler (runs in main process to keep API key secure)
+ipcMain.handle('gemini-ask', async (event, { title, artist }) => {
+  if (!GEMINI_API_KEY) {
+    return { error: 'API key not configured' };
+  }
+  
+  try {
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    
+    const prompt = `"${title}" by "${artist}" is an anime opening (OP) or ending (ED) theme. Which anime uses this song? Answer format: "AnimeName (OP)" or just "AnimeName"`;
+    
+    const result = await model.generateContent(prompt);
+    const text = result.response.text().trim();
+    
+    // Parse response
+    const match = text.match(/(.+?)\s*\(?(OP|ED)\)?/i);
+    if (match && match[1]) {
+      return {
+        title: match[1].trim(),
+        type: match[2] ? match[2].toUpperCase() : 'Theme',
+        url: '',
+        imageUrl: ''
+      };
+    }
+    return { error: 'Could not parse response' };
+  } catch (err) {
+    console.error('[MRA] Gemini error:', err.message);
+    return { error: err.message };
+  }
 });
