@@ -20,6 +20,21 @@ export interface AnimeData {
   overview?: string; // Description from Google AI fallback
 }
 
+interface ShazamMeta {
+  title: string;
+  text: string;
+}
+
+interface ShazamProvider {
+  type: string;
+  actions?: Array<{ uri: string }>;
+}
+
+interface ShazamSection {
+  type: string;
+  text?: string[];
+}
+
 // 1. RapidAPI Shazam Integration
 // Shazam requires raw PCM: 44100 Hz, 16-bit signed LE, mono
 async function convertToRawPCM(audioBlob: Blob): Promise<ArrayBuffer> {
@@ -84,7 +99,7 @@ export async function identifyTrack(audioBlob: Blob, _signal?: AbortSignal): Pro
 
     if (data && data.track) {
       const metadata = data.track.sections?.[0]?.metadata || [];
-      const findMeta = (key: string) => metadata.find((m: any) => m.title === key)?.text || '';
+      const findMeta = (key: string) => metadata.find((m: ShazamMeta) => m.title === key)?.text || '';
 
       return {
         title: data.track.title,
@@ -93,9 +108,9 @@ export async function identifyTrack(audioBlob: Blob, _signal?: AbortSignal): Pro
         genre: data.track.genres?.primary || findMeta('Genre') || 'Unknown',
         releaseDate: findMeta('Released') || findMeta('Year') || 'Unknown',
         cover: data.track.images?.coverarthq || data.track.images?.coverart || '',
-        spotify: data.track.hub?.providers?.find((p: any) => p.type === 'SPOTIFY')?.actions?.[0]?.uri || '#',
+        spotify: data.track.hub?.providers?.find((p: ShazamProvider) => p.type === 'SPOTIFY')?.actions?.[0]?.uri || '#',
         appleMusic: data.track.url || '#',
-        lyrics: data.track.sections?.find((s: any) => s.type === 'LYRICS')?.text?.join('\n') || 'Lyrics not found.'
+        lyrics: data.track.sections?.find((s: ShazamSection) => s.type === 'LYRICS')?.text?.join('\n') || 'Lyrics not found.'
       };
     }
 
@@ -113,7 +128,16 @@ export async function identifyTrack(audioBlob: Blob, _signal?: AbortSignal): Pro
 
 // 2. Anime Theme Matcher
 // Strategy: 3-pass search on AnisongDB for accuracy, fallback to Jikan
-async function searchAnisongDB(body: object): Promise<any[]> {
+interface AnisongDBResult {
+  songName: string;
+  songArtist: string;
+  animeENName: string;
+  animeJPName?: string;
+  songType: string;
+  animeImage?: string;
+}
+
+async function searchAnisongDB(body: object): Promise<AnisongDBResult[]> {
   const res = await fetch('https://anisongdb.com/api/search_request', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -366,8 +390,8 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
         console.log(`[MRA] Pass 3.7 (Romaji prefix "${prefix}"):`, results.length, 'results');
       }
     }
-  } catch (err: any) {
-    console.error('[MRA] AnisongDB failure (API may be down):', err.message);
+  } catch (err) {
+    console.error('[MRA] AnisongDB failure (API may be down):', err instanceof Error ? err.message : String(err));
     // Move on to fallback
   }
 
