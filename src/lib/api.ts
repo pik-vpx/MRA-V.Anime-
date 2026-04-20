@@ -572,13 +572,20 @@ async function findAnimeFromGoogle(_title: string, _artist: string): Promise<Ani
   const maxRetries = 3;
   for (let attempt = 0; attempt < maxRetries; attempt++) {
     try {
+      // Simple prompt asking Gemini to recall from its knowledge
+      const prompt = `"${_title}" by "${_artist}" is an anime song. Which anime uses this as OP or ED? Answer format: "AnimeName (OP)" or just "AnimeName"`;
+
       const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?alt=json&key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?alt=json&key=${apiKey}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: `"${_title}" by "${_artist}" is an anime opening/ending theme. Which anime has this as its OP or ED? Answer ONLY: "AnimeName (OP)" or "AnimeName (ED)". No extra text.` }] }]
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.2,
+              maxOutputTokens: 30
+            }
           })
         }
       );
@@ -590,15 +597,19 @@ async function findAnimeFromGoogle(_title: string, _artist: string): Promise<Ani
       }
       if (!res.ok) return [];
       const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      if (!text) return [];
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
+      
+      if (!text || text === 'UNKNOWN') return [];
+      
+      // Parse response - expect "AnimeName (OP)" or "AnimeName (ED)"
       const match = text.match(/(.+?)\s*\(?(OP|ED)\)?/i);
-      if (match) {
+      if (match && match[1]) {
+        console.log('[MRA] Gemini found:', text);
         return [{
           title: match[1].trim(),
-          type: match[2].toUpperCase(),
+          type: match[2] ? match[2].toUpperCase() : 'Theme',
           url: '',
-          imageUrl: ''
+          imageUrl: '' // Will be fetched later by AnisongDB if needed
         }];
       }
       return [];
