@@ -113,17 +113,27 @@ const [result, setResult] = useState<ResultData | null>(null);
           animes: [],
           lyrics: ''
         });
+        
+        // FETCH ANIME IN BACKGROUND - show when ready
         setAnimeLoading(true);
-        const [animeDataArray, lyricsData] = await Promise.all([
-          findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource),
-          fetchLyrics(trackData.title, trackData.artist)
-        ]);
-        if (controller.signal.aborted) return;
-        setResult({
-          ...trackData,
-          animes: animeDataArray,
-          lyrics: lyricsData !== "Lyrics not found." ? lyricsData : trackData.lyrics,
-        });
+        findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource)
+          .then(animeDataArray => {
+            if (!controller.signal.aborted) {
+              setResult(prev => prev ? { ...prev, animes: animeDataArray } : null);
+            }
+          })
+          .finally(() => {
+            if (!controller.signal.aborted) setAnimeLoading(false);
+          });
+        
+        // FETCH LYRICS IN BACKGROUND - show when ready (separate from anime)
+        fetchLyrics(trackData.title, trackData.artist)
+          .then(lyricsData => {
+            if (!controller.signal.aborted) {
+              const finalLyrics = lyricsData !== "Lyrics not found." ? lyricsData : trackData.lyrics;
+              setResult(prev => prev ? { ...prev, lyrics: finalLyrics } : null);
+            }
+          });
       } else {
         alert("Could not identify the song.");
       }
@@ -206,19 +216,27 @@ const [result, setResult] = useState<ResultData | null>(null);
           if (!listeningRef.current) break;
 
           if (trackData) {
-            // Found a match! Show result while fetching anime data
+            // Found a match! Show track immediately
             setListening(false);
-            setAnalyzing(true);
-            const settings = getSettings();
-            const [animeDataArray] = await Promise.all([
-              findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource),
-            ]);
             setResult({
               ...trackData,
-              animes: animeDataArray,
+              animes: [],
+              lyrics: ''
             });
+            
+            // FETCH ANIME IN BACKGROUND
+            setAnimeLoading(true);
+            const settings = getSettings();
+            findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource)
+              .then(animeDataArray => {
+                if (!controller.signal.aborted) {
+                  setResult(prev => prev ? { ...prev, animes: animeDataArray } : null);
+                }
+              })
+              .finally(() => {
+                if (!controller.signal.aborted) setAnimeLoading(false);
+              });
             listeningRef.current = false;
-            setAnalyzing(false);
             return;
           }
           console.log('[MRA] No match on previous chunk, still listening...');
