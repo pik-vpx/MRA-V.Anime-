@@ -58,6 +58,42 @@ Output: `release\win-unpacked\MRA Anime Edition.exe`
 - 🎬 **Anime Matching** - Auto-detect anime from song title/artist
 - 🖼️ **Cover Art** - Fetch anime images from AnimeThemes
 - 📝 **Lyrics** - Display lyrics when available
+- 🤖 **Google Gemini Fallback** - AI-powered anime lookup when primary APIs fail
+
+---
+
+## Environment Variables
+
+Create a `.env` file (or copy from `.env.example`) with the following variables:
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_GOOGLE_GEMINI_API_KEY` | Google Gemini API key for AI fallback anime lookup (optional) |
+
+Example:
+```bash
+VITE_GOOGLE_GEMINI_API_KEY=your-api-key-here
+```
+
+---
+
+## Logger Utility
+
+The project uses a custom logger (`src/utils/logger.ts`) that respects the environment:
+
+- In **development** (`NODE_ENV=development` or Vite dev mode): logs are enabled
+- In **production**: only errors are logged
+
+Replace `console.log/warn/error` calls with the logger for consistent behavior:
+
+```typescript
+import { logger } from './utils/logger';
+
+logger.log('Message');   // Only logs in dev
+logger.warn('Warning'); // Only logs in dev  
+logger.error('Error');  // Always logs
+logger.info('Info');    // Only logs in dev
+```
 - ⚡ **Fast Response** - Optimized matching algorithm
 - 🎨 **Modern UI** - Beautiful dark theme with animations
 
