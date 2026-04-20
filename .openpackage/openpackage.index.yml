@@ -1,0 +1,3321 @@
+# This file is managed by OpenPackage. Do not edit manually.
+
+packages:
+  gh@affaan-m/everything-claude-code:
+    files:
+      .mcp.json:
+        - hash: 05da080876cd0e59
+          keys:
+            - mcpServers.github.command
+            - mcpServers.github.args
+            - mcpServers.context7.command
+            - mcpServers.context7.args
+            - mcpServers.exa.type
+            - mcpServers.exa.url
+            - mcpServers.memory.command
+            - mcpServers.memory.args
+            - mcpServers.playwright.command
+            - mcpServers.playwright.args
+            - mcpServers.sequential-thinking.command
+            - mcpServers.sequential-thinking.args
+          merge: deep
+          sourceHash: 4e75a3842a6ae5c8
+          target: .mcp.json
+        - hash: 139ce5b2c9cb706d
+          keys:
+            - mcp.github.command
+            - mcp.github.args
+            - mcp.context7.command
+            - mcp.context7.args
+            - mcp.exa.type
+            - mcp.exa.url
+            - mcp.memory.command
+            - mcp.memory.args
+            - mcp.playwright.command
+            - mcp.playwright.args
+            - mcp.sequential-thinking.command
+            - mcp.sequential-thinking.args
+          merge: deep
+          sourceHash: 4e75a3842a6ae5c8
+          target: .opencode/opencode.json
+      AGENTS.md:
+        - hash: 811d7b494985180d
+          sourceHash: d81ea59e4c3ebb02
+          target: AGENTS.md
+        - hash: 4e60822f200e8177
+          sourceHash: d81ea59e4c3ebb02
+          target: CLAUDE.md
+      agents/a11y-architect.md:
+        - hash: d5b31af425e5490e
+          sourceHash: 8d4871f7b79a30b7
+          target: .claude/agents/a11y-architect.md
+        - hash: d5b31af425e5490e
+          sourceHash: 8d4871f7b79a30b7
+          target: .opencode/agents/everything-claude-code-a11y-architect.md
+      agents/architect.md:
+        - hash: 0421c3926926bdf6
+          sourceHash: 3c3f27aa4c319bec
+          target: .claude/agents/architect.md
+        - hash: 7258c5b9cee16088
+          sourceHash: 3c3f27aa4c319bec
+          target: .opencode/agents/everything-claude-code-architect.md
+      agents/build-error-resolver.md:
+        - hash: ed412e5d9fd1dee9
+          sourceHash: a3d1db1974a660ac
+          target: .claude/agents/build-error-resolver.md
+        - hash: 8bfad67bfd91a796
+          sourceHash: a3d1db1974a660ac
+          target: .opencode/agents/everything-claude-code-build-error-resolver.md
+      agents/chief-of-staff.md:
+        - hash: 10e206e709ce4657
+          sourceHash: 9645fa22a63d9f9e
+          target: .claude/agents/chief-of-staff.md
+        - hash: 410465f2a882b3b7
+          sourceHash: 9645fa22a63d9f9e
+          target: .opencode/agents/everything-claude-code-chief-of-staff.md
+      agents/code-architect.md:
+        - hash: 280b6a8cdbaab439
+          sourceHash: 28c7b6062706786d
+          target: .claude/agents/code-architect.md
+        - hash: 9c6dfeaede55867f
+          sourceHash: 28c7b6062706786d
+          target: .opencode/agents/everything-claude-code-code-architect.md
+      agents/code-explorer.md:
+        - hash: bdec407a3e384fa9
+          sourceHash: 4ea77dae7f1efe6a
+          target: .claude/agents/code-explorer.md
+        - hash: 00a72d4b1b68446f
+          sourceHash: 4ea77dae7f1efe6a
+          target: .opencode/agents/everything-claude-code-code-explorer.md
+      agents/code-reviewer.md:
+        - hash: 1d93e98932c4d31e
+          sourceHash: 50e1dd4dfe67dacd
+          target: .claude/agents/code-reviewer.md
+        - hash: daf8bc5542cf5cf5
+          sourceHash: 50e1dd4dfe67dacd
+          target: .opencode/agents/everything-claude-code-code-reviewer.md
+      agents/code-simplifier.md:
+        - hash: a7208225073d0994
+          sourceHash: dec22bacf1cdc072
+          target: .claude/agents/code-simplifier.md
+        - hash: 47386b881fd99ab7
+          sourceHash: dec22bacf1cdc072
+          target: .opencode/agents/everything-claude-code-code-simplifier.md
+      agents/comment-analyzer.md:
+        - hash: 1e3e2e4143dcff5a
+          sourceHash: 9490c456acfd57bc
+          target: .claude/agents/comment-analyzer.md
+        - hash: ffd5f89c918989f8
+          sourceHash: 9490c456acfd57bc
+          target: .opencode/agents/everything-claude-code-comment-analyzer.md
+      agents/conversation-analyzer.md:
+        - hash: 629565f973b0ad6b
+          sourceHash: 1487cc61bd3c37f9
+          target: .claude/agents/conversation-analyzer.md
+        - hash: bbb1696401f6ce8f
+          sourceHash: 1487cc61bd3c37f9
+          target: .opencode/agents/everything-claude-code-conversation-analyzer.md
+      agents/cpp-build-resolver.md:
+        - hash: fffb631bcfdb3ea3
+          sourceHash: 7d6e28cb4678c4af
+          target: .claude/agents/cpp-build-resolver.md
+        - hash: 3b2370c8130dcd04
+          sourceHash: 7d6e28cb4678c4af
+          target: .opencode/agents/everything-claude-code-cpp-build-resolver.md
+      agents/cpp-reviewer.md:
+        - hash: c58c83026f37d729
+          sourceHash: fe9440e44d7518f4
+          target: .claude/agents/cpp-reviewer.md
+        - hash: b7aa69102fb2cf4d
+          sourceHash: fe9440e44d7518f4
+          target: .opencode/agents/everything-claude-code-cpp-reviewer.md
+      agents/csharp-reviewer.md:
+        - hash: 24f5ce49cee6061f
+          sourceHash: ac707fe980b4b2cb
+          target: .claude/agents/csharp-reviewer.md
+        - hash: adaaf7facbbc274d
+          sourceHash: ac707fe980b4b2cb
+          target: .opencode/agents/everything-claude-code-csharp-reviewer.md
+      agents/dart-build-resolver.md:
+        - hash: fced246bb02e6310
+          sourceHash: 427e975acf74d889
+          target: .claude/agents/dart-build-resolver.md
+        - hash: 81b24f1a71e8868a
+          sourceHash: da7560851f2408bf
+          target: .claude/skills/knowledge-ops/SKILL.md
+        - hash: fbdb92f85b4eed51
+          sourceHash: 427e975acf74d889
+          target: .opencode/agents/everything-claude-code-dart-build-resolver.md
+        - hash: 81b24f1a71e8868a
+          sourceHash: da7560851f2408bf
+          target: .opencode/skills/everything-claude-code-knowledge-ops/SKILL.md
+      agents/database-reviewer.md:
+        - hash: d2b7d3e954d3af46
+          sourceHash: be5fd63ba0d26a0a
+          target: .claude/agents/database-reviewer.md
+        - hash: 87901fd68b6da2b4
+          sourceHash: be5fd63ba0d26a0a
+          target: .opencode/agents/everything-claude-code-database-reviewer.md
+      agents/doc-updater.md:
+        - hash: 24c9e8a96e73b4bf
+          sourceHash: b3e5308762bda1df
+          target: .claude/agents/doc-updater.md
+        - hash: 13a03e383ae4669c
+          sourceHash: b3e5308762bda1df
+          target: .opencode/agents/everything-claude-code-doc-updater.md
+      agents/docs-lookup.md:
+        - hash: 605bb966b5e57463
+          sourceHash: fc4037ed5ac7f1b1
+          target: .claude/agents/docs-lookup.md
+        - hash: c047873b60861cb2
+          sourceHash: fc4037ed5ac7f1b1
+          target: .opencode/agents/everything-claude-code-docs-lookup.md
+      agents/e2e-runner.md:
+        - hash: bc02cb87f677beb5
+          sourceHash: 3c412c8652ec660c
+          target: .claude/agents/e2e-runner.md
+        - hash: 9f363c6f68301037
+          sourceHash: 3c412c8652ec660c
+          target: .opencode/agents/everything-claude-code-e2e-runner.md
+      agents/flutter-reviewer.md:
+        - hash: 6d53f82a60716cf4
+          sourceHash: 17beae33b9b96779
+          target: .claude/agents/flutter-reviewer.md
+        - hash: f4bd657a6d761284
+          sourceHash: 17beae33b9b96779
+          target: .opencode/agents/everything-claude-code-flutter-reviewer.md
+      agents/gan-evaluator.md:
+        - hash: 8e1f4578a793e38e
+          sourceHash: 7182ec2822b84a3f
+          target: .claude/agents/gan-evaluator.md
+        - hash: 4a126ba283f35b29
+          sourceHash: 7182ec2822b84a3f
+          target: .opencode/agents/everything-claude-code-gan-evaluator.md
+      agents/gan-generator.md:
+        - hash: 35609db539141796
+          sourceHash: 7124ec27e1f7edec
+          target: .claude/agents/gan-generator.md
+        - hash: 2e670e4b9368fec6
+          sourceHash: 7124ec27e1f7edec
+          target: .opencode/agents/everything-claude-code-gan-generator.md
+      agents/gan-planner.md:
+        - hash: a65a780b1cda8396
+          sourceHash: aa185edab88cb5a3
+          target: .claude/agents/gan-planner.md
+        - hash: bb98e0cca72c3f6c
+          sourceHash: aa185edab88cb5a3
+          target: .opencode/agents/everything-claude-code-gan-planner.md
+      agents/go-build-resolver.md:
+        - hash: a220b0e26a7f6ee4
+          sourceHash: aa7a355516b31340
+          target: .claude/agents/go-build-resolver.md
+        - hash: ed59c3b11ac172ce
+          sourceHash: aa7a355516b31340
+          target: .opencode/agents/everything-claude-code-go-build-resolver.md
+      agents/go-reviewer.md:
+        - hash: d8f58fe02b6576ea
+          sourceHash: 769cb144595fa06b
+          target: .claude/agents/go-reviewer.md
+        - hash: 346c974b1b1b550c
+          sourceHash: 769cb144595fa06b
+          target: .opencode/agents/everything-claude-code-go-reviewer.md
+      agents/harness-optimizer.md:
+        - hash: 4a12e38a634cd485
+          sourceHash: 6210dedaca595336
+          target: .claude/agents/harness-optimizer.md
+        - hash: 18cb0a6370f4e4b7
+          sourceHash: 6210dedaca595336
+          target: .opencode/agents/everything-claude-code-harness-optimizer.md
+      agents/healthcare-reviewer.md:
+        - hash: 81b5b1b5c021abfe
+          sourceHash: b520a118f63139b6
+          target: .claude/agents/healthcare-reviewer.md
+        - hash: b24b064c2c1d43dc
+          sourceHash: b520a118f63139b6
+          target: .opencode/agents/everything-claude-code-healthcare-reviewer.md
+      agents/java-build-resolver.md:
+        - hash: ebcc68240ee385d7
+          sourceHash: a250f624dd28abf7
+          target: .claude/agents/java-build-resolver.md
+        - hash: 8943c557851cf8f5
+          sourceHash: a250f624dd28abf7
+          target: .opencode/agents/everything-claude-code-java-build-resolver.md
+      agents/java-reviewer.md:
+        - hash: 78f47c5863fdb5f9
+          sourceHash: 6ffbf09f33c35c02
+          target: .claude/agents/java-reviewer.md
+        - hash: 943c405ef234b402
+          sourceHash: 6ffbf09f33c35c02
+          target: .opencode/agents/everything-claude-code-java-reviewer.md
+      agents/kotlin-build-resolver.md:
+        - hash: c6748bd1c4d805cb
+          sourceHash: 96f17b779e8b8d26
+          target: .claude/agents/kotlin-build-resolver.md
+        - hash: f8dc6cd1d337d330
+          sourceHash: 96f17b779e8b8d26
+          target: .opencode/agents/everything-claude-code-kotlin-build-resolver.md
+      agents/kotlin-reviewer.md:
+        - hash: 86d6b2f525c5e926
+          sourceHash: 1fd21903cc71cf20
+          target: .claude/agents/kotlin-reviewer.md
+        - hash: f88abcf944e3fc79
+          sourceHash: 1fd21903cc71cf20
+          target: .opencode/agents/everything-claude-code-kotlin-reviewer.md
+      agents/loop-operator.md:
+        - hash: 384095b9c2a1e42d
+          sourceHash: beffe64192438c8a
+          target: .claude/agents/loop-operator.md
+        - hash: 409f04d61b2d10c7
+          sourceHash: beffe64192438c8a
+          target: .opencode/agents/everything-claude-code-loop-operator.md
+      agents/opensource-forker.md:
+        - hash: 219cade9cb3d1af9
+          sourceHash: 4ef79925ff24ff95
+          target: .claude/agents/opensource-forker.md
+        - hash: f4d59dac1eec7ad7
+          sourceHash: 4ef79925ff24ff95
+          target: .opencode/agents/everything-claude-code-opensource-forker.md
+      agents/opensource-packager.md:
+        - hash: 5a5afc332b72fb76
+          sourceHash: 95f8765bf0940888
+          target: .claude/agents/opensource-packager.md
+        - hash: e5bcd94d7c4f114c
+          sourceHash: 95f8765bf0940888
+          target: .opencode/agents/everything-claude-code-opensource-packager.md
+      agents/opensource-sanitizer.md:
+        - hash: 3c492c46a21ab5e5
+          sourceHash: 9d6cf260c5c2c124
+          target: .claude/agents/opensource-sanitizer.md
+        - hash: e1514cc961816d9a
+          sourceHash: 9d6cf260c5c2c124
+          target: .opencode/agents/everything-claude-code-opensource-sanitizer.md
+      agents/performance-optimizer.md:
+        - hash: 4ba901cc1768e0ea
+          sourceHash: ca1303bdd78e9fef
+          target: .claude/agents/performance-optimizer.md
+        - hash: ba9a72ab1b41b17e
+          sourceHash: ca1303bdd78e9fef
+          target: .opencode/agents/everything-claude-code-performance-optimizer.md
+      agents/planner.md:
+        - hash: de67a938520ff671
+          sourceHash: 44cadd39e040b740
+          target: .claude/agents/planner.md
+        - hash: 19ad4f2901abf2e9
+          sourceHash: 44cadd39e040b740
+          target: .opencode/agents/everything-claude-code-planner.md
+      agents/pr-test-analyzer.md:
+        - hash: 025e7911dbf2de12
+          sourceHash: 56b982c73d40e32f
+          target: .claude/agents/pr-test-analyzer.md
+        - hash: acaebef6a038beb0
+          sourceHash: 56b982c73d40e32f
+          target: .opencode/agents/everything-claude-code-pr-test-analyzer.md
+      agents/python-reviewer.md:
+        - hash: 8a7a6606d9fe8b2f
+          sourceHash: 04f0c29ed4d5f835
+          target: .claude/agents/python-reviewer.md
+        - hash: f25e508e4be10959
+          sourceHash: 04f0c29ed4d5f835
+          target: .opencode/agents/everything-claude-code-python-reviewer.md
+      agents/pytorch-build-resolver.md:
+        - hash: d1eae7426ea33215
+          sourceHash: 52eb09de9ba9fe87
+          target: .claude/agents/pytorch-build-resolver.md
+        - hash: ff91ca0ffb1719f7
+          sourceHash: 52eb09de9ba9fe87
+          target: .opencode/agents/everything-claude-code-pytorch-build-resolver.md
+      agents/refactor-cleaner.md:
+        - hash: d35def95bd25cf70
+          sourceHash: 1c0da252f5d5aa28
+          target: .claude/agents/refactor-cleaner.md
+        - hash: ec392fee98f91d53
+          sourceHash: 1c0da252f5d5aa28
+          target: .opencode/agents/everything-claude-code-refactor-cleaner.md
+      agents/rust-build-resolver.md:
+        - hash: eb4d22a555e7baf1
+          sourceHash: 25883b433f9f8516
+          target: .claude/agents/rust-build-resolver.md
+        - hash: 07a728eaadd7c32c
+          sourceHash: 25883b433f9f8516
+          target: .opencode/agents/everything-claude-code-rust-build-resolver.md
+      agents/rust-reviewer.md:
+        - hash: a8b80ae14de0d872
+          sourceHash: 84a22e03fa668be8
+          target: .claude/agents/rust-reviewer.md
+        - hash: 8dfe582876d94ab8
+          sourceHash: 84a22e03fa668be8
+          target: .opencode/agents/everything-claude-code-rust-reviewer.md
+      agents/security-reviewer.md:
+        - hash: ce9554b3de967fe9
+          sourceHash: 34f20b6853fc58c1
+          target: .claude/agents/security-reviewer.md
+        - hash: 825edd51fa3747ae
+          sourceHash: 34f20b6853fc58c1
+          target: .opencode/agents/everything-claude-code-security-reviewer.md
+      agents/seo-specialist.md:
+        - hash: 5cec280a0d5dd1a4
+          sourceHash: 00847e1ccbbf7d46
+          target: .claude/agents/seo-specialist.md
+        - hash: 68445f24b790790e
+          sourceHash: 00847e1ccbbf7d46
+          target: .opencode/agents/everything-claude-code-seo-specialist.md
+      agents/silent-failure-hunter.md:
+        - hash: d5d55d7813f25d13
+          sourceHash: 0e9cf6bee37212a0
+          target: .claude/agents/silent-failure-hunter.md
+        - hash: 7425bf13c92d5b5d
+          sourceHash: 0e9cf6bee37212a0
+          target: .opencode/agents/everything-claude-code-silent-failure-hunter.md
+      agents/tdd-guide.md:
+        - hash: 63488965020454d1
+          sourceHash: 844b2fd6c0a757bc
+          target: .claude/agents/tdd-guide.md
+        - hash: 946b94de6ad06bd6
+          sourceHash: 844b2fd6c0a757bc
+          target: .opencode/agents/everything-claude-code-tdd-guide.md
+      agents/type-design-analyzer.md:
+        - hash: 6f544642531bb42a
+          sourceHash: b477f2c3c55ad651
+          target: .claude/agents/type-design-analyzer.md
+        - hash: cad6a07815e20c45
+          sourceHash: b477f2c3c55ad651
+          target: .opencode/agents/everything-claude-code-type-design-analyzer.md
+      agents/typescript-reviewer.md:
+        - hash: 28f31e629f2ef9ab
+          sourceHash: 72d39e2a27ace0c3
+          target: .claude/agents/typescript-reviewer.md
+        - hash: 229e34b354870634
+          sourceHash: 72d39e2a27ace0c3
+          target: .opencode/agents/everything-claude-code-typescript-reviewer.md
+      commands/add-language-rules.md:
+        - hash: 856571eb0d52acc1
+          sourceHash: d96ba29b5a9934a6
+          target: .claude/commands/add-language-rules.md
+        - hash: 50f293749fa94be2
+          sourceHash: 8d2d94f643e7fecc
+          target: .claude/commands/hookify-help.md
+        - hash: 856571eb0d52acc1
+          sourceHash: d96ba29b5a9934a6
+          target: .opencode/commands/everything-claude-code-add-language-rules.md
+        - hash: 50f293749fa94be2
+          sourceHash: 8d2d94f643e7fecc
+          target: .opencode/commands/everything-claude-code-hookify-help.md
+      commands/agent-sort.md:
+        - hash: f8b8983b4ff76b47
+          sourceHash: bae462f27a77b608
+          target: .claude/commands/agent-sort.md
+        - hash: f8b8983b4ff76b47
+          sourceHash: bae462f27a77b608
+          target: .opencode/commands/everything-claude-code-agent-sort.md
+      commands/aside.md:
+        - hash: 885e265b1d3f8362
+          sourceHash: ba6087091e1e4f15
+          target: .claude/commands/aside.md
+        - hash: 885e265b1d3f8362
+          sourceHash: ba6087091e1e4f15
+          target: .opencode/commands/everything-claude-code-aside.md
+      commands/build-fix.md:
+        - hash: 5a5e26eba7405858
+          sourceHash: 5a5e26eba7405858
+          target: .claude/commands/build-fix.md
+        - hash: 5a5e26eba7405858
+          sourceHash: 5a5e26eba7405858
+          target: .opencode/commands/everything-claude-code-build-fix.md
+      commands/claw.md:
+        - hash: 3461eef666af6589
+          sourceHash: 82763f2daedc5736
+          target: .claude/commands/claw.md
+        - hash: 3461eef666af6589
+          sourceHash: 82763f2daedc5736
+          target: .opencode/commands/everything-claude-code-claw.md
+      commands/code-review.md:
+        - hash: 6309f43723f133ae
+          sourceHash: 71c7b4c49a15a9d7
+          target: .claude/commands/code-review.md
+        - hash: 6309f43723f133ae
+          sourceHash: 71c7b4c49a15a9d7
+          target: .opencode/commands/everything-claude-code-code-review.md
+      commands/context-budget.md:
+        - hash: 3e8ed952f85e1381
+          sourceHash: 396e60936139488d
+          target: .claude/commands/context-budget.md
+        - hash: 3e8ed952f85e1381
+          sourceHash: 396e60936139488d
+          target: .opencode/commands/everything-claude-code-context-budget.md
+      commands/cpp-build.md:
+        - hash: 2309ede9ee8e242f
+          sourceHash: b2cbf369f2fb5738
+          target: .claude/commands/cpp-build.md
+        - hash: 2309ede9ee8e242f
+          sourceHash: b2cbf369f2fb5738
+          target: .opencode/commands/everything-claude-code-cpp-build.md
+      commands/cpp-review.md:
+        - hash: c2d6c47f18679983
+          sourceHash: 5c46a85586ceca37
+          target: .claude/commands/cpp-review.md
+        - hash: 857b03280b1a9b96
+          sourceHash: c9b4286f209a5708
+          target: .claude/skills/remotion-video-creation/rules/compositions.md
+        - hash: c2d6c47f18679983
+          sourceHash: 5c46a85586ceca37
+          target: .opencode/commands/everything-claude-code-cpp-review.md
+        - hash: 857b03280b1a9b96
+          sourceHash: c9b4286f209a5708
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-compositions.md
+      commands/cpp-test.md:
+        - hash: 4ab2513817e5985e
+          sourceHash: 925bb96eebdbeff3
+          target: .claude/commands/cpp-test.md
+        - hash: 4ab2513817e5985e
+          sourceHash: 925bb96eebdbeff3
+          target: .opencode/commands/everything-claude-code-cpp-test.md
+      commands/database-migration.md:
+        - hash: d975bdd1a2eefbb2
+          sourceHash: d381bc51890d3088
+          target: .claude/commands/database-migration.md
+        - hash: d975bdd1a2eefbb2
+          sourceHash: d381bc51890d3088
+          target: .opencode/commands/everything-claude-code-database-migration.md
+      commands/devfleet.md:
+        - hash: 3fd08f64d0981a9f
+          sourceHash: 43c4c709cb4bc5ab
+          target: .claude/commands/devfleet.md
+        - hash: 3fd08f64d0981a9f
+          sourceHash: 43c4c709cb4bc5ab
+          target: .opencode/commands/everything-claude-code-devfleet.md
+      commands/docs.md:
+        - hash: 93bc3843adf9cd2a
+          sourceHash: 9359c683a5a50cd4
+          target: .claude/commands/docs.md
+        - hash: 93bc3843adf9cd2a
+          sourceHash: 9359c683a5a50cd4
+          target: .opencode/commands/everything-claude-code-docs.md
+      commands/e2e.md:
+        - hash: aee1d7ac6b92bee9
+          sourceHash: b467b45430f0093a
+          target: .claude/commands/e2e.md
+        - hash: aee1d7ac6b92bee9
+          sourceHash: b467b45430f0093a
+          target: .opencode/commands/everything-claude-code-e2e.md
+      commands/eval.md:
+        - hash: 734a20db09856a57
+          sourceHash: b2c03f1ac3f0e9c5
+          target: .claude/commands/eval.md
+        - hash: 734a20db09856a57
+          sourceHash: b2c03f1ac3f0e9c5
+          target: .opencode/commands/everything-claude-code-eval.md
+      commands/evolve.md:
+        - hash: d3edddcec416afbd
+          sourceHash: 2f2c91ffcb2fead0
+          target: .claude/commands/evolve.md
+        - hash: 007cf830306e6053
+          sourceHash: c385f17a87e43ce5
+          target: .claude/skills/jpa-patterns/SKILL.md
+        - hash: d3edddcec416afbd
+          sourceHash: 2f2c91ffcb2fead0
+          target: .opencode/commands/everything-claude-code-evolve.md
+        - hash: 007cf830306e6053
+          sourceHash: c385f17a87e43ce5
+          target: .opencode/skills/everything-claude-code-jpa-patterns/SKILL.md
+      commands/feature-dev.md:
+        - hash: 32d0f3d6d1b2c0aa
+          sourceHash: f3499c9bf58f0286
+          target: .claude/commands/feature-dev.md
+        - hash: 32d0f3d6d1b2c0aa
+          sourceHash: f3499c9bf58f0286
+          target: .opencode/commands/everything-claude-code-feature-dev.md
+      commands/feature-development.md:
+        - hash: 3eae7410f5112972
+          sourceHash: 99f22fac3c6a2492
+          target: .claude/commands/feature-development.md
+        - hash: 3eae7410f5112972
+          sourceHash: 99f22fac3c6a2492
+          target: .opencode/commands/everything-claude-code-feature-development.md
+      commands/flutter-build.md:
+        - hash: 26916baeca6f93d7
+          sourceHash: 1dec39d6c6b2ff49
+          target: .claude/commands/flutter-build.md
+        - hash: 26916baeca6f93d7
+          sourceHash: 1dec39d6c6b2ff49
+          target: .opencode/commands/everything-claude-code-flutter-build.md
+      commands/flutter-review.md:
+        - hash: 4d72a622696a11c6
+          sourceHash: 6be626ab7d7eb3b8
+          target: .claude/commands/flutter-review.md
+        - hash: 4d72a622696a11c6
+          sourceHash: 6be626ab7d7eb3b8
+          target: .opencode/commands/everything-claude-code-flutter-review.md
+      commands/flutter-test.md:
+        - hash: e6ff6c27a66e9f3b
+          sourceHash: 43b1995c594738b0
+          target: .claude/commands/flutter-test.md
+        - hash: e6ff6c27a66e9f3b
+          sourceHash: 43b1995c594738b0
+          target: .opencode/commands/everything-claude-code-flutter-test.md
+      commands/gan-build.md:
+        - hash: 65847d858a914f05
+          sourceHash: 65847d858a914f05
+          target: .claude/commands/gan-build.md
+        - hash: 65847d858a914f05
+          sourceHash: 65847d858a914f05
+          target: .opencode/commands/everything-claude-code-gan-build.md
+      commands/gan-design.md:
+        - hash: 9f00b52c3aa2a66b
+          sourceHash: 9f00b52c3aa2a66b
+          target: .claude/commands/gan-design.md
+        - hash: 9f00b52c3aa2a66b
+          sourceHash: 9f00b52c3aa2a66b
+          target: .opencode/commands/everything-claude-code-gan-design.md
+      commands/go-build.md:
+        - hash: 165a89f8e3482ef6
+          sourceHash: 3668f92197f3afd8
+          target: .claude/commands/go-build.md
+        - hash: 165a89f8e3482ef6
+          sourceHash: 3668f92197f3afd8
+          target: .opencode/commands/everything-claude-code-go-build.md
+      commands/go-review.md:
+        - hash: a310bde19f5ff9e7
+          sourceHash: 65ba15a8c3aaad43
+          target: .claude/commands/go-review.md
+        - hash: a310bde19f5ff9e7
+          sourceHash: 65ba15a8c3aaad43
+          target: .opencode/commands/everything-claude-code-go-review.md
+      commands/go-test.md:
+        - hash: 63c11bef2b1ada21
+          sourceHash: 43d9f1599e3dbc92
+          target: .claude/commands/go-test.md
+        - hash: 63c11bef2b1ada21
+          sourceHash: 43d9f1599e3dbc92
+          target: .opencode/commands/everything-claude-code-go-test.md
+      commands/gradle-build.md:
+        - hash: e5409f49e21636f6
+          sourceHash: 156c5d3f64e1ee45
+          target: .claude/commands/gradle-build.md
+        - hash: e5409f49e21636f6
+          sourceHash: 156c5d3f64e1ee45
+          target: .opencode/commands/everything-claude-code-gradle-build.md
+      commands/harness-audit.md:
+        - hash: 4737006ba1c1a17a
+          sourceHash: 4737006ba1c1a17a
+          target: .claude/commands/harness-audit.md
+        - hash: 4737006ba1c1a17a
+          sourceHash: 4737006ba1c1a17a
+          target: .opencode/commands/everything-claude-code-harness-audit.md
+      commands/hookify-configure.md:
+        - hash: 1e8fce6325789d2b
+          sourceHash: 6cb97ae6541f2165
+          target: .claude/commands/hookify-configure.md
+        - hash: 1e8fce6325789d2b
+          sourceHash: 6cb97ae6541f2165
+          target: .opencode/commands/everything-claude-code-hookify-configure.md
+      commands/hookify-list.md:
+        - hash: 875dd80d9ef88b95
+          sourceHash: bd06dcd5127cd2a0
+          target: .claude/commands/hookify-list.md
+        - hash: 875dd80d9ef88b95
+          sourceHash: bd06dcd5127cd2a0
+          target: .opencode/commands/everything-claude-code-hookify-list.md
+      commands/hookify.md:
+        - hash: 8755e1f57e327b0f
+          sourceHash: f592ea7ddcf65581
+          target: .claude/commands/hookify.md
+        - hash: 8755e1f57e327b0f
+          sourceHash: f592ea7ddcf65581
+          target: .opencode/commands/everything-claude-code-hookify.md
+      commands/instinct-export.md:
+        - hash: f3ab16d4e0da5e01
+          sourceHash: 181743c5a1cdc4f8
+          target: .claude/commands/instinct-export.md
+        - hash: f3ab16d4e0da5e01
+          sourceHash: 181743c5a1cdc4f8
+          target: .opencode/commands/everything-claude-code-instinct-export.md
+      commands/instinct-import.md:
+        - hash: bfa0de5d540bc91f
+          sourceHash: 8e1d68e4a3eb0814
+          target: .claude/commands/instinct-import.md
+        - hash: bfa0de5d540bc91f
+          sourceHash: 8e1d68e4a3eb0814
+          target: .opencode/commands/everything-claude-code-instinct-import.md
+      commands/instinct-status.md:
+        - hash: 82e0e9b65e021ed6
+          sourceHash: df6cf7bc9da600e7
+          target: .claude/commands/instinct-status.md
+        - hash: 82e0e9b65e021ed6
+          sourceHash: df6cf7bc9da600e7
+          target: .opencode/commands/everything-claude-code-instinct-status.md
+      commands/jira.md:
+        - hash: 28d4374bafcc595f
+          sourceHash: 84d1ca41374af98d
+          target: .claude/commands/jira.md
+        - hash: 28d4374bafcc595f
+          sourceHash: 84d1ca41374af98d
+          target: .opencode/commands/everything-claude-code-jira.md
+      commands/kotlin-build.md:
+        - hash: fff280a3736b8a24
+          sourceHash: b494357413e23801
+          target: .claude/commands/kotlin-build.md
+        - hash: fff280a3736b8a24
+          sourceHash: b494357413e23801
+          target: .opencode/commands/everything-claude-code-kotlin-build.md
+      commands/kotlin-review.md:
+        - hash: 659f3f4c28dd3397
+          sourceHash: e20ce12962088e1a
+          target: .claude/commands/kotlin-review.md
+        - hash: 659f3f4c28dd3397
+          sourceHash: e20ce12962088e1a
+          target: .opencode/commands/everything-claude-code-kotlin-review.md
+      commands/kotlin-test.md:
+        - hash: db7b63e2535e62ae
+          sourceHash: db8155f3625f4677
+          target: .claude/commands/kotlin-test.md
+        - hash: db7b63e2535e62ae
+          sourceHash: db8155f3625f4677
+          target: .opencode/commands/everything-claude-code-kotlin-test.md
+      commands/learn-eval.md:
+        - hash: 485464e58565c9b0
+          sourceHash: 2bb9f482deb72d2b
+          target: .claude/commands/learn-eval.md
+        - hash: 485464e58565c9b0
+          sourceHash: 2bb9f482deb72d2b
+          target: .opencode/commands/everything-claude-code-learn-eval.md
+      commands/learn.md:
+        - hash: 2b5cce037011089a
+          sourceHash: 2b5cce037011089a
+          target: .claude/commands/learn.md
+        - hash: 2b5cce037011089a
+          sourceHash: 2b5cce037011089a
+          target: .opencode/commands/everything-claude-code-learn.md
+      commands/loop-start.md:
+        - hash: 27875fb920247c3d
+          sourceHash: 27875fb920247c3d
+          target: .claude/commands/loop-start.md
+        - hash: 27875fb920247c3d
+          sourceHash: 27875fb920247c3d
+          target: .opencode/commands/everything-claude-code-loop-start.md
+      commands/loop-status.md:
+        - hash: 4aa3159baead287f
+          sourceHash: 4aa3159baead287f
+          target: .claude/commands/loop-status.md
+        - hash: 4aa3159baead287f
+          sourceHash: 4aa3159baead287f
+          target: .opencode/commands/everything-claude-code-loop-status.md
+      commands/model-route.md:
+        - hash: 59d65dc6faa3e3ac
+          sourceHash: 59d65dc6faa3e3ac
+          target: .claude/commands/model-route.md
+        - hash: 59d65dc6faa3e3ac
+          sourceHash: 59d65dc6faa3e3ac
+          target: .opencode/commands/everything-claude-code-model-route.md
+      commands/multi-execute.md:
+        - hash: 57d2b4e7f317178a
+          sourceHash: 57d2b4e7f317178a
+          target: .claude/commands/multi-execute.md
+        - hash: 57d2b4e7f317178a
+          sourceHash: 57d2b4e7f317178a
+          target: .opencode/commands/everything-claude-code-multi-execute.md
+      commands/multi-frontend.md:
+        - hash: 1e6b94db1475f3f5
+          sourceHash: 1e6b94db1475f3f5
+          target: .claude/commands/multi-frontend.md
+        - hash: 1e6b94db1475f3f5
+          sourceHash: 1e6b94db1475f3f5
+          target: .opencode/commands/everything-claude-code-multi-frontend.md
+      commands/multi-plan.md:
+        - hash: 7f4930cc0896e2e8
+          sourceHash: 7f4930cc0896e2e8
+          target: .claude/commands/multi-plan.md
+        - hash: 7f4930cc0896e2e8
+          sourceHash: 7f4930cc0896e2e8
+          target: .opencode/commands/everything-claude-code-multi-plan.md
+      commands/multi-workflow.md:
+        - hash: 1c473d9c530b3849
+          sourceHash: 1c473d9c530b3849
+          target: .claude/commands/multi-workflow.md
+        - hash: 1c473d9c530b3849
+          sourceHash: 1c473d9c530b3849
+          target: .opencode/commands/everything-claude-code-multi-workflow.md
+      commands/orchestrate.md:
+        - hash: 5b1a53ad927d6bf2
+          sourceHash: 47f41b977bf9d686
+          target: .claude/commands/orchestrate.md
+        - hash: 5b1a53ad927d6bf2
+          sourceHash: 47f41b977bf9d686
+          target: .opencode/commands/everything-claude-code-orchestrate.md
+      commands/plan.md:
+        - hash: 3137736addc8ba6c
+          sourceHash: 636537dbc9e7c25e
+          target: .claude/commands/plan.md
+        - hash: 472f113d05779979
+          sourceHash: f326ae4fd198336d
+          target: .claude/skills/visa-doc-translate/SKILL.md
+        - hash: 3137736addc8ba6c
+          sourceHash: 636537dbc9e7c25e
+          target: .opencode/commands/everything-claude-code-plan.md
+        - hash: 472f113d05779979
+          sourceHash: f326ae4fd198336d
+          target: .opencode/skills/everything-claude-code-visa-doc-translate/SKILL.md
+      commands/pm2.md:
+        - hash: 9c8350b5ca35107e
+          sourceHash: 9c8350b5ca35107e
+          target: .claude/commands/pm2.md
+        - hash: 9c8350b5ca35107e
+          sourceHash: 9c8350b5ca35107e
+          target: .opencode/commands/everything-claude-code-pm2.md
+      commands/projects.md:
+        - hash: c07723f6b7d18c16
+          sourceHash: 9e31d1f8d669c4bc
+          target: .claude/commands/projects.md
+        - hash: c07723f6b7d18c16
+          sourceHash: 9e31d1f8d669c4bc
+          target: .opencode/commands/everything-claude-code-projects.md
+      commands/promote.md:
+        - hash: eabe34adf4815283
+          sourceHash: 3bdc6842e980b72d
+          target: .claude/commands/promote.md
+        - hash: eabe34adf4815283
+          sourceHash: 3bdc6842e980b72d
+          target: .opencode/commands/everything-claude-code-promote.md
+      commands/prompt-optimize.md:
+        - hash: 0fb06db18f3129dd
+          sourceHash: cf4b060f8f7fc8c1
+          target: .claude/commands/prompt-optimize.md
+        - hash: 0fb06db18f3129dd
+          sourceHash: cf4b060f8f7fc8c1
+          target: .opencode/commands/everything-claude-code-prompt-optimize.md
+      commands/prp-commit.md:
+        - hash: 45407c4a37a2fcd7
+          sourceHash: 5d8571753303328b
+          target: .claude/commands/prp-commit.md
+        - hash: 45407c4a37a2fcd7
+          sourceHash: 5d8571753303328b
+          target: .opencode/commands/everything-claude-code-prp-commit.md
+      commands/prp-implement.md:
+        - hash: 77900f17fb75fbd6
+          sourceHash: 0bf8178091a46465
+          target: .claude/commands/prp-implement.md
+        - hash: 77900f17fb75fbd6
+          sourceHash: 0bf8178091a46465
+          target: .opencode/commands/everything-claude-code-prp-implement.md
+      commands/prp-plan.md:
+        - hash: 11ff68d9d7e6b456
+          sourceHash: 05624b9ad3259862
+          target: .claude/commands/prp-plan.md
+        - hash: 11ff68d9d7e6b456
+          sourceHash: 05624b9ad3259862
+          target: .opencode/commands/everything-claude-code-prp-plan.md
+      commands/prp-pr.md:
+        - hash: 262883c708d5acb9
+          sourceHash: faff6f31af30c4e0
+          target: .claude/commands/prp-pr.md
+        - hash: 262883c708d5acb9
+          sourceHash: faff6f31af30c4e0
+          target: .opencode/commands/everything-claude-code-prp-pr.md
+      commands/prp-prd.md:
+        - hash: 0c1974cd4872fbdd
+          sourceHash: a9a5c879d70986ce
+          target: .claude/commands/prp-prd.md
+        - hash: 0c1974cd4872fbdd
+          sourceHash: a9a5c879d70986ce
+          target: .opencode/commands/everything-claude-code-prp-prd.md
+      commands/prune.md:
+        - hash: 346ec6e74520cd23
+          sourceHash: 16ab3ff9cd42a54c
+          target: .claude/commands/prune.md
+        - hash: 346ec6e74520cd23
+          sourceHash: 16ab3ff9cd42a54c
+          target: .opencode/commands/everything-claude-code-prune.md
+      commands/python-review.md:
+        - hash: 51a6b4fa5834f1e5
+          sourceHash: 03c9711d80f2d6e5
+          target: .claude/commands/python-review.md
+        - hash: 51a6b4fa5834f1e5
+          sourceHash: 03c9711d80f2d6e5
+          target: .opencode/commands/everything-claude-code-python-review.md
+      commands/refactor-clean.md:
+        - hash: 573f7939535d8404
+          sourceHash: 573f7939535d8404
+          target: .claude/commands/refactor-clean.md
+        - hash: 573f7939535d8404
+          sourceHash: 573f7939535d8404
+          target: .opencode/commands/everything-claude-code-refactor-clean.md
+      commands/resume-session.md:
+        - hash: 0bc639dd6fca6b4c
+          sourceHash: 86280dde721b3fca
+          target: .claude/commands/resume-session.md
+        - hash: 0bc639dd6fca6b4c
+          sourceHash: 86280dde721b3fca
+          target: .opencode/commands/everything-claude-code-resume-session.md
+      commands/review-pr.md:
+        - hash: cde678a4ac5bb050
+          sourceHash: d2b27d19da9963c8
+          target: .claude/commands/review-pr.md
+        - hash: cde678a4ac5bb050
+          sourceHash: d2b27d19da9963c8
+          target: .opencode/commands/everything-claude-code-review-pr.md
+      commands/rules-distill.md:
+        - hash: 37527a1cb98bfb0f
+          sourceHash: ca8e2455b6d33510
+          target: .claude/commands/rules-distill.md
+        - hash: 37527a1cb98bfb0f
+          sourceHash: ca8e2455b6d33510
+          target: .opencode/commands/everything-claude-code-rules-distill.md
+      commands/rust-build.md:
+        - hash: c285a1d5102fea8d
+          sourceHash: 4a0761b427a9abb8
+          target: .claude/commands/rust-build.md
+        - hash: c285a1d5102fea8d
+          sourceHash: 4a0761b427a9abb8
+          target: .opencode/commands/everything-claude-code-rust-build.md
+      commands/rust-review.md:
+        - hash: 1fc64f140ce29eb3
+          sourceHash: 0c07338de8927d83
+          target: .claude/commands/rust-review.md
+        - hash: 1fc64f140ce29eb3
+          sourceHash: 0c07338de8927d83
+          target: .opencode/commands/everything-claude-code-rust-review.md
+      commands/rust-test.md:
+        - hash: 127a229473bf6789
+          sourceHash: 4ab86855046dbfc2
+          target: .claude/commands/rust-test.md
+        - hash: 127a229473bf6789
+          sourceHash: 4ab86855046dbfc2
+          target: .opencode/commands/everything-claude-code-rust-test.md
+      commands/santa-loop.md:
+        - hash: a24102f2b5837fa8
+          sourceHash: 4996e16c4df5fcd6
+          target: .claude/commands/santa-loop.md
+        - hash: a24102f2b5837fa8
+          sourceHash: 4996e16c4df5fcd6
+          target: .opencode/commands/everything-claude-code-santa-loop.md
+      commands/save-session.md:
+        - hash: 41ab0c1a58e328f6
+          sourceHash: 7cd535d36a12ca67
+          target: .claude/commands/save-session.md
+        - hash: 41ab0c1a58e328f6
+          sourceHash: 7cd535d36a12ca67
+          target: .opencode/commands/everything-claude-code-save-session.md
+      commands/sessions.md:
+        - hash: d84a26d7c4da9e13
+          sourceHash: 42e244656977a2a9
+          target: .claude/commands/sessions.md
+        - hash: d84a26d7c4da9e13
+          sourceHash: 42e244656977a2a9
+          target: .opencode/commands/everything-claude-code-sessions.md
+      commands/setup-pm.md:
+        - hash: 3ad58148a89674d6
+          sourceHash: ec5a07fcdb417f99
+          target: .claude/commands/setup-pm.md
+        - hash: 3ad58148a89674d6
+          sourceHash: ec5a07fcdb417f99
+          target: .opencode/commands/everything-claude-code-setup-pm.md
+      commands/skill-create.md:
+        - hash: d59a40f592eb00ea
+          sourceHash: 756d70c77694cc4b
+          target: .claude/commands/skill-create.md
+        - hash: d59a40f592eb00ea
+          sourceHash: 756d70c77694cc4b
+          target: .opencode/commands/everything-claude-code-skill-create.md
+      commands/skill-health.md:
+        - hash: 58576562c44680c4
+          sourceHash: 84864ea46296f7ac
+          target: .claude/commands/skill-health.md
+        - hash: 58576562c44680c4
+          sourceHash: 84864ea46296f7ac
+          target: .opencode/commands/everything-claude-code-skill-health.md
+      commands/tdd.md:
+        - hash: 1309525a01c79d1c
+          sourceHash: 5df37a0e8c4470a6
+          target: .claude/commands/tdd.md
+        - hash: 1309525a01c79d1c
+          sourceHash: 5df37a0e8c4470a6
+          target: .opencode/commands/everything-claude-code-tdd.md
+      commands/test-coverage.md:
+        - hash: fa3c19d795463ebd
+          sourceHash: fa3c19d795463ebd
+          target: .claude/commands/test-coverage.md
+        - hash: fa3c19d795463ebd
+          sourceHash: fa3c19d795463ebd
+          target: .opencode/commands/everything-claude-code-test-coverage.md
+      commands/update-codemaps.md:
+        - hash: a388a8e46b397312
+          sourceHash: a388a8e46b397312
+          target: .claude/commands/update-codemaps.md
+        - hash: a388a8e46b397312
+          sourceHash: a388a8e46b397312
+          target: .opencode/commands/everything-claude-code-update-codemaps.md
+      commands/update-docs.md:
+        - hash: c663f68e6afaf920
+          sourceHash: c663f68e6afaf920
+          target: .claude/commands/update-docs.md
+        - hash: c663f68e6afaf920
+          sourceHash: c663f68e6afaf920
+          target: .opencode/commands/everything-claude-code-update-docs.md
+      commands/verify.md:
+        - hash: c61683d23de4dfa6
+          sourceHash: 10517738b4a30d75
+          target: .claude/commands/verify.md
+        - hash: c61683d23de4dfa6
+          sourceHash: 10517738b4a30d75
+          target: .opencode/commands/everything-claude-code-verify.md
+      rules/README.md:
+        - hash: ea21daf1900174ae
+          sourceHash: ea21daf1900174ae
+          target: .claude/rules/README.md
+      rules/common/agents.md:
+        - hash: 1d80301b8657a6e2
+          sourceHash: 1d80301b8657a6e2
+          target: .claude/commands/checkpoint.md
+        - hash: a90ee0bd7a5af910
+          sourceHash: a90ee0bd7a5af910
+          target: .claude/rules/common/agents.md
+        - hash: 1d80301b8657a6e2
+          sourceHash: 1d80301b8657a6e2
+          target: .opencode/commands/everything-claude-code-checkpoint.md
+      rules/common/code-review.md:
+        - hash: 40a1fffb732ea16b
+          sourceHash: 40a1fffb732ea16b
+          target: .claude/rules/common/code-review.md
+      rules/common/coding-style.md:
+        - hash: 960f2f15414ef6e1
+          sourceHash: 960f2f15414ef6e1
+          target: .claude/rules/common/coding-style.md
+      rules/common/development-workflow.md:
+        - hash: 1f6139c7f7235bbf
+          sourceHash: 1f6139c7f7235bbf
+          target: .claude/rules/common/development-workflow.md
+      rules/common/git-workflow.md:
+        - hash: cbff568e56b60a49
+          sourceHash: cbff568e56b60a49
+          target: .claude/commands/quality-gate.md
+        - hash: 8f515584e3f2b09f
+          sourceHash: 8f515584e3f2b09f
+          target: .claude/rules/common/git-workflow.md
+        - hash: cbff568e56b60a49
+          sourceHash: cbff568e56b60a49
+          target: .opencode/commands/everything-claude-code-quality-gate.md
+      rules/common/hooks.md:
+        - hash: 313938c35d378f65
+          sourceHash: 313938c35d378f65
+          target: .claude/rules/common/hooks.md
+      rules/common/patterns.md:
+        - hash: f87d66a0f279c4c3
+          sourceHash: f87d66a0f279c4c3
+          target: .claude/rules/common/patterns.md
+        - hash: 0d445c61ed3cee4b
+          sourceHash: 50246ace3ff57b65
+          target: .claude/rules/swift/security.md
+      rules/common/performance.md:
+        - hash: 2d425bc70e240c5d
+          sourceHash: 2d425bc70e240c5d
+          target: .claude/rules/common/performance.md
+      rules/common/security.md:
+        - hash: 32e9a206e06b7a61
+          sourceHash: 32e9a206e06b7a61
+          target: .claude/rules/common/security.md
+      rules/common/testing.md:
+        - hash: 9475f8b16ff89722
+          sourceHash: 9475f8b16ff89722
+          target: .claude/rules/common/testing.md
+      rules/cpp/coding-style.md:
+        - hash: 2e4ac271d9050c87
+          sourceHash: b590c7c0f48e2b25
+          target: .claude/rules/cpp/coding-style.md
+      rules/cpp/hooks.md:
+        - hash: d1dda3be435f6dd4
+          sourceHash: a0e87ee4fd95bb45
+          target: .claude/rules/cpp/hooks.md
+      rules/cpp/patterns.md:
+        - hash: 4e425ed152ddf3a1
+          sourceHash: 20001d8582dc4ba0
+          target: .claude/rules/cpp/patterns.md
+      rules/cpp/security.md:
+        - hash: 45753902e35f2aea
+          sourceHash: 76686c44f00e2a85
+          target: .claude/rules/cpp/security.md
+      rules/cpp/testing.md:
+        - hash: b3ac26957d743b3b
+          sourceHash: f1f51861087f7c29
+          target: .claude/rules/cpp/testing.md
+      rules/csharp/coding-style.md:
+        - hash: 716e62be94abea68
+          sourceHash: 1d56e4be064e375b
+          target: .claude/rules/csharp/coding-style.md
+      rules/csharp/hooks.md:
+        - hash: 1dc0c19e42bdbb5d
+          sourceHash: 49f4015107b484fb
+          target: .claude/rules/csharp/hooks.md
+      rules/csharp/patterns.md:
+        - hash: a0b275c0aac9ee6b
+          sourceHash: 175519b4103dbf29
+          target: .claude/rules/csharp/patterns.md
+      rules/csharp/security.md:
+        - hash: 9ccd8961d9253e79
+          sourceHash: 859af732ca9892c4
+          target: .claude/rules/csharp/security.md
+      rules/csharp/testing.md:
+        - hash: 5f99894caf81781d
+          sourceHash: 5e0d3433f6650676
+          target: .claude/rules/csharp/testing.md
+      rules/dart/coding-style.md:
+        - hash: e5c28e88586cf1ac
+          sourceHash: c9107584f312663a
+          target: .claude/rules/dart/coding-style.md
+      rules/dart/hooks.md:
+        - hash: 7a06fefc1ca4e988
+          sourceHash: fdfb7f0cb338c45c
+          target: .claude/rules/dart/hooks.md
+      rules/dart/patterns.md:
+        - hash: 73748a61fb4613af
+          sourceHash: ddf4a7cedbe1ae5f
+          target: .claude/rules/dart/patterns.md
+      rules/dart/security.md:
+        - hash: 20848ede55771c43
+          sourceHash: 20848ede55771c43
+          target: .claude/commands/multi-backend.md
+        - hash: e7784accaf0f1737
+          sourceHash: e736790069bf2ae7
+          target: .claude/rules/dart/security.md
+        - hash: 20848ede55771c43
+          sourceHash: 20848ede55771c43
+          target: .opencode/commands/everything-claude-code-multi-backend.md
+      rules/dart/testing.md:
+        - hash: 5eb5bcd58c261247
+          sourceHash: 81ad02db472efb41
+          target: .claude/rules/dart/testing.md
+      rules/golang/coding-style.md:
+        - hash: e8b651c11ef594cd
+          sourceHash: ba9372c95b1cc284
+          target: .claude/rules/golang/coding-style.md
+      rules/golang/hooks.md:
+        - hash: 8970f54e64dee4e7
+          sourceHash: a50fb25c8f05623d
+          target: .claude/rules/golang/hooks.md
+      rules/golang/patterns.md:
+        - hash: 7a9c985879033d4e
+          sourceHash: 56c8002ddcdf43a0
+          target: .claude/rules/golang/patterns.md
+      rules/golang/security.md:
+        - hash: cfc76c3276839f8d
+          sourceHash: b4a7374106446a7b
+          target: .claude/rules/golang/security.md
+      rules/golang/testing.md:
+        - hash: f60005af4e0e2491
+          sourceHash: f32411c942aa1450
+          target: .claude/rules/golang/testing.md
+      rules/java/coding-style.md:
+        - hash: ca2d15228488c942
+          sourceHash: 006721248c4c39d7
+          target: .claude/rules/java/coding-style.md
+      rules/java/hooks.md:
+        - hash: 3d58228e0bf1e374
+          sourceHash: 89d7027224128058
+          target: .claude/rules/java/hooks.md
+      rules/java/patterns.md:
+        - hash: 171fc4e9980a2623
+          sourceHash: 346d556f300171e5
+          target: .claude/rules/java/patterns.md
+      rules/java/security.md:
+        - hash: 7040f66823d6d637
+          sourceHash: 5bd447b128f5d9d2
+          target: .claude/rules/java/security.md
+      rules/java/testing.md:
+        - hash: a7295a74495ab068
+          sourceHash: 78d4bca1b3f6e2eb
+          target: .claude/rules/java/testing.md
+      rules/kotlin/coding-style.md:
+        - hash: 93fe6f2049f48a99
+          sourceHash: 22a36b969a636a4f
+          target: .claude/rules/kotlin/coding-style.md
+      rules/kotlin/hooks.md:
+        - hash: b87722ad7e250da0
+          sourceHash: 7f6b491395375a0e
+          target: .claude/rules/kotlin/hooks.md
+      rules/kotlin/patterns.md:
+        - hash: cc7e14cefaa60c6e
+          sourceHash: a6e7422414a0abf2
+          target: .claude/rules/kotlin/patterns.md
+      rules/kotlin/security.md:
+        - hash: 67656bc6b9cf6391
+          sourceHash: a0776a5d1d6d1b79
+          target: .claude/rules/kotlin/security.md
+      rules/kotlin/testing.md:
+        - hash: e25ce76106334341
+          sourceHash: 1640d4b360d92032
+          target: .claude/rules/kotlin/testing.md
+        - hash: f255a6f9d5e9add3
+          sourceHash: 9fdebe2def801759
+          target: .claude/skills/exa-search/SKILL.md
+        - hash: f255a6f9d5e9add3
+          sourceHash: 9fdebe2def801759
+          target: .opencode/skills/everything-claude-code-exa-search/SKILL.md
+      rules/perl/coding-style.md:
+        - hash: 0314fad480fedefa
+          sourceHash: 73eda2988d11d403
+          target: .claude/rules/perl/coding-style.md
+      rules/perl/hooks.md:
+        - hash: 8b1cd6c00a11af0a
+          sourceHash: cafc3b24cfbc68f9
+          target: .claude/rules/perl/hooks.md
+      rules/perl/patterns.md:
+        - hash: d4294c3a5648c690
+          sourceHash: f4adead78e7df6d6
+          target: .claude/rules/perl/patterns.md
+      rules/perl/security.md:
+        - hash: 734c33e5c94f4e52
+          sourceHash: 8cbe46580613ebdd
+          target: .claude/rules/perl/security.md
+      rules/perl/testing.md:
+        - hash: 5cfabab4b80f498c
+          sourceHash: dd6c4f3c348ac347
+          target: .claude/rules/perl/testing.md
+      rules/php/coding-style.md:
+        - hash: 61501ec19c2272bb
+          sourceHash: f17df1d33cb3f2ff
+          target: .claude/rules/php/coding-style.md
+      rules/php/hooks.md:
+        - hash: 0624df6fcfec0606
+          sourceHash: a6287ed6af67576e
+          target: .claude/rules/php/hooks.md
+      rules/php/patterns.md:
+        - hash: 4fc1095aeb1f4ba4
+          sourceHash: 05a5cd9c199ce152
+          target: .claude/rules/php/patterns.md
+      rules/php/security.md:
+        - hash: 7c3e06d8a0ceacc2
+          sourceHash: e39fda93730b4db2
+          target: .claude/rules/php/security.md
+      rules/php/testing.md:
+        - hash: 0c1024764d45e7b8
+          sourceHash: 252ef62ad373d1e8
+          target: .claude/rules/php/testing.md
+      rules/python/coding-style.md:
+        - hash: d4508433a21f3d1e
+          sourceHash: b4d5f8693e892935
+          target: .claude/rules/python/coding-style.md
+      rules/python/hooks.md:
+        - hash: 82bb2b84b730fb9d
+          sourceHash: f84fbe8568d0331a
+          target: .claude/rules/python/hooks.md
+      rules/python/patterns.md:
+        - hash: b771d87357e7a1b7
+          sourceHash: 3b4454fa21163caa
+          target: .claude/rules/python/patterns.md
+      rules/python/security.md:
+        - hash: 7c0aa6c587a03d78
+          sourceHash: 4912baf09ef32258
+          target: .claude/rules/python/security.md
+      rules/python/testing.md:
+        - hash: 28f48d03bbf923b2
+          sourceHash: c52c645a0f9d32eb
+          target: .claude/rules/python/testing.md
+      rules/rust/coding-style.md:
+        - hash: 56405c0086e688b4
+          sourceHash: 2332ebf0be8dd712
+          target: .claude/rules/rust/coding-style.md
+      rules/rust/hooks.md:
+        - hash: 897bae1b87948555
+          sourceHash: 07cb246ed35933cf
+          target: .claude/rules/rust/hooks.md
+      rules/rust/patterns.md:
+        - hash: 22a89d4e5d2c1ec4
+          sourceHash: 4a92f997145d66ad
+          target: .claude/rules/rust/patterns.md
+      rules/rust/security.md:
+        - hash: 209b0ff7b453cff3
+          sourceHash: eec0ffebaa2e2849
+          target: .claude/rules/rust/security.md
+      rules/rust/testing.md:
+        - hash: 571ad6acd91913ec
+          sourceHash: 91804334128313af
+          target: .claude/rules/rust/testing.md
+      rules/swift/coding-style.md:
+        - hash: c48e83bc2d2d3dab
+          sourceHash: 78f6309cddefe1f2
+          target: .claude/rules/swift/coding-style.md
+      rules/swift/hooks.md:
+        - hash: 2b40a0c9dfddb554
+          sourceHash: 9203d34c9ec7395d
+          target: .claude/rules/swift/hooks.md
+      rules/swift/patterns.md:
+        - hash: 1c723199553e623e
+          sourceHash: 881977238e50e696
+          target: .claude/rules/swift/patterns.md
+      rules/swift/testing.md:
+        - hash: 34e3470259661bb8
+          sourceHash: 935e421f3f02ffbc
+          target: .claude/rules/swift/testing.md
+      rules/typescript/coding-style.md:
+        - hash: 816451b7e95602a5
+          sourceHash: a0b1acf660289cf3
+          target: .claude/rules/typescript/coding-style.md
+      rules/typescript/hooks.md:
+        - hash: 2ec1f3df868e72d3
+          sourceHash: 7b9c923bf20ed261
+          target: .claude/rules/typescript/hooks.md
+      rules/typescript/patterns.md:
+        - hash: c87c8ee13cd544a5
+          sourceHash: 0f8f3f6d22d78038
+          target: .claude/rules/typescript/patterns.md
+      rules/typescript/security.md:
+        - hash: aab9e048ef174ed4
+          sourceHash: cc6c6657ef069b50
+          target: .claude/rules/typescript/security.md
+      rules/typescript/testing.md:
+        - hash: 3438395e777f863e
+          sourceHash: 9abfdb91f7e88e7c
+          target: .claude/rules/typescript/testing.md
+      rules/web/coding-style.md:
+        - hash: b550e7e39095d535
+          sourceHash: b550e7e39095d535
+          target: .claude/rules/web/coding-style.md
+      rules/web/design-quality.md:
+        - hash: 9e207a8a57596dfb
+          sourceHash: 9e207a8a57596dfb
+          target: .claude/rules/web/design-quality.md
+      rules/web/hooks.md:
+        - hash: 3417484e8dff0937
+          sourceHash: 3417484e8dff0937
+          target: .claude/rules/web/hooks.md
+        - hash: b1b885ef7f72cd71
+          sourceHash: 47ecff57648cb62d
+          target: .claude/skills/dashboard-builder/SKILL.md
+        - hash: b1b885ef7f72cd71
+          sourceHash: 47ecff57648cb62d
+          target: .opencode/skills/everything-claude-code-dashboard-builder/SKILL.md
+      rules/web/patterns.md:
+        - hash: 0ab325f5d743b919
+          sourceHash: 0ab325f5d743b919
+          target: .claude/rules/web/patterns.md
+      rules/web/performance.md:
+        - hash: 4ef22c4bffd74a1b
+          sourceHash: 4ef22c4bffd74a1b
+          target: .claude/rules/web/performance.md
+      rules/web/security.md:
+        - hash: 71ced1fa779c91c4
+          sourceHash: 71ced1fa779c91c4
+          target: .claude/rules/web/security.md
+      rules/web/testing.md:
+        - hash: de71646ab16cab08
+          sourceHash: de71646ab16cab08
+          target: .claude/rules/web/testing.md
+      rules/zh/README.md:
+        - hash: cd20ab143482c491
+          sourceHash: cd20ab143482c491
+          target: .claude/rules/zh/README.md
+      rules/zh/agents.md:
+        - hash: c36e27e7093d0535
+          sourceHash: c36e27e7093d0535
+          target: .claude/rules/zh/agents.md
+      rules/zh/code-review.md:
+        - hash: a53b03ae88f99d23
+          sourceHash: a53b03ae88f99d23
+          target: .claude/rules/zh/code-review.md
+      rules/zh/coding-style.md:
+        - hash: dc7fdd2d37f280a7
+          sourceHash: dc7fdd2d37f280a7
+          target: .claude/rules/zh/coding-style.md
+      rules/zh/development-workflow.md:
+        - hash: 55e4df8f456baf5f
+          sourceHash: 55e4df8f456baf5f
+          target: .claude/rules/zh/development-workflow.md
+      rules/zh/git-workflow.md:
+        - hash: ae042b775efc8f44
+          sourceHash: ae042b775efc8f44
+          target: .claude/rules/zh/git-workflow.md
+      rules/zh/hooks.md:
+        - hash: 758018563d06d383
+          sourceHash: 758018563d06d383
+          target: .claude/rules/zh/hooks.md
+      rules/zh/patterns.md:
+        - hash: 7adc97bb1090f31d
+          sourceHash: 7adc97bb1090f31d
+          target: .claude/rules/zh/patterns.md
+      rules/zh/performance.md:
+        - hash: 292f4f6106edbff0
+          sourceHash: 292f4f6106edbff0
+          target: .claude/rules/zh/performance.md
+      rules/zh/security.md:
+        - hash: a821a36381f454be
+          sourceHash: a821a36381f454be
+          target: .claude/rules/zh/security.md
+      rules/zh/testing.md:
+        - hash: 536e33eead49c56f
+          sourceHash: 536e33eead49c56f
+          target: .claude/rules/zh/testing.md
+      skills/accessibility/SKILL.md:
+        - hash: c3b0b8c116b7a915
+          sourceHash: e5cff418bc90ab34
+          target: .claude/skills/accessibility/SKILL.md
+        - hash: c3b0b8c116b7a915
+          sourceHash: e5cff418bc90ab34
+          target: .opencode/skills/everything-claude-code-accessibility/SKILL.md
+      skills/agent-eval/SKILL.md:
+        - hash: 471f6f2ba8d30dc6
+          sourceHash: 12ae58341d284c36
+          target: .claude/skills/agent-eval/SKILL.md
+        - hash: 471f6f2ba8d30dc6
+          sourceHash: 12ae58341d284c36
+          target: .opencode/skills/everything-claude-code-agent-eval/SKILL.md
+      skills/agent-harness-construction/SKILL.md:
+        - hash: 8deeb9620264b884
+          sourceHash: eb887116c03cf68c
+          target: .claude/skills/agent-harness-construction/SKILL.md
+        - hash: 8deeb9620264b884
+          sourceHash: eb887116c03cf68c
+          target: .opencode/skills/everything-claude-code-agent-harness-construction/SKILL.md
+      skills/agent-introspection-debugging/SKILL.md:
+        - hash: 3ebc290f8ff1bb9f
+          sourceHash: 2f44aad56a002ba5
+          target: .claude/skills/agent-introspection-debugging/SKILL.md
+        - hash: 3ebc290f8ff1bb9f
+          sourceHash: 2f44aad56a002ba5
+          target: .opencode/skills/everything-claude-code-agent-introspection-debugging/SKILL.md
+      skills/agent-payment-x402/SKILL.md:
+        - hash: 9a560abb263a8e8f
+          sourceHash: 22168e0a3cf6d749
+          target: .claude/skills/agent-payment-x402/SKILL.md
+        - hash: 9a560abb263a8e8f
+          sourceHash: 22168e0a3cf6d749
+          target: .opencode/skills/everything-claude-code-agent-payment-x402/SKILL.md
+      skills/agent-sort/SKILL.md:
+        - hash: 9cabe1062a74a83b
+          sourceHash: 928cf441313f9eaa
+          target: .claude/skills/agent-sort/SKILL.md
+        - hash: 9cabe1062a74a83b
+          sourceHash: 928cf441313f9eaa
+          target: .opencode/skills/everything-claude-code-agent-sort/SKILL.md
+      skills/agentic-engineering/SKILL.md:
+        - hash: 295ede31d2b5cda3
+          sourceHash: 38b6b42b9ad30204
+          target: .claude/skills/agentic-engineering/SKILL.md
+        - hash: 295ede31d2b5cda3
+          sourceHash: 38b6b42b9ad30204
+          target: .opencode/skills/everything-claude-code-agentic-engineering/SKILL.md
+      skills/ai-first-engineering/SKILL.md:
+        - hash: a0ed07168ff9f897
+          sourceHash: d9aa5899928a50e5
+          target: .claude/skills/ai-first-engineering/SKILL.md
+        - hash: a0ed07168ff9f897
+          sourceHash: d9aa5899928a50e5
+          target: .opencode/skills/everything-claude-code-ai-first-engineering/SKILL.md
+      skills/ai-regression-testing/SKILL.md:
+        - hash: 020ce3a397fe4657
+          sourceHash: 1a61c07eef793358
+          target: .claude/skills/ai-regression-testing/SKILL.md
+        - hash: 020ce3a397fe4657
+          sourceHash: 1a61c07eef793358
+          target: .opencode/skills/everything-claude-code-ai-regression-testing/SKILL.md
+      skills/android-clean-architecture/SKILL.md:
+        - hash: 71ce80fef01e3aa2
+          sourceHash: 1f002afb0f0dbefb
+          target: .claude/skills/android-clean-architecture/SKILL.md
+        - hash: 71ce80fef01e3aa2
+          sourceHash: 1f002afb0f0dbefb
+          target: .opencode/skills/everything-claude-code-android-clean-architecture/SKILL.md
+      skills/api-connector-builder/SKILL.md:
+        - hash: e3a85006f6ce10d9
+          sourceHash: 6052fc63793f073b
+          target: .claude/skills/api-connector-builder/SKILL.md
+        - hash: e3a85006f6ce10d9
+          sourceHash: 6052fc63793f073b
+          target: .opencode/skills/everything-claude-code-api-connector-builder/SKILL.md
+      skills/api-design/SKILL.md:
+        - hash: 5c654213abfa3a62
+          sourceHash: d1a35bd520428b8e
+          target: .claude/skills/api-design/SKILL.md
+        - hash: 5c654213abfa3a62
+          sourceHash: d1a35bd520428b8e
+          target: .opencode/skills/everything-claude-code-api-design/SKILL.md
+      skills/architecture-decision-records/SKILL.md:
+        - hash: 7e027d847dc16888
+          sourceHash: ac58136f8b2272b0
+          target: .claude/skills/architecture-decision-records/SKILL.md
+        - hash: 7e027d847dc16888
+          sourceHash: ac58136f8b2272b0
+          target: .opencode/skills/everything-claude-code-architecture-decision-records/SKILL.md
+      skills/article-writing/SKILL.md:
+        - hash: ba865726c90b77dd
+          sourceHash: 55a847c8b20708ad
+          target: .claude/skills/article-writing/SKILL.md
+        - hash: ba865726c90b77dd
+          sourceHash: 55a847c8b20708ad
+          target: .opencode/skills/everything-claude-code-article-writing/SKILL.md
+      skills/automation-audit-ops/SKILL.md:
+        - hash: 01c84d3babce5145
+          sourceHash: 847c5cf0263a12cb
+          target: .claude/skills/automation-audit-ops/SKILL.md
+        - hash: 01c84d3babce5145
+          sourceHash: 847c5cf0263a12cb
+          target: .opencode/skills/everything-claude-code-automation-audit-ops/SKILL.md
+      skills/autonomous-agent-harness/SKILL.md:
+        - hash: c596f86bbfcb167f
+          sourceHash: 43bf8f4b611038b4
+          target: .claude/skills/autonomous-agent-harness/SKILL.md
+        - hash: c596f86bbfcb167f
+          sourceHash: 43bf8f4b611038b4
+          target: .opencode/skills/everything-claude-code-autonomous-agent-harness/SKILL.md
+      skills/autonomous-loops/SKILL.md:
+        - hash: a8bce4d0af8e6af2
+          sourceHash: d0c19973c737625c
+          target: .claude/skills/autonomous-loops/SKILL.md
+        - hash: a8bce4d0af8e6af2
+          sourceHash: d0c19973c737625c
+          target: .opencode/skills/everything-claude-code-autonomous-loops/SKILL.md
+      skills/backend-patterns/SKILL.md:
+        - hash: 2ea6593fa41300c8
+          sourceHash: d39d25160b4e2975
+          target: .claude/skills/backend-patterns/SKILL.md
+        - hash: 2ea6593fa41300c8
+          sourceHash: d39d25160b4e2975
+          target: .opencode/skills/everything-claude-code-backend-patterns/SKILL.md
+      skills/benchmark/SKILL.md:
+        - hash: bec21f632d26f523
+          sourceHash: 36ec3f54e0434679
+          target: .claude/skills/benchmark/SKILL.md
+        - hash: bec21f632d26f523
+          sourceHash: 36ec3f54e0434679
+          target: .opencode/skills/everything-claude-code-benchmark/SKILL.md
+      skills/blueprint/SKILL.md:
+        - hash: a9ef1414e7c9791c
+          sourceHash: 74132d0c5ad72f66
+          target: .claude/skills/blueprint/SKILL.md
+        - hash: a9ef1414e7c9791c
+          sourceHash: 74132d0c5ad72f66
+          target: .opencode/skills/everything-claude-code-blueprint/SKILL.md
+      skills/brand-voice/SKILL.md:
+        - hash: 7ca5b99a8239dc9a
+          sourceHash: 16d468eee22468c0
+          target: .claude/skills/brand-voice/SKILL.md
+        - hash: 7ca5b99a8239dc9a
+          sourceHash: 16d468eee22468c0
+          target: .opencode/skills/everything-claude-code-brand-voice/SKILL.md
+      skills/brand-voice/references/voice-profile-schema.md:
+        - hash: 6025d9acc04cf7e2
+          sourceHash: 6025d9acc04cf7e2
+          target: .claude/skills/brand-voice/references/voice-profile-schema.md
+        - hash: 6025d9acc04cf7e2
+          sourceHash: 6025d9acc04cf7e2
+          target: .opencode/skills/brand-voice/references/everything-claude-code-voice-profile-schema.md
+      skills/browser-qa/SKILL.md:
+        - hash: 4f26f3dcedbe11d2
+          sourceHash: 59b4dbe5270b25c2
+          target: .claude/skills/browser-qa/SKILL.md
+        - hash: 4f26f3dcedbe11d2
+          sourceHash: 59b4dbe5270b25c2
+          target: .opencode/skills/everything-claude-code-browser-qa/SKILL.md
+      skills/bun-runtime/SKILL.md:
+        - hash: 5c9e71f480b98e0f
+          sourceHash: 49172d4e40b529e5
+          target: .claude/skills/bun-runtime/SKILL.md
+        - hash: 5c9e71f480b98e0f
+          sourceHash: 49172d4e40b529e5
+          target: .opencode/skills/everything-claude-code-bun-runtime/SKILL.md
+      skills/canary-watch/SKILL.md:
+        - hash: cb3e8ee750e1fad2
+          sourceHash: 19e3c2d2c499fd7e
+          target: .claude/skills/canary-watch/SKILL.md
+        - hash: cb3e8ee750e1fad2
+          sourceHash: 19e3c2d2c499fd7e
+          target: .opencode/skills/everything-claude-code-canary-watch/SKILL.md
+      skills/carrier-relationship-management/SKILL.md:
+        - hash: c8aac6eb30ad7fbd
+          sourceHash: c22d3bd25064b93a
+          target: .claude/skills/carrier-relationship-management/SKILL.md
+        - hash: c8aac6eb30ad7fbd
+          sourceHash: c22d3bd25064b93a
+          target: .opencode/skills/everything-claude-code-carrier-relationship-management/SKILL.md
+      skills/ck/SKILL.md:
+        - hash: e7f0a740fcb266f1
+          sourceHash: 9750202ca463a817
+          target: .claude/skills/ck/SKILL.md
+        - hash: e7f0a740fcb266f1
+          sourceHash: 9750202ca463a817
+          target: .opencode/skills/everything-claude-code-ck/SKILL.md
+      skills/ck/commands/forget.mjs:
+        - hash: 643c7a5caeb7a2ee
+          sourceHash: 643c7a5caeb7a2ee
+          target: .claude/skills/ck/commands/forget.mjs
+        - hash: 643c7a5caeb7a2ee
+          sourceHash: 643c7a5caeb7a2ee
+          target: .opencode/skills/ck/commands/everything-claude-code-forget.mjs
+      skills/ck/commands/info.mjs:
+        - hash: 7a2e1fe8b7f1923c
+          sourceHash: 7a2e1fe8b7f1923c
+          target: .claude/skills/ck/commands/info.mjs
+        - hash: 7a2e1fe8b7f1923c
+          sourceHash: 7a2e1fe8b7f1923c
+          target: .opencode/skills/ck/commands/everything-claude-code-info.mjs
+      skills/ck/commands/init.mjs:
+        - hash: 5ad609e2b9405680
+          sourceHash: 5ad609e2b9405680
+          target: .claude/skills/ck/commands/init.mjs
+        - hash: 5ad609e2b9405680
+          sourceHash: 5ad609e2b9405680
+          target: .opencode/skills/ck/commands/everything-claude-code-init.mjs
+      skills/ck/commands/list.mjs:
+        - hash: 466def2dcec1c214
+          sourceHash: 466def2dcec1c214
+          target: .claude/skills/ck/commands/list.mjs
+        - hash: 466def2dcec1c214
+          sourceHash: 466def2dcec1c214
+          target: .opencode/skills/ck/commands/everything-claude-code-list.mjs
+      skills/ck/commands/migrate.mjs:
+        - hash: 9ca9534835179632
+          sourceHash: 9ca9534835179632
+          target: .claude/skills/ck/commands/migrate.mjs
+        - hash: 9ca9534835179632
+          sourceHash: 9ca9534835179632
+          target: .opencode/skills/ck/commands/everything-claude-code-migrate.mjs
+      skills/ck/commands/resume.mjs:
+        - hash: d0d1a5b6458eaf8e
+          sourceHash: d0d1a5b6458eaf8e
+          target: .claude/skills/ck/commands/resume.mjs
+        - hash: d0d1a5b6458eaf8e
+          sourceHash: d0d1a5b6458eaf8e
+          target: .opencode/skills/ck/commands/everything-claude-code-resume.mjs
+      skills/ck/commands/save.mjs:
+        - hash: b401d4def5e42613
+          sourceHash: b401d4def5e42613
+          target: .claude/skills/ck/commands/save.mjs
+        - hash: b401d4def5e42613
+          sourceHash: b401d4def5e42613
+          target: .opencode/skills/ck/commands/everything-claude-code-save.mjs
+      skills/ck/commands/shared.mjs:
+        - hash: e2eb3a57a95f0efe
+          sourceHash: e2eb3a57a95f0efe
+          target: .claude/skills/ck/commands/shared.mjs
+        - hash: e2eb3a57a95f0efe
+          sourceHash: e2eb3a57a95f0efe
+          target: .opencode/skills/ck/commands/everything-claude-code-shared.mjs
+      skills/ck/hooks/session-start.mjs:
+        - hash: 3adb12285d0d31d2
+          sourceHash: 3adb12285d0d31d2
+          target: .claude/skills/ck/hooks/session-start.mjs
+        - hash: 3adb12285d0d31d2
+          sourceHash: 3adb12285d0d31d2
+          target: .opencode/skills/ck/hooks/everything-claude-code-session-start.mjs
+      skills/claude-api/SKILL.md:
+        - hash: 092fb7b9dfb1e4e9
+          sourceHash: ca896cbce03c95ce
+          target: .claude/skills/claude-api/SKILL.md
+        - hash: 092fb7b9dfb1e4e9
+          sourceHash: ca896cbce03c95ce
+          target: .opencode/skills/everything-claude-code-claude-api/SKILL.md
+      skills/claude-devfleet/SKILL.md:
+        - hash: f00134788acbe44e
+          sourceHash: 063021d672bcaa35
+          target: .claude/skills/claude-devfleet/SKILL.md
+        - hash: f00134788acbe44e
+          sourceHash: 063021d672bcaa35
+          target: .opencode/skills/everything-claude-code-claude-devfleet/SKILL.md
+      skills/click-path-audit/SKILL.md:
+        - hash: 5e6e5527897c86e2
+          sourceHash: 9af26e922ad61437
+          target: .claude/skills/click-path-audit/SKILL.md
+        - hash: 5e6e5527897c86e2
+          sourceHash: 9af26e922ad61437
+          target: .opencode/skills/everything-claude-code-click-path-audit/SKILL.md
+      skills/clickhouse-io/SKILL.md:
+        - hash: 89ceb98013382a1c
+          sourceHash: 6d1dc599e666b9a2
+          target: .claude/skills/clickhouse-io/SKILL.md
+        - hash: 89ceb98013382a1c
+          sourceHash: 6d1dc599e666b9a2
+          target: .opencode/skills/everything-claude-code-clickhouse-io/SKILL.md
+      skills/code-tour/SKILL.md:
+        - hash: ace9ad4b0e611f50
+          sourceHash: 7cd260a332b961e8
+          target: .claude/skills/code-tour/SKILL.md
+        - hash: ace9ad4b0e611f50
+          sourceHash: 7cd260a332b961e8
+          target: .opencode/skills/everything-claude-code-code-tour/SKILL.md
+      skills/codebase-onboarding/SKILL.md:
+        - hash: 0bb4b4667fddcd9d
+          sourceHash: 27ac9bcfed64f287
+          target: .claude/skills/codebase-onboarding/SKILL.md
+        - hash: 0bb4b4667fddcd9d
+          sourceHash: 27ac9bcfed64f287
+          target: .opencode/skills/everything-claude-code-codebase-onboarding/SKILL.md
+      skills/coding-standards/SKILL.md:
+        - hash: 23bfb92559bd5fae
+          sourceHash: 95aa4f30d94c93a7
+          target: .claude/skills/coding-standards/SKILL.md
+        - hash: 23bfb92559bd5fae
+          sourceHash: 95aa4f30d94c93a7
+          target: .opencode/skills/everything-claude-code-coding-standards/SKILL.md
+      skills/compose-multiplatform-patterns/SKILL.md:
+        - hash: 2b1f5f919ee5586f
+          sourceHash: c6f0d6a4b73431e1
+          target: .claude/skills/compose-multiplatform-patterns/SKILL.md
+        - hash: d8b0ebbff8f3919f
+          sourceHash: 391eb305a0f3c2da
+          target: .claude/skills/foundation-models-on-device/SKILL.md
+        - hash: 2b1f5f919ee5586f
+          sourceHash: c6f0d6a4b73431e1
+          target: .opencode/skills/everything-claude-code-compose-multiplatform-patterns/SKILL.md
+        - hash: d8b0ebbff8f3919f
+          sourceHash: 391eb305a0f3c2da
+          target: .opencode/skills/everything-claude-code-foundation-models-on-device/SKILL.md
+      skills/configure-ecc/SKILL.md:
+        - hash: 54682d03fd9b0544
+          sourceHash: 9e53a6e7b0f0837e
+          target: .claude/skills/configure-ecc/SKILL.md
+        - hash: 54682d03fd9b0544
+          sourceHash: 9e53a6e7b0f0837e
+          target: .opencode/skills/everything-claude-code-configure-ecc/SKILL.md
+      skills/connections-optimizer/SKILL.md:
+        - hash: b09e319bce31d7c2
+          sourceHash: 41d0042b0e53552a
+          target: .claude/skills/connections-optimizer/SKILL.md
+        - hash: b09e319bce31d7c2
+          sourceHash: 41d0042b0e53552a
+          target: .opencode/skills/everything-claude-code-connections-optimizer/SKILL.md
+      skills/content-engine/SKILL.md:
+        - hash: 46a27ce8ada69d13
+          sourceHash: 0d3cead4b0f4c724
+          target: .claude/skills/content-engine/SKILL.md
+        - hash: 46a27ce8ada69d13
+          sourceHash: 0d3cead4b0f4c724
+          target: .opencode/skills/everything-claude-code-content-engine/SKILL.md
+      skills/content-hash-cache-pattern/SKILL.md:
+        - hash: 7bb4599d20d86258
+          sourceHash: 431daacf7d635911
+          target: .claude/skills/content-hash-cache-pattern/SKILL.md
+        - hash: 7bb4599d20d86258
+          sourceHash: 431daacf7d635911
+          target: .opencode/skills/everything-claude-code-content-hash-cache-pattern/SKILL.md
+      skills/context-budget/SKILL.md:
+        - hash: c24513eaea72a5a5
+          sourceHash: aae1d28d0d5ef41a
+          target: .claude/skills/context-budget/SKILL.md
+        - hash: c24513eaea72a5a5
+          sourceHash: aae1d28d0d5ef41a
+          target: .opencode/skills/everything-claude-code-context-budget/SKILL.md
+      skills/continuous-agent-loop/SKILL.md:
+        - hash: 0990553930b3d82c
+          sourceHash: ffb40128199500a1
+          target: .claude/skills/continuous-agent-loop/SKILL.md
+        - hash: 0990553930b3d82c
+          sourceHash: ffb40128199500a1
+          target: .opencode/skills/everything-claude-code-continuous-agent-loop/SKILL.md
+      skills/continuous-learning-v2/SKILL.md:
+        - hash: 1244dde67fe722eb
+          sourceHash: 638f93d6f63f92c8
+          target: .claude/skills/continuous-learning-v2/SKILL.md
+        - hash: 1244dde67fe722eb
+          sourceHash: 638f93d6f63f92c8
+          target: .opencode/skills/everything-claude-code-continuous-learning-v2/SKILL.md
+      skills/continuous-learning-v2/agents/observer-loop.sh:
+        - hash: 96688bae8bb22ba5
+          sourceHash: 96688bae8bb22ba5
+          target: .claude/skills/continuous-learning-v2/agents/observer-loop.sh
+        - hash: 96688bae8bb22ba5
+          sourceHash: 96688bae8bb22ba5
+          target: .opencode/skills/continuous-learning-v2/agents/everything-claude-code-observer-loop.sh
+      skills/continuous-learning-v2/agents/observer.md:
+        - hash: 859280a6a97b527d
+          sourceHash: 18b6ebad25032dd5
+          target: .claude/skills/continuous-learning-v2/agents/observer.md
+        - hash: 859280a6a97b527d
+          sourceHash: 18b6ebad25032dd5
+          target: .opencode/skills/continuous-learning-v2/agents/everything-claude-code-observer.md
+      skills/continuous-learning-v2/agents/session-guardian.sh:
+        - hash: a19dc6ab4cf11f4f
+          sourceHash: a19dc6ab4cf11f4f
+          target: .claude/skills/continuous-learning-v2/agents/session-guardian.sh
+        - hash: a19dc6ab4cf11f4f
+          sourceHash: a19dc6ab4cf11f4f
+          target: .opencode/skills/continuous-learning-v2/agents/everything-claude-code-session-guardian.sh
+      skills/continuous-learning-v2/agents/start-observer.sh:
+        - hash: 09a932b7e49e8575
+          sourceHash: 09a932b7e49e8575
+          target: .claude/skills/continuous-learning-v2/agents/start-observer.sh
+        - hash: 09a932b7e49e8575
+          sourceHash: 09a932b7e49e8575
+          target: .opencode/skills/continuous-learning-v2/agents/everything-claude-code-start-observer.sh
+      skills/continuous-learning-v2/config.json:
+        - hash: 07e80866b39d62e6
+          sourceHash: 07e80866b39d62e6
+          target: .claude/skills/continuous-learning-v2/config.json
+        - hash: 07e80866b39d62e6
+          sourceHash: 07e80866b39d62e6
+          target: .opencode/skills/continuous-learning-v2/everything-claude-code-config.json
+      skills/continuous-learning-v2/hooks/observe.sh:
+        - hash: 01cfe5f2990fca9e
+          sourceHash: 01cfe5f2990fca9e
+          target: .claude/skills/continuous-learning-v2/hooks/observe.sh
+        - hash: 01cfe5f2990fca9e
+          sourceHash: 01cfe5f2990fca9e
+          target: .opencode/skills/continuous-learning-v2/hooks/everything-claude-code-observe.sh
+      skills/continuous-learning-v2/scripts/detect-project.sh:
+        - hash: c836598963f3e554
+          sourceHash: c836598963f3e554
+          target: .claude/skills/continuous-learning-v2/scripts/detect-project.sh
+        - hash: c836598963f3e554
+          sourceHash: c836598963f3e554
+          target: .opencode/skills/continuous-learning-v2/scripts/everything-claude-code-detect-project.sh
+      skills/continuous-learning-v2/scripts/instinct-cli.py:
+        - hash: 591e65bf5be533cf
+          sourceHash: 591e65bf5be533cf
+          target: .claude/skills/continuous-learning-v2/scripts/instinct-cli.py
+        - hash: 591e65bf5be533cf
+          sourceHash: 591e65bf5be533cf
+          target: .opencode/skills/continuous-learning-v2/scripts/everything-claude-code-instinct-cli.py
+      skills/continuous-learning-v2/scripts/test_parse_instinct.py:
+        - hash: 670870251b65bcf7
+          sourceHash: 670870251b65bcf7
+          target: .claude/skills/continuous-learning-v2/scripts/test_parse_instinct.py
+        - hash: 670870251b65bcf7
+          sourceHash: 670870251b65bcf7
+          target: .opencode/skills/continuous-learning-v2/scripts/everything-claude-code-test_parse_instinct.py
+      skills/continuous-learning/SKILL.md:
+        - hash: 581207c52330c280
+          sourceHash: 669a7ef4fcfdf778
+          target: .claude/skills/continuous-learning/SKILL.md
+        - hash: 581207c52330c280
+          sourceHash: 669a7ef4fcfdf778
+          target: .opencode/skills/everything-claude-code-continuous-learning/SKILL.md
+      skills/continuous-learning/config.json:
+        - hash: 0db5a3a02b135a67
+          sourceHash: 0db5a3a02b135a67
+          target: .claude/skills/continuous-learning/config.json
+        - hash: 0db5a3a02b135a67
+          sourceHash: 0db5a3a02b135a67
+          target: .opencode/skills/continuous-learning/everything-claude-code-config.json
+      skills/continuous-learning/evaluate-session.sh:
+        - hash: f966492576f67cca
+          sourceHash: f966492576f67cca
+          target: .claude/skills/continuous-learning/evaluate-session.sh
+        - hash: f966492576f67cca
+          sourceHash: f966492576f67cca
+          target: .opencode/skills/continuous-learning/everything-claude-code-evaluate-session.sh
+      skills/cost-aware-llm-pipeline/SKILL.md:
+        - hash: a7855dcb32cf3b82
+          sourceHash: 89f99930c60a6559
+          target: .claude/skills/cost-aware-llm-pipeline/SKILL.md
+        - hash: a7855dcb32cf3b82
+          sourceHash: 89f99930c60a6559
+          target: .opencode/skills/everything-claude-code-cost-aware-llm-pipeline/SKILL.md
+      skills/council/SKILL.md:
+        - hash: ac3639b8f13d8935
+          sourceHash: 192264c61f4c6107
+          target: .claude/skills/council/SKILL.md
+        - hash: ac3639b8f13d8935
+          sourceHash: 192264c61f4c6107
+          target: .opencode/skills/everything-claude-code-council/SKILL.md
+      skills/cpp-coding-standards/SKILL.md:
+        - hash: 54f5c3fb6200f081
+          sourceHash: 6d5b175aa10acb9c
+          target: .claude/skills/cpp-coding-standards/SKILL.md
+        - hash: 54f5c3fb6200f081
+          sourceHash: 6d5b175aa10acb9c
+          target: .opencode/skills/everything-claude-code-cpp-coding-standards/SKILL.md
+      skills/cpp-testing/SKILL.md:
+        - hash: e211d38421be7b53
+          sourceHash: 7df7e5106a60d61c
+          target: .claude/skills/cpp-testing/SKILL.md
+        - hash: e211d38421be7b53
+          sourceHash: 7df7e5106a60d61c
+          target: .opencode/skills/everything-claude-code-cpp-testing/SKILL.md
+      skills/crosspost/SKILL.md:
+        - hash: '1e37501023136957'
+          sourceHash: fb56088e52a59d49
+          target: .claude/skills/crosspost/SKILL.md
+        - hash: '1e37501023136957'
+          sourceHash: fb56088e52a59d49
+          target: .opencode/skills/everything-claude-code-crosspost/SKILL.md
+      skills/csharp-testing/SKILL.md:
+        - hash: 5890919aba7c0940
+          sourceHash: 1772e67d603b58fa
+          target: .claude/skills/csharp-testing/SKILL.md
+        - hash: 5890919aba7c0940
+          sourceHash: 1772e67d603b58fa
+          target: .opencode/skills/everything-claude-code-csharp-testing/SKILL.md
+      skills/customer-billing-ops/SKILL.md:
+        - hash: 047ff8774c8aa517
+          sourceHash: 9d8763c911fc465b
+          target: .claude/skills/customer-billing-ops/SKILL.md
+        - hash: 047ff8774c8aa517
+          sourceHash: 9d8763c911fc465b
+          target: .opencode/skills/everything-claude-code-customer-billing-ops/SKILL.md
+      skills/customs-trade-compliance/SKILL.md:
+        - hash: cd7c153ff42e2373
+          sourceHash: c28785892a6049d1
+          target: .claude/skills/customs-trade-compliance/SKILL.md
+        - hash: cd7c153ff42e2373
+          sourceHash: c28785892a6049d1
+          target: .opencode/skills/everything-claude-code-customs-trade-compliance/SKILL.md
+      skills/dart-flutter-patterns/SKILL.md:
+        - hash: 654a4239773a7919
+          sourceHash: 0757bf440562adcb
+          target: .claude/skills/dart-flutter-patterns/SKILL.md
+        - hash: 654a4239773a7919
+          sourceHash: 0757bf440562adcb
+          target: .opencode/skills/everything-claude-code-dart-flutter-patterns/SKILL.md
+      skills/data-scraper-agent/SKILL.md:
+        - hash: a512f671178520b6
+          sourceHash: 9eaaf9077f6836f2
+          target: .claude/skills/data-scraper-agent/SKILL.md
+        - hash: a512f671178520b6
+          sourceHash: 9eaaf9077f6836f2
+          target: .opencode/skills/everything-claude-code-data-scraper-agent/SKILL.md
+      skills/database-migrations/SKILL.md:
+        - hash: 95c9563b87e9a742
+          sourceHash: 9b98027805428337
+          target: .claude/skills/database-migrations/SKILL.md
+        - hash: 95c9563b87e9a742
+          sourceHash: 9b98027805428337
+          target: .opencode/skills/everything-claude-code-database-migrations/SKILL.md
+      skills/deep-research/SKILL.md:
+        - hash: fed5888ab4fb04d7
+          sourceHash: 9cbb72e6551b5cab
+          target: .claude/skills/deep-research/SKILL.md
+        - hash: fed5888ab4fb04d7
+          sourceHash: 9cbb72e6551b5cab
+          target: .opencode/skills/everything-claude-code-deep-research/SKILL.md
+      skills/defi-amm-security/SKILL.md:
+        - hash: 7c06d850f98566c5
+          sourceHash: 7ed3f9810ddc60b6
+          target: .claude/skills/defi-amm-security/SKILL.md
+        - hash: 7c06d850f98566c5
+          sourceHash: 7ed3f9810ddc60b6
+          target: .opencode/skills/everything-claude-code-defi-amm-security/SKILL.md
+      skills/deployment-patterns/SKILL.md:
+        - hash: 328df406b99f4258
+          sourceHash: ab63de3a70fedb17
+          target: .claude/skills/deployment-patterns/SKILL.md
+        - hash: 328df406b99f4258
+          sourceHash: ab63de3a70fedb17
+          target: .opencode/skills/everything-claude-code-deployment-patterns/SKILL.md
+      skills/design-system/SKILL.md:
+        - hash: ef0e4a45161ed075
+          sourceHash: 859387d05620006b
+          target: .claude/skills/design-system/SKILL.md
+        - hash: ef0e4a45161ed075
+          sourceHash: 859387d05620006b
+          target: .opencode/skills/everything-claude-code-design-system/SKILL.md
+      skills/django-patterns/SKILL.md:
+        - hash: cbf7509bc9390a9a
+          sourceHash: 269a0f28841e45ee
+          target: .claude/skills/django-patterns/SKILL.md
+        - hash: cbf7509bc9390a9a
+          sourceHash: 269a0f28841e45ee
+          target: .opencode/skills/everything-claude-code-django-patterns/SKILL.md
+      skills/django-security/SKILL.md:
+        - hash: 188617e4c575e3a8
+          sourceHash: dda03ba816dcc114
+          target: .claude/skills/django-security/SKILL.md
+        - hash: 188617e4c575e3a8
+          sourceHash: dda03ba816dcc114
+          target: .opencode/skills/everything-claude-code-django-security/SKILL.md
+      skills/django-tdd/SKILL.md:
+        - hash: a1193f95e4311d5f
+          sourceHash: ecbfd22288edfc99
+          target: .claude/skills/django-tdd/SKILL.md
+        - hash: a1193f95e4311d5f
+          sourceHash: ecbfd22288edfc99
+          target: .opencode/skills/everything-claude-code-django-tdd/SKILL.md
+      skills/django-verification/SKILL.md:
+        - hash: 0379a20924f2ec9c
+          sourceHash: f666a306427a0221
+          target: .claude/skills/django-verification/SKILL.md
+        - hash: 0379a20924f2ec9c
+          sourceHash: f666a306427a0221
+          target: .opencode/skills/everything-claude-code-django-verification/SKILL.md
+      skills/dmux-workflows/SKILL.md:
+        - hash: 78403c3455cf3a15
+          sourceHash: 8ac12f7fa4a01e48
+          target: .claude/skills/dmux-workflows/SKILL.md
+        - hash: 78403c3455cf3a15
+          sourceHash: 8ac12f7fa4a01e48
+          target: .opencode/skills/everything-claude-code-dmux-workflows/SKILL.md
+      skills/docker-patterns/SKILL.md:
+        - hash: 0601e392736b72ef
+          sourceHash: 4dde4ae9c86baf8e
+          target: .claude/skills/docker-patterns/SKILL.md
+        - hash: 0601e392736b72ef
+          sourceHash: 4dde4ae9c86baf8e
+          target: .opencode/skills/everything-claude-code-docker-patterns/SKILL.md
+      skills/documentation-lookup/SKILL.md:
+        - hash: 19a8e72d8320ee9a
+          sourceHash: 45ae238301dead32
+          target: .claude/skills/documentation-lookup/SKILL.md
+        - hash: 19a8e72d8320ee9a
+          sourceHash: 45ae238301dead32
+          target: .opencode/skills/everything-claude-code-documentation-lookup/SKILL.md
+      skills/dotnet-patterns/SKILL.md:
+        - hash: a35dc130daed1fe6
+          sourceHash: 484f699ad73e4168
+          target: .claude/skills/dotnet-patterns/SKILL.md
+        - hash: a35dc130daed1fe6
+          sourceHash: 484f699ad73e4168
+          target: .opencode/skills/everything-claude-code-dotnet-patterns/SKILL.md
+      skills/e2e-testing/SKILL.md:
+        - hash: a0ff73c9760fddcb
+          sourceHash: 6d64bfdc3b75dfb2
+          target: .claude/skills/e2e-testing/SKILL.md
+        - hash: a0ff73c9760fddcb
+          sourceHash: 6d64bfdc3b75dfb2
+          target: .opencode/skills/everything-claude-code-e2e-testing/SKILL.md
+      skills/ecc-tools-cost-audit/SKILL.md:
+        - hash: 6a1860e1a24ce736
+          sourceHash: 2aa6dfe4ea0d656c
+          target: .claude/skills/ecc-tools-cost-audit/SKILL.md
+        - hash: 6a1860e1a24ce736
+          sourceHash: 2aa6dfe4ea0d656c
+          target: .opencode/skills/everything-claude-code-ecc-tools-cost-audit/SKILL.md
+      skills/email-ops/SKILL.md:
+        - hash: 465c94db193fffc4
+          sourceHash: ad7c24e23d2a37e5
+          target: .claude/skills/email-ops/SKILL.md
+        - hash: 465c94db193fffc4
+          sourceHash: ad7c24e23d2a37e5
+          target: .opencode/skills/everything-claude-code-email-ops/SKILL.md
+      skills/energy-procurement/SKILL.md:
+        - hash: b6eeac26f60eaf8d
+          sourceHash: 7b8b2235fe6c0dc4
+          target: .claude/skills/energy-procurement/SKILL.md
+        - hash: b6eeac26f60eaf8d
+          sourceHash: 7b8b2235fe6c0dc4
+          target: .opencode/skills/everything-claude-code-energy-procurement/SKILL.md
+      skills/enterprise-agent-ops/SKILL.md:
+        - hash: 981214376b59ca8e
+          sourceHash: 7e8b0576fd202961
+          target: .claude/skills/enterprise-agent-ops/SKILL.md
+        - hash: 981214376b59ca8e
+          sourceHash: 7e8b0576fd202961
+          target: .opencode/skills/everything-claude-code-enterprise-agent-ops/SKILL.md
+      skills/eval-harness/SKILL.md:
+        - hash: 375cad6215fd259c
+          sourceHash: 765df3ca46d8df57
+          target: .claude/skills/eval-harness/SKILL.md
+        - hash: 375cad6215fd259c
+          sourceHash: 765df3ca46d8df57
+          target: .opencode/skills/everything-claude-code-eval-harness/SKILL.md
+      skills/everything-claude-code/SKILL.md:
+        - hash: 3f85b18b1a4cc2e5
+          sourceHash: 28d519a9bbe2e6f2
+          target: .claude/skills/everything-claude-code/SKILL.md
+        - hash: 3f85b18b1a4cc2e5
+          sourceHash: 28d519a9bbe2e6f2
+          target: .opencode/skills/everything-claude-code/SKILL.md
+      skills/evm-token-decimals/SKILL.md:
+        - hash: 6a863cd6a6545dab
+          sourceHash: 8d5f0dd050b73a72
+          target: .claude/skills/evm-token-decimals/SKILL.md
+        - hash: 6a863cd6a6545dab
+          sourceHash: 8d5f0dd050b73a72
+          target: .opencode/skills/everything-claude-code-evm-token-decimals/SKILL.md
+      skills/fal-ai-media/SKILL.md:
+        - hash: 5905556cc9defbef
+          sourceHash: 352e5f87c8a586ff
+          target: .claude/skills/fal-ai-media/SKILL.md
+        - hash: 5905556cc9defbef
+          sourceHash: 352e5f87c8a586ff
+          target: .opencode/skills/everything-claude-code-fal-ai-media/SKILL.md
+      skills/finance-billing-ops/SKILL.md:
+        - hash: 0c312167c0b25c64
+          sourceHash: e4b444e7ae11a2b2
+          target: .claude/skills/finance-billing-ops/SKILL.md
+        - hash: 0c312167c0b25c64
+          sourceHash: e4b444e7ae11a2b2
+          target: .opencode/skills/everything-claude-code-finance-billing-ops/SKILL.md
+      skills/flutter-dart-code-review/SKILL.md:
+        - hash: c41bb05e20101cba
+          sourceHash: accf6272cb1fbdbc
+          target: .claude/skills/flutter-dart-code-review/SKILL.md
+        - hash: c41bb05e20101cba
+          sourceHash: accf6272cb1fbdbc
+          target: .opencode/skills/everything-claude-code-flutter-dart-code-review/SKILL.md
+      skills/frontend-design/SKILL.md:
+        - hash: b5a52d5270c412a3
+          sourceHash: d49d19256a3c2761
+          target: .claude/skills/frontend-design/SKILL.md
+        - hash: b5a52d5270c412a3
+          sourceHash: d49d19256a3c2761
+          target: .opencode/skills/everything-claude-code-frontend-design/SKILL.md
+      skills/frontend-patterns/SKILL.md:
+        - hash: 3c1e41bf50249158
+          sourceHash: f22c322928da6cdb
+          target: .claude/skills/frontend-patterns/SKILL.md
+        - hash: 3c1e41bf50249158
+          sourceHash: f22c322928da6cdb
+          target: .opencode/skills/everything-claude-code-frontend-patterns/SKILL.md
+      skills/frontend-slides/SKILL.md:
+        - hash: 11c9630c181d7607
+          sourceHash: 0a997c88fafb31e5
+          target: .claude/skills/frontend-slides/SKILL.md
+        - hash: 11c9630c181d7607
+          sourceHash: 0a997c88fafb31e5
+          target: .opencode/skills/everything-claude-code-frontend-slides/SKILL.md
+      skills/frontend-slides/STYLE_PRESETS.md:
+        - hash: 68656004a263dba5
+          sourceHash: 68656004a263dba5
+          target: .claude/skills/frontend-slides/STYLE_PRESETS.md
+        - hash: 68656004a263dba5
+          sourceHash: 68656004a263dba5
+          target: .opencode/skills/frontend-slides/everything-claude-code-STYLE_PRESETS.md
+      skills/gan-style-harness/SKILL.md:
+        - hash: 27fabbbc80635626
+          sourceHash: cf4b66206c293ef2
+          target: .claude/skills/gan-style-harness/SKILL.md
+        - hash: 27fabbbc80635626
+          sourceHash: cf4b66206c293ef2
+          target: .opencode/skills/everything-claude-code-gan-style-harness/SKILL.md
+      skills/gateguard/SKILL.md:
+        - hash: b40a3f23be055c8b
+          sourceHash: e247496eaf1834f8
+          target: .claude/skills/gateguard/SKILL.md
+        - hash: b40a3f23be055c8b
+          sourceHash: e247496eaf1834f8
+          target: .opencode/skills/everything-claude-code-gateguard/SKILL.md
+      skills/git-workflow/SKILL.md:
+        - hash: f95fea1a0af4b70b
+          sourceHash: 81c45519d4e53830
+          target: .claude/skills/git-workflow/SKILL.md
+        - hash: f95fea1a0af4b70b
+          sourceHash: 81c45519d4e53830
+          target: .opencode/skills/everything-claude-code-git-workflow/SKILL.md
+      skills/github-ops/SKILL.md:
+        - hash: 7d197bcd93974c01
+          sourceHash: 82d1f0d20e782ff0
+          target: .claude/skills/github-ops/SKILL.md
+        - hash: 7d197bcd93974c01
+          sourceHash: 82d1f0d20e782ff0
+          target: .opencode/skills/everything-claude-code-github-ops/SKILL.md
+      skills/golang-patterns/SKILL.md:
+        - hash: eb0250df5e55d7f4
+          sourceHash: 102efb1d8bab7cfd
+          target: .claude/skills/golang-patterns/SKILL.md
+        - hash: eb0250df5e55d7f4
+          sourceHash: 102efb1d8bab7cfd
+          target: .opencode/skills/everything-claude-code-golang-patterns/SKILL.md
+      skills/golang-testing/SKILL.md:
+        - hash: 8d8a8705396cc899
+          sourceHash: 74fc7a33115a72d7
+          target: .claude/skills/golang-testing/SKILL.md
+        - hash: 8d8a8705396cc899
+          sourceHash: 74fc7a33115a72d7
+          target: .opencode/skills/everything-claude-code-golang-testing/SKILL.md
+      skills/google-workspace-ops/SKILL.md:
+        - hash: 98b448f05659d0d1
+          sourceHash: 41907054bd3d08a1
+          target: .claude/skills/google-workspace-ops/SKILL.md
+        - hash: 65f9ae271eacdfee
+          sourceHash: cb63a010032c2aa5
+          target: .claude/skills/investor-materials/SKILL.md
+        - hash: 98b448f05659d0d1
+          sourceHash: 41907054bd3d08a1
+          target: .opencode/skills/everything-claude-code-google-workspace-ops/SKILL.md
+        - hash: 65f9ae271eacdfee
+          sourceHash: cb63a010032c2aa5
+          target: .opencode/skills/everything-claude-code-investor-materials/SKILL.md
+      skills/healthcare-cdss-patterns/SKILL.md:
+        - hash: f1f36111a0c48ec3
+          sourceHash: 14f5146fcb81c266
+          target: .claude/skills/healthcare-cdss-patterns/SKILL.md
+        - hash: f1f36111a0c48ec3
+          sourceHash: 14f5146fcb81c266
+          target: .opencode/skills/everything-claude-code-healthcare-cdss-patterns/SKILL.md
+      skills/healthcare-emr-patterns/SKILL.md:
+        - hash: 2754213c3e64c18c
+          sourceHash: 7fa5fa95bf63b5b3
+          target: .claude/skills/healthcare-emr-patterns/SKILL.md
+        - hash: 2754213c3e64c18c
+          sourceHash: 7fa5fa95bf63b5b3
+          target: .opencode/skills/everything-claude-code-healthcare-emr-patterns/SKILL.md
+      skills/healthcare-eval-harness/SKILL.md:
+        - hash: a3b8d6ce448c3b30
+          sourceHash: 23e6b127251957ef
+          target: .claude/skills/healthcare-eval-harness/SKILL.md
+        - hash: a3b8d6ce448c3b30
+          sourceHash: 23e6b127251957ef
+          target: .opencode/skills/everything-claude-code-healthcare-eval-harness/SKILL.md
+      skills/healthcare-phi-compliance/SKILL.md:
+        - hash: d38d1f90a91c22f0
+          sourceHash: 2ec4ee40e3ee9feb
+          target: .claude/skills/healthcare-phi-compliance/SKILL.md
+        - hash: d38d1f90a91c22f0
+          sourceHash: 2ec4ee40e3ee9feb
+          target: .opencode/skills/everything-claude-code-healthcare-phi-compliance/SKILL.md
+      skills/hexagonal-architecture/SKILL.md:
+        - hash: 2ea5269b300cd065
+          sourceHash: 5bf40ad5cac86fec
+          target: .claude/skills/hexagonal-architecture/SKILL.md
+        - hash: 2ea5269b300cd065
+          sourceHash: 5bf40ad5cac86fec
+          target: .opencode/skills/everything-claude-code-hexagonal-architecture/SKILL.md
+      skills/hipaa-compliance/SKILL.md:
+        - hash: a7f4330ac06bfc8f
+          sourceHash: e1ef96223ee86109
+          target: .claude/skills/hipaa-compliance/SKILL.md
+        - hash: a7f4330ac06bfc8f
+          sourceHash: e1ef96223ee86109
+          target: .opencode/skills/everything-claude-code-hipaa-compliance/SKILL.md
+      skills/hookify-rules/SKILL.md:
+        - hash: 0fe4b646ee861d37
+          sourceHash: fed45ea4791cd561
+          target: .claude/skills/hookify-rules/SKILL.md
+        - hash: 0fe4b646ee861d37
+          sourceHash: fed45ea4791cd561
+          target: .opencode/skills/everything-claude-code-hookify-rules/SKILL.md
+      skills/inventory-demand-planning/SKILL.md:
+        - hash: 33483725a35d3b52
+          sourceHash: 43e54186195c6ae1
+          target: .claude/skills/inventory-demand-planning/SKILL.md
+        - hash: 33483725a35d3b52
+          sourceHash: 43e54186195c6ae1
+          target: .opencode/skills/everything-claude-code-inventory-demand-planning/SKILL.md
+      skills/investor-outreach/SKILL.md:
+        - hash: 7265ff1214e93acf
+          sourceHash: ebb98bc0ac647038
+          target: .claude/skills/investor-outreach/SKILL.md
+        - hash: 7265ff1214e93acf
+          sourceHash: ebb98bc0ac647038
+          target: .opencode/skills/everything-claude-code-investor-outreach/SKILL.md
+      skills/iterative-retrieval/SKILL.md:
+        - hash: 544e17837242489f
+          sourceHash: 4bd9adbde146927a
+          target: .claude/skills/iterative-retrieval/SKILL.md
+        - hash: 544e17837242489f
+          sourceHash: 4bd9adbde146927a
+          target: .opencode/skills/everything-claude-code-iterative-retrieval/SKILL.md
+      skills/java-coding-standards/SKILL.md:
+        - hash: 7d92f2010d851a6e
+          sourceHash: d4e0bd4833e41a55
+          target: .claude/skills/java-coding-standards/SKILL.md
+        - hash: 7d92f2010d851a6e
+          sourceHash: d4e0bd4833e41a55
+          target: .opencode/skills/everything-claude-code-java-coding-standards/SKILL.md
+      skills/jira-integration/SKILL.md:
+        - hash: e7338e48ae6c3792
+          sourceHash: b72e33b5ab418728
+          target: .claude/skills/jira-integration/SKILL.md
+        - hash: e7338e48ae6c3792
+          sourceHash: b72e33b5ab418728
+          target: .opencode/skills/everything-claude-code-jira-integration/SKILL.md
+      skills/kotlin-coroutines-flows/SKILL.md:
+        - hash: 6067a56ce291994e
+          sourceHash: ee19c793316d8d9a
+          target: .claude/skills/kotlin-coroutines-flows/SKILL.md
+        - hash: 6067a56ce291994e
+          sourceHash: ee19c793316d8d9a
+          target: .opencode/skills/everything-claude-code-kotlin-coroutines-flows/SKILL.md
+      skills/kotlin-exposed-patterns/SKILL.md:
+        - hash: 5788292f17b65509
+          sourceHash: 82a19287e5c12bfd
+          target: .claude/skills/kotlin-exposed-patterns/SKILL.md
+        - hash: 5788292f17b65509
+          sourceHash: 82a19287e5c12bfd
+          target: .opencode/skills/everything-claude-code-kotlin-exposed-patterns/SKILL.md
+      skills/kotlin-ktor-patterns/SKILL.md:
+        - hash: 7e5c80f6607119ba
+          sourceHash: f5b159e6b6ec603b
+          target: .claude/skills/kotlin-ktor-patterns/SKILL.md
+        - hash: 7e5c80f6607119ba
+          sourceHash: f5b159e6b6ec603b
+          target: .opencode/skills/everything-claude-code-kotlin-ktor-patterns/SKILL.md
+      skills/kotlin-patterns/SKILL.md:
+        - hash: e162675f4925cd29
+          sourceHash: 76a3bade8c236992
+          target: .claude/skills/kotlin-patterns/SKILL.md
+        - hash: e162675f4925cd29
+          sourceHash: 76a3bade8c236992
+          target: .opencode/skills/everything-claude-code-kotlin-patterns/SKILL.md
+      skills/kotlin-testing/SKILL.md:
+        - hash: e6d407ff2c4e90d0
+          sourceHash: e89399fc65348e80
+          target: .claude/skills/kotlin-testing/SKILL.md
+        - hash: e6d407ff2c4e90d0
+          sourceHash: e89399fc65348e80
+          target: .opencode/skills/everything-claude-code-kotlin-testing/SKILL.md
+      skills/laravel-patterns/SKILL.md:
+        - hash: cc3924f5374072f3
+          sourceHash: 644101c5bee5cf04
+          target: .claude/skills/laravel-patterns/SKILL.md
+        - hash: cc3924f5374072f3
+          sourceHash: 644101c5bee5cf04
+          target: .opencode/skills/everything-claude-code-laravel-patterns/SKILL.md
+      skills/laravel-plugin-discovery/SKILL.md:
+        - hash: 9786297cc3fa1516
+          sourceHash: a107d484a1159048
+          target: .claude/skills/laravel-plugin-discovery/SKILL.md
+        - hash: 9786297cc3fa1516
+          sourceHash: a107d484a1159048
+          target: .opencode/skills/everything-claude-code-laravel-plugin-discovery/SKILL.md
+      skills/laravel-security/SKILL.md:
+        - hash: 2d8ca038beaf6f44
+          sourceHash: 2dc7f1691280eca4
+          target: .claude/skills/laravel-security/SKILL.md
+        - hash: 2d8ca038beaf6f44
+          sourceHash: 2dc7f1691280eca4
+          target: .opencode/skills/everything-claude-code-laravel-security/SKILL.md
+      skills/laravel-tdd/SKILL.md:
+        - hash: 3dc63f7307cb735c
+          sourceHash: 46d6476ee9b6c846
+          target: .claude/skills/laravel-tdd/SKILL.md
+        - hash: 3dc63f7307cb735c
+          sourceHash: 46d6476ee9b6c846
+          target: .opencode/skills/everything-claude-code-laravel-tdd/SKILL.md
+      skills/laravel-verification/SKILL.md:
+        - hash: 3b3410fa9571f94f
+          sourceHash: 7433c905c638b637
+          target: .claude/skills/laravel-verification/SKILL.md
+        - hash: 3b3410fa9571f94f
+          sourceHash: 7433c905c638b637
+          target: .opencode/skills/everything-claude-code-laravel-verification/SKILL.md
+      skills/lead-intelligence/SKILL.md:
+        - hash: 8a00466fc30840cc
+          sourceHash: 4d9709a4b585bab5
+          target: .claude/skills/lead-intelligence/SKILL.md
+        - hash: 8a00466fc30840cc
+          sourceHash: 4d9709a4b585bab5
+          target: .opencode/skills/everything-claude-code-lead-intelligence/SKILL.md
+      skills/lead-intelligence/agents/enrichment-agent.md:
+        - hash: b109f17949d95ff1
+          sourceHash: 8de70452a24b722d
+          target: .claude/skills/lead-intelligence/agents/enrichment-agent.md
+        - hash: b109f17949d95ff1
+          sourceHash: 8de70452a24b722d
+          target: .opencode/skills/lead-intelligence/agents/everything-claude-code-enrichment-agent.md
+      skills/lead-intelligence/agents/mutual-mapper.md:
+        - hash: 0639de960977ee10
+          sourceHash: 90a45235451a78a4
+          target: .claude/skills/lead-intelligence/agents/mutual-mapper.md
+        - hash: 0639de960977ee10
+          sourceHash: 90a45235451a78a4
+          target: .opencode/skills/lead-intelligence/agents/everything-claude-code-mutual-mapper.md
+      skills/lead-intelligence/agents/outreach-drafter.md:
+        - hash: 57d401756ae25bf8
+          sourceHash: d717081c3dbd7a6d
+          target: .claude/skills/lead-intelligence/agents/outreach-drafter.md
+        - hash: 57d401756ae25bf8
+          sourceHash: d717081c3dbd7a6d
+          target: .opencode/skills/lead-intelligence/agents/everything-claude-code-outreach-drafter.md
+      skills/lead-intelligence/agents/signal-scorer.md:
+        - hash: 2732e15d22aa7fae
+          sourceHash: 875a243baacee858
+          target: .claude/skills/lead-intelligence/agents/signal-scorer.md
+        - hash: 2732e15d22aa7fae
+          sourceHash: 875a243baacee858
+          target: .opencode/skills/lead-intelligence/agents/everything-claude-code-signal-scorer.md
+      skills/liquid-glass-design/SKILL.md:
+        - hash: 2852293c38679ffa
+          sourceHash: f8eb72c3cb1913d9
+          target: .claude/skills/liquid-glass-design/SKILL.md
+        - hash: 2852293c38679ffa
+          sourceHash: f8eb72c3cb1913d9
+          target: .opencode/skills/everything-claude-code-liquid-glass-design/SKILL.md
+      skills/llm-trading-agent-security/SKILL.md:
+        - hash: 19b5f2c163a802bd
+          sourceHash: a76df06cd4746208
+          target: .claude/skills/llm-trading-agent-security/SKILL.md
+        - hash: 19b5f2c163a802bd
+          sourceHash: a76df06cd4746208
+          target: .opencode/skills/everything-claude-code-llm-trading-agent-security/SKILL.md
+      skills/logistics-exception-management/SKILL.md:
+        - hash: 52c320bd0cb2d792
+          sourceHash: c8d2f625ccdf5a93
+          target: .claude/skills/logistics-exception-management/SKILL.md
+        - hash: 52c320bd0cb2d792
+          sourceHash: c8d2f625ccdf5a93
+          target: .opencode/skills/everything-claude-code-logistics-exception-management/SKILL.md
+      skills/manim-video/SKILL.md:
+        - hash: cbba4ff353449e86
+          sourceHash: 93e7f2beebfba5c8
+          target: .claude/skills/manim-video/SKILL.md
+        - hash: cbba4ff353449e86
+          sourceHash: 93e7f2beebfba5c8
+          target: .opencode/skills/everything-claude-code-manim-video/SKILL.md
+      skills/manim-video/assets/network_graph_scene.py:
+        - hash: 7c45dab1da4d1b98
+          sourceHash: 7c45dab1da4d1b98
+          target: .claude/skills/manim-video/assets/network_graph_scene.py
+        - hash: 7c45dab1da4d1b98
+          sourceHash: 7c45dab1da4d1b98
+          target: .opencode/skills/manim-video/assets/everything-claude-code-network_graph_scene.py
+      skills/market-research/SKILL.md:
+        - hash: d8db970550d4d4f9
+          sourceHash: 14726fca609d2dd9
+          target: .claude/skills/market-research/SKILL.md
+        - hash: d8db970550d4d4f9
+          sourceHash: 14726fca609d2dd9
+          target: .opencode/skills/everything-claude-code-market-research/SKILL.md
+      skills/mcp-server-patterns/SKILL.md:
+        - hash: 32858fa163bffb78
+          sourceHash: f6f4343407e1b27e
+          target: .claude/skills/mcp-server-patterns/SKILL.md
+        - hash: 32858fa163bffb78
+          sourceHash: f6f4343407e1b27e
+          target: .opencode/skills/everything-claude-code-mcp-server-patterns/SKILL.md
+      skills/messages-ops/SKILL.md:
+        - hash: 7a3347b5082c95d0
+          sourceHash: dbd11bc9cebbec5e
+          target: .claude/skills/messages-ops/SKILL.md
+        - hash: 7a3347b5082c95d0
+          sourceHash: dbd11bc9cebbec5e
+          target: .opencode/skills/everything-claude-code-messages-ops/SKILL.md
+      skills/nanoclaw-repl/SKILL.md:
+        - hash: a84e21174bfab5d3
+          sourceHash: c59643a2e7d345ae
+          target: .claude/skills/nanoclaw-repl/SKILL.md
+        - hash: a84e21174bfab5d3
+          sourceHash: c59643a2e7d345ae
+          target: .opencode/skills/everything-claude-code-nanoclaw-repl/SKILL.md
+      skills/nestjs-patterns/SKILL.md:
+        - hash: 5383e1ab770663ca
+          sourceHash: 5ec1870aff26987b
+          target: .claude/skills/nestjs-patterns/SKILL.md
+        - hash: 5383e1ab770663ca
+          sourceHash: 5ec1870aff26987b
+          target: .opencode/skills/everything-claude-code-nestjs-patterns/SKILL.md
+      skills/nextjs-turbopack/SKILL.md:
+        - hash: 7f2d9199036a3c59
+          sourceHash: dc3b43389dde14dc
+          target: .claude/skills/nextjs-turbopack/SKILL.md
+        - hash: 7f2d9199036a3c59
+          sourceHash: dc3b43389dde14dc
+          target: .opencode/skills/everything-claude-code-nextjs-turbopack/SKILL.md
+      skills/nodejs-keccak256/SKILL.md:
+        - hash: cc060ae022e18846
+          sourceHash: 4354aa5e62be9bf2
+          target: .claude/skills/nodejs-keccak256/SKILL.md
+        - hash: cc060ae022e18846
+          sourceHash: 4354aa5e62be9bf2
+          target: .opencode/skills/everything-claude-code-nodejs-keccak256/SKILL.md
+      skills/nutrient-document-processing/SKILL.md:
+        - hash: 6f6262f0295ec46a
+          sourceHash: 929c7d2bd74f4a67
+          target: .claude/skills/nutrient-document-processing/SKILL.md
+        - hash: 6f6262f0295ec46a
+          sourceHash: 929c7d2bd74f4a67
+          target: .opencode/skills/everything-claude-code-nutrient-document-processing/SKILL.md
+      skills/nuxt4-patterns/SKILL.md:
+        - hash: b32889f0f8be7dec
+          sourceHash: 5715f09273073953
+          target: .claude/skills/nuxt4-patterns/SKILL.md
+        - hash: b32889f0f8be7dec
+          sourceHash: 5715f09273073953
+          target: .opencode/skills/everything-claude-code-nuxt4-patterns/SKILL.md
+      skills/openclaw-persona-forge/SKILL.md:
+        - hash: a65a872b90407410
+          sourceHash: bc4b49423a4b05a4
+          target: .claude/skills/openclaw-persona-forge/SKILL.md
+        - hash: a65a872b90407410
+          sourceHash: bc4b49423a4b05a4
+          target: .opencode/skills/everything-claude-code-openclaw-persona-forge/SKILL.md
+      skills/openclaw-persona-forge/gacha.py:
+        - hash: a107affe019380cb
+          sourceHash: a107affe019380cb
+          target: .claude/skills/openclaw-persona-forge/gacha.py
+        - hash: a107affe019380cb
+          sourceHash: a107affe019380cb
+          target: .opencode/skills/openclaw-persona-forge/everything-claude-code-gacha.py
+      skills/openclaw-persona-forge/gacha.sh:
+        - hash: b4be2ec1ae890839
+          sourceHash: b4be2ec1ae890839
+          target: .claude/skills/openclaw-persona-forge/gacha.sh
+        - hash: b4be2ec1ae890839
+          sourceHash: b4be2ec1ae890839
+          target: .opencode/skills/openclaw-persona-forge/everything-claude-code-gacha.sh
+      skills/openclaw-persona-forge/references/avatar-style.md:
+        - hash: 5994c8c590393dc8
+          sourceHash: 5994c8c590393dc8
+          target: .claude/skills/openclaw-persona-forge/references/avatar-style.md
+        - hash: 5994c8c590393dc8
+          sourceHash: 5994c8c590393dc8
+          target: .opencode/skills/openclaw-persona-forge/references/everything-claude-code-avatar-style.md
+      skills/openclaw-persona-forge/references/boundary-rules.md:
+        - hash: 5b5cd199d53aa6fe
+          sourceHash: 5b5cd199d53aa6fe
+          target: .claude/skills/openclaw-persona-forge/references/boundary-rules.md
+        - hash: 5b5cd199d53aa6fe
+          sourceHash: 5b5cd199d53aa6fe
+          target: .opencode/skills/openclaw-persona-forge/references/everything-claude-code-boundary-rules.md
+      skills/openclaw-persona-forge/references/error-handling.md:
+        - hash: e46013ff7163f75f
+          sourceHash: e46013ff7163f75f
+          target: .claude/skills/openclaw-persona-forge/references/error-handling.md
+        - hash: e46013ff7163f75f
+          sourceHash: e46013ff7163f75f
+          target: .opencode/skills/openclaw-persona-forge/references/everything-claude-code-error-handling.md
+      skills/openclaw-persona-forge/references/identity-tension.md:
+        - hash: 1b832f54268837cd
+          sourceHash: 1b832f54268837cd
+          target: .claude/skills/openclaw-persona-forge/references/identity-tension.md
+        - hash: 1b832f54268837cd
+          sourceHash: 1b832f54268837cd
+          target: .opencode/skills/openclaw-persona-forge/references/everything-claude-code-identity-tension.md
+      skills/openclaw-persona-forge/references/naming-system.md:
+        - hash: 1e44008eb33aaa9b
+          sourceHash: 1e44008eb33aaa9b
+          target: .claude/skills/openclaw-persona-forge/references/naming-system.md
+        - hash: 1e44008eb33aaa9b
+          sourceHash: 1e44008eb33aaa9b
+          target: .opencode/skills/openclaw-persona-forge/references/everything-claude-code-naming-system.md
+      skills/openclaw-persona-forge/references/output-template.md:
+        - hash: 669df99d18799c89
+          sourceHash: 669df99d18799c89
+          target: .claude/skills/openclaw-persona-forge/references/output-template.md
+        - hash: 669df99d18799c89
+          sourceHash: 669df99d18799c89
+          target: .opencode/skills/openclaw-persona-forge/references/everything-claude-code-output-template.md
+      skills/opensource-pipeline/SKILL.md:
+        - hash: aa2e9027e6359d16
+          sourceHash: 74f37bdc80cb8c47
+          target: .claude/skills/opensource-pipeline/SKILL.md
+        - hash: aa2e9027e6359d16
+          sourceHash: 74f37bdc80cb8c47
+          target: .opencode/skills/everything-claude-code-opensource-pipeline/SKILL.md
+      skills/perl-patterns/SKILL.md:
+        - hash: 05fd4f0b97271e57
+          sourceHash: 3df71c795dcffcb9
+          target: .claude/skills/perl-patterns/SKILL.md
+        - hash: 05fd4f0b97271e57
+          sourceHash: 3df71c795dcffcb9
+          target: .opencode/skills/everything-claude-code-perl-patterns/SKILL.md
+      skills/perl-security/SKILL.md:
+        - hash: 7716024b512c6c1c
+          sourceHash: 27219c410e0791a3
+          target: .claude/skills/perl-security/SKILL.md
+        - hash: 7716024b512c6c1c
+          sourceHash: 27219c410e0791a3
+          target: .opencode/skills/everything-claude-code-perl-security/SKILL.md
+      skills/perl-testing/SKILL.md:
+        - hash: 913009015e4e79ac
+          sourceHash: 5c08603a904f0757
+          target: .claude/skills/perl-testing/SKILL.md
+        - hash: 913009015e4e79ac
+          sourceHash: 5c08603a904f0757
+          target: .opencode/skills/everything-claude-code-perl-testing/SKILL.md
+      skills/plankton-code-quality/SKILL.md:
+        - hash: abd80224392c4bf5
+          sourceHash: 87d2450ba2a55734
+          target: .claude/skills/plankton-code-quality/SKILL.md
+        - hash: abd80224392c4bf5
+          sourceHash: 87d2450ba2a55734
+          target: .opencode/skills/everything-claude-code-plankton-code-quality/SKILL.md
+      skills/postgres-patterns/SKILL.md:
+        - hash: ee302916fee9d580
+          sourceHash: 002efef3838adb84
+          target: .claude/skills/postgres-patterns/SKILL.md
+        - hash: ee302916fee9d580
+          sourceHash: 002efef3838adb84
+          target: .opencode/skills/everything-claude-code-postgres-patterns/SKILL.md
+      skills/product-capability/SKILL.md:
+        - hash: cb32b720583cbced
+          sourceHash: d2a230ef0a2f64b1
+          target: .claude/skills/product-capability/SKILL.md
+        - hash: cb32b720583cbced
+          sourceHash: d2a230ef0a2f64b1
+          target: .opencode/skills/everything-claude-code-product-capability/SKILL.md
+      skills/product-lens/SKILL.md:
+        - hash: 971c492983af2104
+          sourceHash: 80b1728be6dbd06f
+          target: .claude/skills/product-lens/SKILL.md
+        - hash: 971c492983af2104
+          sourceHash: 80b1728be6dbd06f
+          target: .opencode/skills/everything-claude-code-product-lens/SKILL.md
+      skills/production-scheduling/SKILL.md:
+        - hash: ed63864c0a43161e
+          sourceHash: 26c800142e9d758c
+          target: .claude/skills/production-scheduling/SKILL.md
+        - hash: ed63864c0a43161e
+          sourceHash: 26c800142e9d758c
+          target: .opencode/skills/everything-claude-code-production-scheduling/SKILL.md
+      skills/project-flow-ops/SKILL.md:
+        - hash: 919e5f9ecedec78f
+          sourceHash: 4d6edb78d19c74ae
+          target: .claude/skills/project-flow-ops/SKILL.md
+        - hash: 919e5f9ecedec78f
+          sourceHash: 4d6edb78d19c74ae
+          target: .opencode/skills/everything-claude-code-project-flow-ops/SKILL.md
+      skills/prompt-optimizer/SKILL.md:
+        - hash: e368e043a9090b6e
+          sourceHash: 091cf2200414f751
+          target: .claude/skills/prompt-optimizer/SKILL.md
+        - hash: e368e043a9090b6e
+          sourceHash: 091cf2200414f751
+          target: .opencode/skills/everything-claude-code-prompt-optimizer/SKILL.md
+      skills/python-patterns/SKILL.md:
+        - hash: 27d32c7e680b95b4
+          sourceHash: 92b0321c93d343e9
+          target: .claude/skills/python-patterns/SKILL.md
+        - hash: 27d32c7e680b95b4
+          sourceHash: 92b0321c93d343e9
+          target: .opencode/skills/everything-claude-code-python-patterns/SKILL.md
+      skills/python-testing/SKILL.md:
+        - hash: a65d3066936239f8
+          sourceHash: 39392c64177eb770
+          target: .claude/skills/python-testing/SKILL.md
+        - hash: a65d3066936239f8
+          sourceHash: 39392c64177eb770
+          target: .opencode/skills/everything-claude-code-python-testing/SKILL.md
+      skills/pytorch-patterns/SKILL.md:
+        - hash: c9bc3eb7a598172d
+          sourceHash: 6158a947fbd5f95b
+          target: .claude/skills/pytorch-patterns/SKILL.md
+        - hash: c9bc3eb7a598172d
+          sourceHash: 6158a947fbd5f95b
+          target: .opencode/skills/everything-claude-code-pytorch-patterns/SKILL.md
+      skills/quality-nonconformance/SKILL.md:
+        - hash: e33496bc8ecfff70
+          sourceHash: 079c41ada74af1e4
+          target: .claude/skills/quality-nonconformance/SKILL.md
+        - hash: e33496bc8ecfff70
+          sourceHash: 079c41ada74af1e4
+          target: .opencode/skills/everything-claude-code-quality-nonconformance/SKILL.md
+      skills/ralphinho-rfc-pipeline/SKILL.md:
+        - hash: d773c1ae34f03dee
+          sourceHash: 54bbd3e63ffe359c
+          target: .claude/skills/ralphinho-rfc-pipeline/SKILL.md
+        - hash: d773c1ae34f03dee
+          sourceHash: 54bbd3e63ffe359c
+          target: .opencode/skills/everything-claude-code-ralphinho-rfc-pipeline/SKILL.md
+      skills/regex-vs-llm-structured-text/SKILL.md:
+        - hash: 6768c52ca6ab3875
+          sourceHash: c8ee0e2dbdab2209
+          target: .claude/skills/regex-vs-llm-structured-text/SKILL.md
+        - hash: 6768c52ca6ab3875
+          sourceHash: c8ee0e2dbdab2209
+          target: .opencode/skills/everything-claude-code-regex-vs-llm-structured-text/SKILL.md
+      skills/remotion-video-creation/SKILL.md:
+        - hash: 168fca18a1d9b71f
+          sourceHash: f62694adf8bb7c9f
+          target: .claude/skills/remotion-video-creation/SKILL.md
+        - hash: 168fca18a1d9b71f
+          sourceHash: f62694adf8bb7c9f
+          target: .opencode/skills/everything-claude-code-remotion-video-creation/SKILL.md
+      skills/remotion-video-creation/rules/3d.md:
+        - hash: d348244b77da3c3c
+          sourceHash: 8de3b5ca028b15e4
+          target: .claude/skills/remotion-video-creation/rules/3d.md
+        - hash: d348244b77da3c3c
+          sourceHash: 8de3b5ca028b15e4
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-3d.md
+      skills/remotion-video-creation/rules/animations.md:
+        - hash: 90928d6c25683ce3
+          sourceHash: cf743bb3eefacd58
+          target: .claude/skills/remotion-video-creation/rules/animations.md
+        - hash: 90928d6c25683ce3
+          sourceHash: cf743bb3eefacd58
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-animations.md
+      skills/remotion-video-creation/rules/assets.md:
+        - hash: 9d4e2a5870f77f45
+          sourceHash: d498234f4e448af7
+          target: .claude/skills/remotion-video-creation/rules/assets.md
+        - hash: 9d4e2a5870f77f45
+          sourceHash: d498234f4e448af7
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-assets.md
+      skills/remotion-video-creation/rules/assets/charts-bar-chart.tsx:
+        - hash: c28789c78e6c4092
+          sourceHash: c28789c78e6c4092
+          target: .claude/skills/remotion-video-creation/rules/assets/charts-bar-chart.tsx
+        - hash: c28789c78e6c4092
+          sourceHash: c28789c78e6c4092
+          target: .opencode/skills/remotion-video-creation/rules/assets/everything-claude-code-charts-bar-chart.tsx
+      skills/remotion-video-creation/rules/assets/text-animations-typewriter.tsx:
+        - hash: bebba78f78f23e95
+          sourceHash: bebba78f78f23e95
+          target: .claude/skills/remotion-video-creation/rules/assets/text-animations-typewriter.tsx
+        - hash: bebba78f78f23e95
+          sourceHash: bebba78f78f23e95
+          target: .opencode/skills/remotion-video-creation/rules/assets/everything-claude-code-text-animations-typewriter.tsx
+      skills/remotion-video-creation/rules/assets/text-animations-word-highlight.tsx:
+        - hash: aa61a95c1f35ac40
+          sourceHash: aa61a95c1f35ac40
+          target: .claude/skills/remotion-video-creation/rules/assets/text-animations-word-highlight.tsx
+        - hash: aa61a95c1f35ac40
+          sourceHash: aa61a95c1f35ac40
+          target: >-
+            .opencode/skills/remotion-video-creation/rules/assets/everything-claude-code-text-animations-word-highlight.tsx
+      skills/remotion-video-creation/rules/audio.md:
+        - hash: 48dc04792f31a750
+          sourceHash: 592ad554b70f8bcd
+          target: .claude/skills/remotion-video-creation/rules/audio.md
+        - hash: 48dc04792f31a750
+          sourceHash: 592ad554b70f8bcd
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-audio.md
+      skills/remotion-video-creation/rules/calculate-metadata.md:
+        - hash: 10e23efa369d3396
+          sourceHash: c9d948b23e9f489d
+          target: .claude/skills/remotion-video-creation/rules/calculate-metadata.md
+        - hash: 10e23efa369d3396
+          sourceHash: c9d948b23e9f489d
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-calculate-metadata.md
+      skills/remotion-video-creation/rules/can-decode.md:
+        - hash: eeebf9a4579a8fba
+          sourceHash: 4b3f89430f02e324
+          target: .claude/skills/remotion-video-creation/rules/can-decode.md
+        - hash: 4234ddd8e753cd6b
+          sourceHash: 4234ddd8e753cd6b
+          target: .claude/skills/rules-distill/scripts/scan-rules.sh
+        - hash: eeebf9a4579a8fba
+          sourceHash: 4b3f89430f02e324
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-can-decode.md
+        - hash: 4234ddd8e753cd6b
+          sourceHash: 4234ddd8e753cd6b
+          target: .opencode/skills/rules-distill/scripts/everything-claude-code-scan-rules.sh
+      skills/remotion-video-creation/rules/charts.md:
+        - hash: d48da6b989158375
+          sourceHash: 20f55637787c4e37
+          target: .claude/skills/remotion-video-creation/rules/charts.md
+        - hash: d48da6b989158375
+          sourceHash: 20f55637787c4e37
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-charts.md
+      skills/remotion-video-creation/rules/display-captions.md:
+        - hash: fe9a228314d0dd78
+          sourceHash: 584ef61dcf49e9b6
+          target: .claude/skills/remotion-video-creation/rules/display-captions.md
+        - hash: fe9a228314d0dd78
+          sourceHash: 584ef61dcf49e9b6
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-display-captions.md
+      skills/remotion-video-creation/rules/extract-frames.md:
+        - hash: b8998abbfbe98ede
+          sourceHash: 20b587bea7a5f083
+          target: .claude/skills/remotion-video-creation/rules/extract-frames.md
+        - hash: b8998abbfbe98ede
+          sourceHash: 20b587bea7a5f083
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-extract-frames.md
+      skills/remotion-video-creation/rules/fonts.md:
+        - hash: e8a0013488168265
+          sourceHash: ef683554e2dad62c
+          target: .claude/skills/remotion-video-creation/rules/fonts.md
+        - hash: e8a0013488168265
+          sourceHash: ef683554e2dad62c
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-fonts.md
+      skills/remotion-video-creation/rules/get-audio-duration.md:
+        - hash: 618dfe77d8682544
+          sourceHash: b36bbf504bbf298c
+          target: .claude/skills/remotion-video-creation/rules/get-audio-duration.md
+        - hash: 618dfe77d8682544
+          sourceHash: b36bbf504bbf298c
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-get-audio-duration.md
+      skills/remotion-video-creation/rules/get-video-dimensions.md:
+        - hash: 57103c4c240f95cb
+          sourceHash: 185f5b74f86a5b2d
+          target: .claude/skills/remotion-video-creation/rules/get-video-dimensions.md
+        - hash: 57103c4c240f95cb
+          sourceHash: 185f5b74f86a5b2d
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-get-video-dimensions.md
+      skills/remotion-video-creation/rules/get-video-duration.md:
+        - hash: a0ebb383fe6fb8c4
+          sourceHash: ab0a39a60b818d22
+          target: .claude/skills/remotion-video-creation/rules/get-video-duration.md
+        - hash: a0ebb383fe6fb8c4
+          sourceHash: ab0a39a60b818d22
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-get-video-duration.md
+      skills/remotion-video-creation/rules/gifs.md:
+        - hash: f111b7fa24a99e51
+          sourceHash: d3685894f6809fd7
+          target: .claude/skills/remotion-video-creation/rules/gifs.md
+        - hash: f111b7fa24a99e51
+          sourceHash: d3685894f6809fd7
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-gifs.md
+      skills/remotion-video-creation/rules/images.md:
+        - hash: 7d1ed3a0b00411bd
+          sourceHash: d2f8abb50e5821d4
+          target: .claude/skills/remotion-video-creation/rules/images.md
+        - hash: 7d1ed3a0b00411bd
+          sourceHash: d2f8abb50e5821d4
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-images.md
+      skills/remotion-video-creation/rules/import-srt-captions.md:
+        - hash: 7e155d662068748a
+          sourceHash: c0f5924f3696f626
+          target: .claude/skills/remotion-video-creation/rules/import-srt-captions.md
+        - hash: 7e155d662068748a
+          sourceHash: c0f5924f3696f626
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-import-srt-captions.md
+      skills/remotion-video-creation/rules/lottie.md:
+        - hash: cff3cba3bb3bcc76
+          sourceHash: 0cb7c7ad1d87fde1
+          target: .claude/skills/remotion-video-creation/rules/lottie.md
+        - hash: cff3cba3bb3bcc76
+          sourceHash: 0cb7c7ad1d87fde1
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-lottie.md
+      skills/remotion-video-creation/rules/measuring-dom-nodes.md:
+        - hash: 11442e1ba47cdfaf
+          sourceHash: 8a0f5bb71a293d38
+          target: .claude/skills/remotion-video-creation/rules/measuring-dom-nodes.md
+        - hash: 11442e1ba47cdfaf
+          sourceHash: 8a0f5bb71a293d38
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-measuring-dom-nodes.md
+      skills/remotion-video-creation/rules/measuring-text.md:
+        - hash: 2e7871917f6f4ad0
+          sourceHash: 3b3ad4ff22235ff8
+          target: .claude/skills/remotion-video-creation/rules/measuring-text.md
+        - hash: 2e7871917f6f4ad0
+          sourceHash: 3b3ad4ff22235ff8
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-measuring-text.md
+      skills/remotion-video-creation/rules/sequencing.md:
+        - hash: 2a83e94b5539bd7c
+          sourceHash: 17450527bccca21e
+          target: .claude/skills/remotion-video-creation/rules/sequencing.md
+        - hash: 2a83e94b5539bd7c
+          sourceHash: 17450527bccca21e
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-sequencing.md
+      skills/remotion-video-creation/rules/tailwind.md:
+        - hash: 0420d872dc4a6acd
+          sourceHash: 25bc3d3957c4f41f
+          target: .claude/skills/remotion-video-creation/rules/tailwind.md
+        - hash: 0420d872dc4a6acd
+          sourceHash: 25bc3d3957c4f41f
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-tailwind.md
+      skills/remotion-video-creation/rules/text-animations.md:
+        - hash: e0d22063a2d17f68
+          sourceHash: 8a2bb6a6459b6009
+          target: .claude/skills/remotion-video-creation/rules/text-animations.md
+        - hash: e0d22063a2d17f68
+          sourceHash: 8a2bb6a6459b6009
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-text-animations.md
+      skills/remotion-video-creation/rules/timing.md:
+        - hash: 30fbe6899fc1b6e2
+          sourceHash: e839c173fcb93710
+          target: .claude/skills/remotion-video-creation/rules/timing.md
+        - hash: 30fbe6899fc1b6e2
+          sourceHash: e839c173fcb93710
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-timing.md
+      skills/remotion-video-creation/rules/transcribe-captions.md:
+        - hash: fe31587b903cdd46
+          sourceHash: 02637139aa987630
+          target: .claude/skills/remotion-video-creation/rules/transcribe-captions.md
+        - hash: fe31587b903cdd46
+          sourceHash: 02637139aa987630
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-transcribe-captions.md
+      skills/remotion-video-creation/rules/transitions.md:
+        - hash: add7248896c132e8
+          sourceHash: e9ff28185b7b7762
+          target: .claude/skills/remotion-video-creation/rules/transitions.md
+        - hash: add7248896c132e8
+          sourceHash: e9ff28185b7b7762
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-transitions.md
+      skills/remotion-video-creation/rules/trimming.md:
+        - hash: dd1d5411ad92d7c0
+          sourceHash: 1ae0216075b632b7
+          target: .claude/skills/remotion-video-creation/rules/trimming.md
+        - hash: dd1d5411ad92d7c0
+          sourceHash: 1ae0216075b632b7
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-trimming.md
+      skills/remotion-video-creation/rules/videos.md:
+        - hash: 92ea3f19cb41b35e
+          sourceHash: 52bf0678501ceef8
+          target: .claude/skills/remotion-video-creation/rules/videos.md
+        - hash: 92ea3f19cb41b35e
+          sourceHash: 52bf0678501ceef8
+          target: .opencode/skills/remotion-video-creation/rules/everything-claude-code-videos.md
+      skills/repo-scan/SKILL.md:
+        - hash: 7e912b68b9855074
+          sourceHash: 77b2a792b6609136
+          target: .claude/skills/repo-scan/SKILL.md
+        - hash: 7e912b68b9855074
+          sourceHash: 77b2a792b6609136
+          target: .opencode/skills/everything-claude-code-repo-scan/SKILL.md
+      skills/research-ops/SKILL.md:
+        - hash: be290591e76e2d73
+          sourceHash: 0ab3321e6246d88e
+          target: .claude/skills/research-ops/SKILL.md
+        - hash: be290591e76e2d73
+          sourceHash: 0ab3321e6246d88e
+          target: .opencode/skills/everything-claude-code-research-ops/SKILL.md
+      skills/returns-reverse-logistics/SKILL.md:
+        - hash: 81dafaee348dd373
+          sourceHash: 7e1c2182a6844bb0
+          target: .claude/skills/returns-reverse-logistics/SKILL.md
+        - hash: 81dafaee348dd373
+          sourceHash: 7e1c2182a6844bb0
+          target: .opencode/skills/everything-claude-code-returns-reverse-logistics/SKILL.md
+      skills/rules-distill/SKILL.md:
+        - hash: 037e435fa1be57f5
+          sourceHash: efd814d8e5f04c3e
+          target: .claude/skills/rules-distill/SKILL.md
+        - hash: 037e435fa1be57f5
+          sourceHash: efd814d8e5f04c3e
+          target: .opencode/skills/everything-claude-code-rules-distill/SKILL.md
+      skills/rules-distill/scripts/scan-skills.sh:
+        - hash: 8e8093f5ecca9cd6
+          sourceHash: 8e8093f5ecca9cd6
+          target: .claude/skills/rules-distill/scripts/scan-skills.sh
+        - hash: 8e8093f5ecca9cd6
+          sourceHash: 8e8093f5ecca9cd6
+          target: .opencode/skills/rules-distill/scripts/everything-claude-code-scan-skills.sh
+      skills/rust-patterns/SKILL.md:
+        - hash: b1d31ad309088dc9
+          sourceHash: b6fbd8f325d39a36
+          target: .claude/skills/rust-patterns/SKILL.md
+        - hash: b1d31ad309088dc9
+          sourceHash: b6fbd8f325d39a36
+          target: .opencode/skills/everything-claude-code-rust-patterns/SKILL.md
+      skills/rust-testing/SKILL.md:
+        - hash: 2689f1e1c0c80501
+          sourceHash: 79b442944d121d9f
+          target: .claude/skills/rust-testing/SKILL.md
+        - hash: 2689f1e1c0c80501
+          sourceHash: 79b442944d121d9f
+          target: .opencode/skills/everything-claude-code-rust-testing/SKILL.md
+      skills/safety-guard/SKILL.md:
+        - hash: f82fa3dfd5403a63
+          sourceHash: 58cec5390d33a55c
+          target: .claude/skills/safety-guard/SKILL.md
+        - hash: eb7d226c0498d985
+          sourceHash: eb7d226c0498d985
+          target: .claude/skills/skill-stocktake/scripts/save-results.sh
+        - hash: f82fa3dfd5403a63
+          sourceHash: 58cec5390d33a55c
+          target: .opencode/skills/everything-claude-code-safety-guard/SKILL.md
+        - hash: eb7d226c0498d985
+          sourceHash: eb7d226c0498d985
+          target: .opencode/skills/skill-stocktake/scripts/everything-claude-code-save-results.sh
+      skills/santa-method/SKILL.md:
+        - hash: 92ac425d2f07a593
+          sourceHash: d171779d7f7c0fe7
+          target: .claude/skills/santa-method/SKILL.md
+        - hash: 92ac425d2f07a593
+          sourceHash: d171779d7f7c0fe7
+          target: .opencode/skills/everything-claude-code-santa-method/SKILL.md
+      skills/search-first/SKILL.md:
+        - hash: dd1871315f64b928
+          sourceHash: eb2726b2329d7e1a
+          target: .claude/skills/search-first/SKILL.md
+        - hash: dd1871315f64b928
+          sourceHash: eb2726b2329d7e1a
+          target: .opencode/skills/everything-claude-code-search-first/SKILL.md
+      skills/security-bounty-hunter/SKILL.md:
+        - hash: df9fd6b53eb56708
+          sourceHash: aed4809bd3a6fce2
+          target: .claude/skills/security-bounty-hunter/SKILL.md
+        - hash: df9fd6b53eb56708
+          sourceHash: aed4809bd3a6fce2
+          target: .opencode/skills/everything-claude-code-security-bounty-hunter/SKILL.md
+      skills/security-review/SKILL.md:
+        - hash: 185934ab8151557b
+          sourceHash: 25d93335e34bd946
+          target: .claude/skills/security-review/SKILL.md
+        - hash: 185934ab8151557b
+          sourceHash: 25d93335e34bd946
+          target: .opencode/skills/everything-claude-code-security-review/SKILL.md
+      skills/security-review/cloud-infrastructure-security.md:
+        - hash: 5793c24a9216e3a3
+          sourceHash: 5793c24a9216e3a3
+          target: .claude/skills/security-review/cloud-infrastructure-security.md
+        - hash: 5793c24a9216e3a3
+          sourceHash: 5793c24a9216e3a3
+          target: .opencode/skills/security-review/everything-claude-code-cloud-infrastructure-security.md
+      skills/security-scan/SKILL.md:
+        - hash: 1964d83157051194
+          sourceHash: e379d90dd9f01abc
+          target: .claude/skills/security-scan/SKILL.md
+        - hash: 1964d83157051194
+          sourceHash: e379d90dd9f01abc
+          target: .opencode/skills/everything-claude-code-security-scan/SKILL.md
+      skills/seo/SKILL.md:
+        - hash: dccd86b8ebdae4a3
+          sourceHash: bb41c2f46e9e3ee8
+          target: .claude/skills/seo/SKILL.md
+        - hash: dccd86b8ebdae4a3
+          sourceHash: bb41c2f46e9e3ee8
+          target: .opencode/skills/everything-claude-code-seo/SKILL.md
+      skills/skill-comply/SKILL.md:
+        - hash: 1f82934ba2b55441
+          sourceHash: 8fdd0f9138ad3e70
+          target: .claude/skills/skill-comply/SKILL.md
+        - hash: 1f82934ba2b55441
+          sourceHash: 8fdd0f9138ad3e70
+          target: .opencode/skills/everything-claude-code-skill-comply/SKILL.md
+      skills/skill-comply/fixtures/compliant_trace.jsonl:
+        - hash: 7d02f14b59566299
+          sourceHash: 7d02f14b59566299
+          target: .claude/skills/skill-comply/fixtures/compliant_trace.jsonl
+        - hash: 7d02f14b59566299
+          sourceHash: 7d02f14b59566299
+          target: .opencode/skills/skill-comply/fixtures/everything-claude-code-compliant_trace.jsonl
+      skills/skill-comply/fixtures/noncompliant_trace.jsonl:
+        - hash: 9b6205a5112a19c9
+          sourceHash: 9b6205a5112a19c9
+          target: .claude/skills/skill-comply/fixtures/noncompliant_trace.jsonl
+        - hash: 9b6205a5112a19c9
+          sourceHash: 9b6205a5112a19c9
+          target: .opencode/skills/skill-comply/fixtures/everything-claude-code-noncompliant_trace.jsonl
+      skills/skill-comply/fixtures/tdd_spec.yaml:
+        - hash: 3ced758013abdc35
+          sourceHash: 3ced758013abdc35
+          target: .claude/skills/skill-comply/fixtures/tdd_spec.yaml
+        - hash: 3ced758013abdc35
+          sourceHash: 3ced758013abdc35
+          target: .opencode/skills/skill-comply/fixtures/everything-claude-code-tdd_spec.yaml
+      skills/skill-comply/prompts/classifier.md:
+        - hash: eb152e5b5250e7dc
+          sourceHash: eb152e5b5250e7dc
+          target: .claude/skills/skill-comply/prompts/classifier.md
+        - hash: eb152e5b5250e7dc
+          sourceHash: eb152e5b5250e7dc
+          target: .opencode/skills/skill-comply/prompts/everything-claude-code-classifier.md
+      skills/skill-comply/prompts/scenario_generator.md:
+        - hash: cf6dd750c9a26c0b
+          sourceHash: cf6dd750c9a26c0b
+          target: .claude/skills/skill-comply/prompts/scenario_generator.md
+        - hash: cf6dd750c9a26c0b
+          sourceHash: cf6dd750c9a26c0b
+          target: .opencode/skills/skill-comply/prompts/everything-claude-code-scenario_generator.md
+      skills/skill-comply/prompts/spec_generator.md:
+        - hash: a577e680d318dc23
+          sourceHash: a577e680d318dc23
+          target: .claude/skills/skill-comply/prompts/spec_generator.md
+        - hash: a577e680d318dc23
+          sourceHash: a577e680d318dc23
+          target: .opencode/skills/skill-comply/prompts/everything-claude-code-spec_generator.md
+      skills/skill-comply/pyproject.toml:
+        - hash: a0097a7c2965a7cd
+          sourceHash: a0097a7c2965a7cd
+          target: .claude/skills/skill-comply/pyproject.toml
+        - hash: a0097a7c2965a7cd
+          sourceHash: a0097a7c2965a7cd
+          target: .opencode/skills/skill-comply/everything-claude-code-pyproject.toml
+      skills/skill-comply/scripts/__init__.py:
+        - hash: 2d06800538d394c2
+          sourceHash: 2d06800538d394c2
+          target: .claude/skills/skill-comply/scripts/__init__.py
+        - hash: 2d06800538d394c2
+          sourceHash: 2d06800538d394c2
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-__init__.py
+      skills/skill-comply/scripts/classifier.py:
+        - hash: bc62fbebbb9571df
+          sourceHash: bc62fbebbb9571df
+          target: .claude/skills/skill-comply/scripts/classifier.py
+        - hash: bc62fbebbb9571df
+          sourceHash: bc62fbebbb9571df
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-classifier.py
+      skills/skill-comply/scripts/grader.py:
+        - hash: 38d47b4d94410488
+          sourceHash: 38d47b4d94410488
+          target: .claude/skills/skill-comply/scripts/grader.py
+        - hash: 38d47b4d94410488
+          sourceHash: 38d47b4d94410488
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-grader.py
+      skills/skill-comply/scripts/parser.py:
+        - hash: 7b79fa3c5b1705ca
+          sourceHash: 7b79fa3c5b1705ca
+          target: .claude/skills/skill-comply/scripts/parser.py
+        - hash: 7b79fa3c5b1705ca
+          sourceHash: 7b79fa3c5b1705ca
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-parser.py
+      skills/skill-comply/scripts/report.py:
+        - hash: cb87e3dfb388f06a
+          sourceHash: cb87e3dfb388f06a
+          target: .claude/skills/skill-comply/scripts/report.py
+        - hash: cb87e3dfb388f06a
+          sourceHash: cb87e3dfb388f06a
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-report.py
+      skills/skill-comply/scripts/run.py:
+        - hash: 40e45194da3ae6d9
+          sourceHash: 40e45194da3ae6d9
+          target: .claude/skills/skill-comply/scripts/run.py
+        - hash: 40e45194da3ae6d9
+          sourceHash: 40e45194da3ae6d9
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-run.py
+      skills/skill-comply/scripts/runner.py:
+        - hash: bf2a699e7f2bf3bc
+          sourceHash: bf2a699e7f2bf3bc
+          target: .claude/skills/skill-comply/scripts/runner.py
+        - hash: bf2a699e7f2bf3bc
+          sourceHash: bf2a699e7f2bf3bc
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-runner.py
+      skills/skill-comply/scripts/scenario_generator.py:
+        - hash: b1b68c071b2f02a6
+          sourceHash: b1b68c071b2f02a6
+          target: .claude/skills/skill-comply/scripts/scenario_generator.py
+        - hash: b1b68c071b2f02a6
+          sourceHash: b1b68c071b2f02a6
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-scenario_generator.py
+      skills/skill-comply/scripts/spec_generator.py:
+        - hash: 451b1a3faca6de34
+          sourceHash: 451b1a3faca6de34
+          target: .claude/skills/skill-comply/scripts/spec_generator.py
+        - hash: 451b1a3faca6de34
+          sourceHash: 451b1a3faca6de34
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-spec_generator.py
+      skills/skill-comply/scripts/utils.py:
+        - hash: 7803e7e07366ea83
+          sourceHash: 7803e7e07366ea83
+          target: .claude/skills/skill-comply/scripts/utils.py
+        - hash: 7803e7e07366ea83
+          sourceHash: 7803e7e07366ea83
+          target: .opencode/skills/skill-comply/scripts/everything-claude-code-utils.py
+      skills/skill-comply/tests/test_grader.py:
+        - hash: f246523a5265cad7
+          sourceHash: f246523a5265cad7
+          target: .claude/skills/skill-comply/tests/test_grader.py
+        - hash: f246523a5265cad7
+          sourceHash: f246523a5265cad7
+          target: .opencode/skills/skill-comply/tests/everything-claude-code-test_grader.py
+      skills/skill-comply/tests/test_parser.py:
+        - hash: 7160681cdef89a1b
+          sourceHash: 7160681cdef89a1b
+          target: .claude/skills/skill-comply/tests/test_parser.py
+        - hash: 7160681cdef89a1b
+          sourceHash: 7160681cdef89a1b
+          target: .opencode/skills/skill-comply/tests/everything-claude-code-test_parser.py
+      skills/skill-stocktake/SKILL.md:
+        - hash: ac984dc2c59956b9
+          sourceHash: ef0fbd1364567f09
+          target: .claude/skills/skill-stocktake/SKILL.md
+        - hash: ac984dc2c59956b9
+          sourceHash: ef0fbd1364567f09
+          target: .opencode/skills/everything-claude-code-skill-stocktake/SKILL.md
+      skills/skill-stocktake/scripts/quick-diff.sh:
+        - hash: ea54041fc8ef4fd6
+          sourceHash: ea54041fc8ef4fd6
+          target: .claude/skills/skill-stocktake/scripts/quick-diff.sh
+        - hash: ea54041fc8ef4fd6
+          sourceHash: ea54041fc8ef4fd6
+          target: .opencode/skills/skill-stocktake/scripts/everything-claude-code-quick-diff.sh
+      skills/skill-stocktake/scripts/scan.sh:
+        - hash: f67a723260ae08bc
+          sourceHash: f67a723260ae08bc
+          target: .claude/skills/skill-stocktake/scripts/scan.sh
+        - hash: f67a723260ae08bc
+          sourceHash: f67a723260ae08bc
+          target: .opencode/skills/skill-stocktake/scripts/everything-claude-code-scan.sh
+      skills/social-graph-ranker/SKILL.md:
+        - hash: 23a1edac9a27f2df
+          sourceHash: 5bde205cdae4d1b8
+          target: .claude/skills/social-graph-ranker/SKILL.md
+        - hash: 23a1edac9a27f2df
+          sourceHash: 5bde205cdae4d1b8
+          target: .opencode/skills/everything-claude-code-social-graph-ranker/SKILL.md
+      skills/springboot-patterns/SKILL.md:
+        - hash: 8a6dc831cc04629c
+          sourceHash: 871b514181790ede
+          target: .claude/skills/springboot-patterns/SKILL.md
+        - hash: 8a6dc831cc04629c
+          sourceHash: 871b514181790ede
+          target: .opencode/skills/everything-claude-code-springboot-patterns/SKILL.md
+      skills/springboot-security/SKILL.md:
+        - hash: 7cb559f455e12296
+          sourceHash: 81def38bfcde52b7
+          target: .claude/skills/springboot-security/SKILL.md
+        - hash: 7cb559f455e12296
+          sourceHash: 81def38bfcde52b7
+          target: .opencode/skills/everything-claude-code-springboot-security/SKILL.md
+      skills/springboot-tdd/SKILL.md:
+        - hash: 267429dcb70ea4df
+          sourceHash: df3832115d9da074
+          target: .claude/skills/springboot-tdd/SKILL.md
+        - hash: 267429dcb70ea4df
+          sourceHash: df3832115d9da074
+          target: .opencode/skills/everything-claude-code-springboot-tdd/SKILL.md
+      skills/springboot-verification/SKILL.md:
+        - hash: d23789d5f9b05748
+          sourceHash: 76b266113de629e2
+          target: .claude/skills/springboot-verification/SKILL.md
+        - hash: d23789d5f9b05748
+          sourceHash: 76b266113de629e2
+          target: .opencode/skills/everything-claude-code-springboot-verification/SKILL.md
+      skills/strategic-compact/SKILL.md:
+        - hash: de475de5d1718aa2
+          sourceHash: ba7806f86a8cb488
+          target: .claude/skills/strategic-compact/SKILL.md
+        - hash: de475de5d1718aa2
+          sourceHash: ba7806f86a8cb488
+          target: .opencode/skills/everything-claude-code-strategic-compact/SKILL.md
+      skills/strategic-compact/suggest-compact.sh:
+        - hash: f6d9faf3dabbfe36
+          sourceHash: f6d9faf3dabbfe36
+          target: .claude/skills/strategic-compact/suggest-compact.sh
+        - hash: f6d9faf3dabbfe36
+          sourceHash: f6d9faf3dabbfe36
+          target: .opencode/skills/strategic-compact/everything-claude-code-suggest-compact.sh
+      skills/swift-actor-persistence/SKILL.md:
+        - hash: ed88c1120203b287
+          sourceHash: 24f8b961baefa3ce
+          target: .claude/skills/swift-actor-persistence/SKILL.md
+        - hash: ed88c1120203b287
+          sourceHash: 24f8b961baefa3ce
+          target: .opencode/skills/everything-claude-code-swift-actor-persistence/SKILL.md
+      skills/swift-concurrency-6-2/SKILL.md:
+        - hash: 788dfc14b9efde50
+          sourceHash: 3799714c851051f1
+          target: .claude/skills/swift-concurrency-6-2/SKILL.md
+        - hash: 788dfc14b9efde50
+          sourceHash: 3799714c851051f1
+          target: .opencode/skills/everything-claude-code-swift-concurrency-6-2/SKILL.md
+      skills/swift-protocol-di-testing/SKILL.md:
+        - hash: 9e3a33e92c80634c
+          sourceHash: d4723ce11364910a
+          target: .claude/skills/swift-protocol-di-testing/SKILL.md
+        - hash: 9e3a33e92c80634c
+          sourceHash: d4723ce11364910a
+          target: .opencode/skills/everything-claude-code-swift-protocol-di-testing/SKILL.md
+      skills/swiftui-patterns/SKILL.md:
+        - hash: 76a7edafc61dd421
+          sourceHash: 379f97533b8411f7
+          target: .claude/skills/swiftui-patterns/SKILL.md
+        - hash: 76a7edafc61dd421
+          sourceHash: 379f97533b8411f7
+          target: .opencode/skills/everything-claude-code-swiftui-patterns/SKILL.md
+      skills/tdd-workflow/SKILL.md:
+        - hash: 075f9e6fdba35d2b
+          sourceHash: cbc348e60da55cee
+          target: .claude/skills/tdd-workflow/SKILL.md
+        - hash: 075f9e6fdba35d2b
+          sourceHash: cbc348e60da55cee
+          target: .opencode/skills/everything-claude-code-tdd-workflow/SKILL.md
+      skills/team-builder/SKILL.md:
+        - hash: a25f4b571f47b442
+          sourceHash: 6972442449f11f2e
+          target: .claude/skills/team-builder/SKILL.md
+        - hash: a25f4b571f47b442
+          sourceHash: 6972442449f11f2e
+          target: .opencode/skills/everything-claude-code-team-builder/SKILL.md
+      skills/terminal-ops/SKILL.md:
+        - hash: e79cb010817d29dc
+          sourceHash: e1cdcfffbdd50397
+          target: .claude/skills/terminal-ops/SKILL.md
+        - hash: e79cb010817d29dc
+          sourceHash: e1cdcfffbdd50397
+          target: .opencode/skills/everything-claude-code-terminal-ops/SKILL.md
+      skills/token-budget-advisor/SKILL.md:
+        - hash: b486510904747b48
+          sourceHash: d917acf0193346df
+          target: .claude/skills/token-budget-advisor/SKILL.md
+        - hash: b486510904747b48
+          sourceHash: d917acf0193346df
+          target: .opencode/skills/everything-claude-code-token-budget-advisor/SKILL.md
+      skills/ui-demo/SKILL.md:
+        - hash: 39b9b52dee90d93d
+          sourceHash: 00c86cce9b440078
+          target: .claude/skills/ui-demo/SKILL.md
+        - hash: 39b9b52dee90d93d
+          sourceHash: 00c86cce9b440078
+          target: .opencode/skills/everything-claude-code-ui-demo/SKILL.md
+      skills/unified-notifications-ops/SKILL.md:
+        - hash: 9f0d1511ab8dd439
+          sourceHash: 54eacf5dfd547e17
+          target: .claude/skills/unified-notifications-ops/SKILL.md
+        - hash: 9f0d1511ab8dd439
+          sourceHash: 54eacf5dfd547e17
+          target: .opencode/skills/everything-claude-code-unified-notifications-ops/SKILL.md
+      skills/verification-loop/SKILL.md:
+        - hash: 826ab777e4e44428
+          sourceHash: 162eca36753400ba
+          target: .claude/skills/verification-loop/SKILL.md
+        - hash: 826ab777e4e44428
+          sourceHash: 162eca36753400ba
+          target: .opencode/skills/everything-claude-code-verification-loop/SKILL.md
+      skills/video-editing/SKILL.md:
+        - hash: fa50e7ee3cd0c5fb
+          sourceHash: b3821e3f41223fcd
+          target: .claude/skills/video-editing/SKILL.md
+        - hash: fa50e7ee3cd0c5fb
+          sourceHash: b3821e3f41223fcd
+          target: .opencode/skills/everything-claude-code-video-editing/SKILL.md
+      skills/videodb/SKILL.md:
+        - hash: 489b5078ade11d5d
+          sourceHash: 74473dfbad02b2d9
+          target: .claude/skills/videodb/SKILL.md
+        - hash: 489b5078ade11d5d
+          sourceHash: 74473dfbad02b2d9
+          target: .opencode/skills/everything-claude-code-videodb/SKILL.md
+      skills/videodb/reference/api-reference.md:
+        - hash: 7bd030cb34d27900
+          sourceHash: 7bd030cb34d27900
+          target: .claude/skills/videodb/reference/api-reference.md
+        - hash: 7bd030cb34d27900
+          sourceHash: 7bd030cb34d27900
+          target: .opencode/skills/videodb/reference/everything-claude-code-api-reference.md
+      skills/videodb/reference/capture-reference.md:
+        - hash: 0bc08f96cacf1bd2
+          sourceHash: 0bc08f96cacf1bd2
+          target: .claude/skills/videodb/reference/capture-reference.md
+        - hash: 0bc08f96cacf1bd2
+          sourceHash: 0bc08f96cacf1bd2
+          target: .opencode/skills/videodb/reference/everything-claude-code-capture-reference.md
+      skills/videodb/reference/capture.md:
+        - hash: 0d43bceb27b5d537
+          sourceHash: 0d43bceb27b5d537
+          target: .claude/skills/videodb/reference/capture.md
+        - hash: 0d43bceb27b5d537
+          sourceHash: 0d43bceb27b5d537
+          target: .opencode/skills/videodb/reference/everything-claude-code-capture.md
+      skills/videodb/reference/editor.md:
+        - hash: 68b6b2332cd27b8d
+          sourceHash: 68b6b2332cd27b8d
+          target: .claude/skills/videodb/reference/editor.md
+        - hash: 68b6b2332cd27b8d
+          sourceHash: 68b6b2332cd27b8d
+          target: .opencode/skills/videodb/reference/everything-claude-code-editor.md
+      skills/videodb/reference/generative.md:
+        - hash: d70b3e97c4b6bd0a
+          sourceHash: d70b3e97c4b6bd0a
+          target: .claude/skills/videodb/reference/generative.md
+        - hash: d70b3e97c4b6bd0a
+          sourceHash: d70b3e97c4b6bd0a
+          target: .opencode/skills/videodb/reference/everything-claude-code-generative.md
+      skills/videodb/reference/rtstream-reference.md:
+        - hash: 464976c8315caf80
+          sourceHash: 464976c8315caf80
+          target: .claude/skills/videodb/reference/rtstream-reference.md
+        - hash: 464976c8315caf80
+          sourceHash: 464976c8315caf80
+          target: .opencode/skills/videodb/reference/everything-claude-code-rtstream-reference.md
+      skills/videodb/reference/rtstream.md:
+        - hash: 056a6310d67418ca
+          sourceHash: 056a6310d67418ca
+          target: .claude/skills/videodb/reference/rtstream.md
+        - hash: 056a6310d67418ca
+          sourceHash: 056a6310d67418ca
+          target: .opencode/skills/videodb/reference/everything-claude-code-rtstream.md
+      skills/videodb/reference/search.md:
+        - hash: 7acf3eaea1066f2e
+          sourceHash: 7acf3eaea1066f2e
+          target: .claude/skills/videodb/reference/search.md
+        - hash: 7acf3eaea1066f2e
+          sourceHash: 7acf3eaea1066f2e
+          target: .opencode/skills/videodb/reference/everything-claude-code-search.md
+      skills/videodb/reference/streaming.md:
+        - hash: 1d81e1e8423683f1
+          sourceHash: 1d81e1e8423683f1
+          target: .claude/skills/videodb/reference/streaming.md
+        - hash: 1d81e1e8423683f1
+          sourceHash: 1d81e1e8423683f1
+          target: .opencode/skills/videodb/reference/everything-claude-code-streaming.md
+      skills/videodb/reference/use-cases.md:
+        - hash: 21fc084b340cfaa8
+          sourceHash: 21fc084b340cfaa8
+          target: .claude/skills/videodb/reference/use-cases.md
+        - hash: 21fc084b340cfaa8
+          sourceHash: 21fc084b340cfaa8
+          target: .opencode/skills/videodb/reference/everything-claude-code-use-cases.md
+      skills/videodb/scripts/ws_listener.py:
+        - hash: fa4d282c326676e0
+          sourceHash: fa4d282c326676e0
+          target: .claude/skills/videodb/scripts/ws_listener.py
+        - hash: fa4d282c326676e0
+          sourceHash: fa4d282c326676e0
+          target: .opencode/skills/videodb/scripts/everything-claude-code-ws_listener.py
+      skills/visa-doc-translate/README.md:
+        - hash: badb748a4e05ea16
+          sourceHash: badb748a4e05ea16
+          target: .claude/skills/visa-doc-translate/README.md
+        - hash: badb748a4e05ea16
+          sourceHash: badb748a4e05ea16
+          target: .opencode/skills/visa-doc-translate/everything-claude-code-README.md
+      skills/workspace-surface-audit/SKILL.md:
+        - hash: 9a1ed528070d905c
+          sourceHash: 6ad318615af682ff
+          target: .claude/skills/workspace-surface-audit/SKILL.md
+        - hash: 9a1ed528070d905c
+          sourceHash: 6ad318615af682ff
+          target: .opencode/skills/everything-claude-code-workspace-surface-audit/SKILL.md
+      skills/x-api/SKILL.md:
+        - hash: 935dad6e65ab8b7e
+          sourceHash: 715d0bb0269f6522
+          target: .claude/skills/x-api/SKILL.md
+        - hash: 935dad6e65ab8b7e
+          sourceHash: 715d0bb0269f6522
+          target: .opencode/skills/everything-claude-code-x-api/SKILL.md
+    namespace: everything-claude-code
+    path: ~/.openpackage/cache/git/257ed0953657/1a50145
+    platforms:
+      - claude
+      - opencode
+    version: 1.10.0

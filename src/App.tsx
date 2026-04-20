@@ -2,12 +2,19 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, Monitor, Play, RefreshCw, Copy, ExternalLink, Disc3, Disc, Settings, Music, Headphones, FolderOpen, Upload, Volume2 } from 'lucide-react';
 import { recordAudio, setAudioLevelCallback, clearAudioLevelCallback } from './lib/audio';
-import { identifyTrack, findAnimeForTrack, fetchLyrics } from './lib/api';
+import { identifyTrack, findAnimeForTrack, fetchLyrics, TrackData, AnimeData } from './lib/api';
 import SettingsPage from './components/Settings';
+
+interface ElectronAPI {
+  onTriggerListen: (callback: (mode: 'mic' | 'desktop') => void) => void;
+  removeTriggerListen?: () => void;
+  saveSettings: (settings: AppSettings) => void;
+}
 
 type Page = 'home' | 'settings';
 
 interface AppSettings {
+  animeInfoSource: 'animethemes' | 'google';
   searchOnOpen: 'dont_search' | 'mic' | 'desktop';
   searchDuration: 'continue' | '10s' | '20s' | '30s';
   minimizeToTray: boolean;
@@ -15,11 +22,15 @@ interface AppSettings {
 }
 
 function App() {
+  const [searchAbortController, setSearchAbortController] = useState<AbortController | null>(null);
+  const [animeLoading, setAnimeLoading] = useState(false);
   const [page, setPage] = useState<Page>('home');
   const [listening, setListening] = useState(false);
   const [mode, setMode] = useState<'mic' | 'desktop'>('mic');
   const [analyzing, setAnalyzing] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  type ResultData = TrackData & { animes?: AnimeData[]; lyrics?: string; };
+
+const [result, setResult] = useState<ResultData | null>(null);
   const [dragging, setDragging] = useState(false);
   const [ready, setReady] = useState(false);
   const [audioLevel, setAudioLevel] = useState(0);
@@ -31,6 +42,7 @@ function App() {
     try {
       const saved = localStorage.getItem('mra-settings');
       return saved ? JSON.parse(saved) : {
+        animeInfoSource: 'animethemes',
         searchOnOpen: 'dont_search',
         searchDuration: 'continue',
         minimizeToTray: true,
@@ -38,6 +50,7 @@ function App() {
       };
     } catch {
       return {
+        animeInfoSource: 'animethemes',
         searchOnOpen: 'dont_search',
         searchDuration: 'continue',
         minimizeToTray: true,
@@ -51,8 +64,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!ready || !(window as any).electronAPI) return;
-    
+    if (!ready || !(window as Window & { electronAPI?: ElectronAPI }).electronAPI) return;
+
     const settings = getSettings();
     if (settings.searchOnOpen !== 'dont_search' && startListeningRef.current) {
       const mode = settings.searchOnOpen as 'mic' | 'desktop';
@@ -62,7 +75,7 @@ function App() {
         '30s': 30000,
       };
       const duration = durationMap[settings.searchDuration] || null;
-      
+
       if (duration) {
         setTimeout(() => startListeningRef.current?.(mode), 500);
       } else {
@@ -70,26 +83,41 @@ function App() {
       }
     }
 
-    (window as any).electronAPI.onTriggerListen((triggerMode: 'mic' | 'desktop') => {
+    (window as Window & { electronAPI?: ElectronAPI }).electronAPI.onTriggerListen((triggerMode: 'mic' | 'desktop') => {
       startListeningRef.current?.(triggerMode);
     });
 
     return () => {
-      (window as any).electronAPI?.removeTriggerListen?.();
+      (window as Window & { electronAPI?: ElectronAPI }).electronAPI?.removeTriggerListen?.();
     };
   }, [ready, getSettings]);
 
   // Shared logic: take an audio blob, identify it, find anime + lyrics
   const processAudioBlob = async (audioBlob: Blob) => {
+    const settings = getSettings();
+    // Abort any previous search
+    if (searchAbortController) {
+      searchAbortController.abort();
+    }
+    const controller = new AbortController();
+    setSearchAbortController(controller);
     try {
       setAnalyzing(true);
-      const trackData = await identifyTrack(audioBlob);
+      const trackData = await identifyTrack(audioBlob, controller.signal);
+      if (controller.signal.aborted) return;
       if (trackData) {
-        // Instantly fetch and show result - no analyzing UI
+        // Show song info immediately, without anime/lyrics yet
+        setResult({
+          ...trackData,
+          animes: [],
+          lyrics: ''
+        });
+        setAnimeLoading(true);
         const [animeDataArray, lyricsData] = await Promise.all([
-          findAnimeForTrack(trackData.title, trackData.artist),
+          findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource),
           fetchLyrics(trackData.title, trackData.artist)
         ]);
+        if (controller.signal.aborted) return;
         setResult({
           ...trackData,
           animes: animeDataArray,
@@ -98,10 +126,15 @@ function App() {
       } else {
         alert("Could not identify the song.");
       }
-    } catch (e: any) {
-      alert("Error recognizing audio: " + e.message);
+    } catch (e) {
+      if (e instanceof Error && e.name === 'AbortError') {
+        console.log('[MRA] Search aborted');
+      } else {
+        alert("Error recognizing audio: " + (e instanceof Error ? e.message : String(e)));
+      }
     } finally {
       setAnalyzing(false);
+      setAnimeLoading(false);
     }
   };
 
@@ -117,11 +150,18 @@ function App() {
   };
 
   const startListening = async (listenMode: 'mic' | 'desktop') => {
+    // Cancel any ongoing search
+    if (searchAbortController) {
+      searchAbortController.abort();
+    }
+    const controller = new AbortController();
+    setSearchAbortController(controller);
+
     if (listeningRef.current) {
       stopListening();
       return;
     }
-    
+
     const settings = getSettings();
     const durationMs = (() => {
       const durationMap: Record<string, number> = {
@@ -131,45 +171,46 @@ function App() {
       };
       return durationMap[settings.searchDuration];
     })();
-    
+
     const startTime = Date.now();
-    
+
     setAudioLevelCallback((level: number) => {
       setAudioLevel(level);
     });
-    
+
     try {
       setMode(listenMode);
       setListening(true);
       setCurrentDevice(listenMode === 'mic' ? 'Microphone' : 'Desktop Audio');
       listeningRef.current = true;
-      
+
       // Pipeline: record next chunk while previous is being analyzed
-      let pendingIdentify: Promise<any> | null = null;
-      
+      let pendingIdentify: Promise<TrackData | null> | null = null;
+
       while (listeningRef.current) {
         // Check if duration limit reached
         if (durationMs && Date.now() - startTime >= durationMs) {
           console.log('[MRA] Duration limit reached, stopping...');
           break;
         }
-        
+
         // Start recording (this runs for 5 seconds)
         const recordPromise = recordAudio(listenMode, 5000);
-        
+
         // While recording, check if previous identify finished
         if (pendingIdentify) {
           const trackData = await pendingIdentify;
           pendingIdentify = null;
-          
+
           if (!listeningRef.current) break;
-          
+
           if (trackData) {
-            // Found a match! Show analyzing UI while fetching anime data
+            // Found a match! Show result while fetching anime data
             setListening(false);
             setAnalyzing(true);
+            const settings = getSettings();
             const [animeDataArray] = await Promise.all([
-              findAnimeForTrack(trackData.title, trackData.artist),
+              findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource),
             ]);
             setResult({
               ...trackData,
@@ -181,19 +222,23 @@ function App() {
           }
           console.log('[MRA] No match on previous chunk, still listening...');
         }
-        
+
         // Wait for current recording to finish
         const audioBlob = await recordPromise;
         if (!listeningRef.current) break;
-        
-        // Fire off identification in background (non-blocking)
+
+        // Fire off identification in background (non-blocking) with abort support
         setAnalyzing(true);
-        pendingIdentify = identifyTrack(audioBlob).finally(() => {
+        pendingIdentify = identifyTrack(audioBlob, controller.signal).finally(() => {
           if (listeningRef.current) setAnalyzing(false);
         });
       }
-    } catch (e: any) {
-      console.error("Error recognizing audio:", e.message);
+    } catch (e) {
+      if (e instanceof Error && e.name === 'AbortError') {
+        console.log('[MRA] Listening aborted');
+      } else {
+        console.error("Error recognizing audio:", e instanceof Error ? e.message : String(e));
+      }
     } finally {
       listeningRef.current = false;
       setListening(false);
@@ -202,6 +247,19 @@ function App() {
   };
 
   startListeningRef.current = startListening;
+
+  // Cancel current search/listening
+  const handleCancel = () => {
+    if (searchAbortController) {
+      searchAbortController.abort();
+      setSearchAbortController(null);
+    }
+    stopListening();
+    setResult(null);
+    setAnalyzing(false);
+    setAnimeLoading(false);
+    setListening(false);
+  };
 
   const handleFileSelect = async (file: File) => {
     const validTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/flac', 'audio/mp4', 'audio/webm', 'audio/aac', 'video/mp4', 'video/webm'];
@@ -218,7 +276,7 @@ function App() {
     setDragging(false);
     const file = e.dataTransfer.files?.[0];
     if (file) handleFileSelect(file);
-  }, []);
+  }, [handleFileSelect]);
 
   const onDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -250,8 +308,8 @@ function App() {
         }}
       />
 
-{/* ─── Title Bar ─── */}
-      <div className="h-10 w-full shrink-0 flex items-center pl-4 pr-32 justify-between border-b border-slate-800/50" style={{ WebkitAppRegion: 'drag' } as any}>
+      {/* ─── Title Bar ─── */}
+      <div className="h-10 w-full shrink-0 flex items-center pl-4 pr-32 justify-between border-b border-slate-800/50" style={{ WebkitAppRegion: 'drag' } as React.CSSProperties}>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 no-drag">
             <button
@@ -324,6 +382,14 @@ function App() {
                 <RefreshCw className="w-4 h-4 animate-spin" />
                 ANALYZING AUDIO...
               </motion.p>
+              {/* Cancel Button */}
+              <button
+                onClick={handleCancel}
+                className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded"
+              >
+                Cancel
+              </button>
+
             </motion.div>
           ) : listening ? (
             <motion.div
@@ -357,6 +423,14 @@ function App() {
               >
                 LISTENING TO {mode === 'mic' ? 'MICROPHONE' : 'DESKTOP'}...
               </motion.p>
+              {/* Cancel Button */}
+              <button
+                onClick={handleCancel}
+                className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded"
+              >
+                Cancel
+              </button>
+
             </motion.div>
           ) : !result ? (
             <motion.div
@@ -486,12 +560,18 @@ function App() {
                   </div>
                 </div>
               </div>
-
+              {/* Anime loading indicator */}
+              {animeLoading && (!result.animes || result.animes.length === 0) && (
+                <div className="mt-4 flex items-center gap-2 text-indigo-300">
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  Loading anime info...
+                </div>
+              )}
               {/* ─── Anime OST ─── */}
               {result.animes && result.animes.length > 0 && (() => {
                 const anime = result.animes[0];
                 return (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 }}

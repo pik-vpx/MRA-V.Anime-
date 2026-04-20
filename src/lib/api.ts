@@ -17,6 +17,7 @@ export interface AnimeData {
   type: string; // e.g. "OP 1", "ED 2", "Insert Song"
   url: string;
   imageUrl: string;
+  overview?: string; // Description from Google AI fallback
 }
 
 // 1. RapidAPI Shazam Integration
@@ -56,7 +57,7 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
   return btoa(binary);
 }
 
-export async function identifyTrack(audioBlob: Blob): Promise<TrackData | null> {
+export async function identifyTrack(audioBlob: Blob, _signal?: AbortSignal): Promise<TrackData | null> {
   try {
     console.log('[MRA] Starting audio identification, blob size:', audioBlob.size, 'type:', audioBlob.type);
 
@@ -212,6 +213,8 @@ function cleanQueryTerm(str: string): string {
     .replace(/-\s*(?:feat\.|ft\.|featuring|cv:).*/gi, '')
     // Remove (TV Size) or [TV Version] cleanly
     .replace(/[([][^)\]]*(?:tv\s*size|tv\s*version)[^)\]]*[)\]]/gi, '')
+    // Remove (Acoustic Version), (Acoustic), etc
+    .replace(/[([][^)\]]*(?:acoustic|karaoke|remix|cover|piano|ballad|version)[^)\]]*[)\]]/gi, '')
     // Remove multiple spaces left behind
     .replace(/\s+/g, ' ')
     .trim();
@@ -236,7 +239,7 @@ async function textToRomaji(text: string): Promise<string | null> {
         const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=ja&tl=en&dt=rm&q=${encodeURIComponent(seg)}`);
         const data = await res.json();
         if (data && data[0] && data[0][0] && data[0][0][3]) {
-          let romaji = data[0][0][3];
+          const romaji = data[0][0][3];
           // Normalize macrons
           const macronMap: { [key: string]: string } = {
             'ā': 'aa', 'ē': 'ee', 'ī': 'ii', 'ō': 'ou', 'ū': 'uu',
@@ -259,11 +262,16 @@ async function textToRomaji(text: string): Promise<string | null> {
   return null;
 }
 
-export async function findAnimeForTrack(rawTitle: string, rawArtist: string): Promise<AnimeData[]> {
+export async function findAnimeForTrack(rawTitle: string, rawArtist: string, source: 'animethemes' | 'google' = 'animethemes'): Promise<AnimeData[]> {
   const title = cleanQueryTerm(rawTitle);
   const artist = cleanQueryTerm(rawArtist);
 
-  console.log(`[MRA] Finding anime for: "${title}" by "${artist}" (Original: "${rawTitle}" / "${rawArtist}")`);
+  console.log(`[MRA] Finding anime for: "${title}" by "${artist}" (source: ${source})`);
+
+  // Use Google AI if selected
+  if (source === 'google') {
+    return findAnimeFromGoogle(title, artist);
+  }
 
   let results: any[] = [];
   try {
@@ -280,7 +288,7 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string): Pr
     console.log('[MRA] Pass 1 (exact title + exact artist):', results.length, 'results');
 
     // ── Pass 1.5 (Romaji Fallback): If Japanese text, translate to Romaji and try Pass 1 again ──
-    let romajiTitle = await textToRomaji(title);
+    const romajiTitle = await textToRomaji(title);
     if (results.length === 0 && romajiTitle) {
       results = await searchAnisongDB({
         and_logic: true,
@@ -377,11 +385,13 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string): Pr
         const songArtist = (r.songArtist || '').toLowerCase();
         const songTitle = (r.songName || '').toLowerCase();
 
-        // Start with title exact match bonus (100 points)
-        let score = songTitle === titleLower ? 100 : 0;
+        // Start with title exact match bonus (200 points - higher priority for anime songs)
+        let score = songTitle === titleLower ? 200 : 0;
 
-        // Exact artist match = 100 points (only if exact match)
-        if (songArtist === artistLower) score += 100;
+        // Exact artist match = 150 points (only if exact match)
+        if (songArtist === artistLower) score += 150;
+        // Very similar Artist (e.g., "Wakaba" matches "Wakaba (若葉)") = 75 points
+        else if (songArtist.includes(artistLower) || artistLower.includes(songArtist)) score += 75;
         // Artist contains search term or vice versa = 50 points
         else if (songArtist.includes(artistLower) || artistLower.includes(songArtist)) score += 50;
         // Partial word match = 25 points
@@ -396,7 +406,7 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string): Pr
       });
 
       // Check if ANY result has artist match
-      const hasArtistMatch = scored.some(s => s.score > 100); // >100 means has artist points
+      const hasArtistMatch = scored.some(s => s.score > 150); // >150 means has artist points
 
       // If no artist matches any result, prioritize exact title match
       if (!hasArtistMatch) {
@@ -410,9 +420,14 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string): Pr
 
       // Sort by score descending
       scored.sort((a, b) => b.score - a.score);
-      bestEntry = scored[0].entry;
 
-      console.log('[MRA] Artist filter applied, best match:', bestEntry.songName, '->', bestEntry.animeENName, '(score:', scored[0].score + ')');
+      // Log top 3 for debugging
+      console.log('[MRA] Top 3 matches:');
+      scored.slice(0, 3).forEach((s, i) => {
+        console.log(`  ${i + 1}. "${s.entry.songName}" by "${s.entry.songArtist}" -> ${s.entry.animeENName} (score: ${s.score})`);
+      });
+
+      bestEntry = scored[0].entry;
     } else {
       // No artist provided, but still prioritize exact title match
       const titleLower = title.toLowerCase().replace(/\s+/g, ' ').trim();
@@ -497,6 +512,70 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string): Pr
     console.error('[MRA] AnimeThemes API fallback failed:', error);
   }
 
+  // ── Final Fallback: Google AI Search ──
+  console.log('[MRA] All primary APIs failed, trying Google AI fallback...');
+  try {
+    const googleResult = await findAnimeFromGoogle(title, artist);
+    if (googleResult.length > 0) {
+      console.log('[MRA] Google AI found:', googleResult[0].title);
+      return googleResult;
+    }
+  } catch (error) {
+    console.error('[MRA] Google AI fallback failed:', error);
+  }
+
+  return [];
+}
+
+// 2b. Google AI Overview Fallback (uses Gemini API to identify anime from song info)
+async function findAnimeFromGoogle(title: string, artist: string): Promise<AnimeData[]> {
+  const apiKey = typeof import.meta !== 'undefined' && import.meta.env?.VITE_GOOGLE_GEMINI_API_KEY 
+    ? import.meta.env.VITE_GOOGLE_GEMINI_API_KEY 
+    : (typeof process !== 'undefined' && process.env?.GOOGLE_GEMINI_API_KEY);
+
+  if (!apiKey) {
+    console.warn('[MRA] Google Gemini API key not configured. Set VITE_GOOGLE_GEMINI_API_KEY in .env');
+    return [];
+  }
+
+  const maxRetries = 3;
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?alt=json&key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: `"${title}" by "${artist}" is an anime opening/ending theme. Which anime has this as its OP or ED? Answer ONLY: "AnimeName (OP)" or "AnimeName (ED)". No extra text.` }] }]
+          })
+        }
+      );
+      if (res.status === 429) {
+        const waitTime = (attempt + 1) * 2000;
+        console.log(`[MRA] Rate limited, waiting ${waitTime}ms...`);
+        await new Promise(r => setTimeout(r, waitTime));
+        continue;
+      }
+      if (!res.ok) return [];
+      const data = await res.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      if (!text) return [];
+      const match = text.match(/(.+?)\s*\(?(OP|ED)\)?/i);
+      if (match) {
+        return [{
+          title: match[1].trim(),
+          type: match[2].toUpperCase(),
+          url: '',
+          imageUrl: ''
+        }];
+      }
+      return [];
+    } catch (e) {
+      console.warn('[MRA] Google AI attempt failed:', e);
+    }
+  }
+  console.warn('[MRA] Google AI all retries exhausted');
   return [];
 }
 
