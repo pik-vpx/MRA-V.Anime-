@@ -1,10 +1,11 @@
 import { useState, useRef, useCallback } from 'react';
-import { recordAudio, setAudioLevelCallback, clearAudioLevelCallback, identifyTrack } from '../lib/audio';
+import { recordAudio, setAudioLevelCallback, clearAudioLevelCallback } from '../lib/audio';
+import { identifyTrack } from '../lib/api';
 import { findAnimeForTrack } from '../lib/api';
 
 export type ListeningMode = 'mic' | 'desktop';
 
-interface AudioPipelineResult {
+export interface AudioPipelineResult {
   title: string;
   artist: string;
   album: string;

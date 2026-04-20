@@ -42,8 +42,9 @@ export function useSettings() {
 
   useEffect(() => {
     localStorage.setItem('mra-settings', JSON.stringify(settings));
-    if (window.electronAPI) {
-      window.electronAPI.saveSettings(settings);
+    const electronAPI = (window as unknown as { electronAPI?: { saveSettings: (s: AppSettings) => void } }).electronAPI;
+    if (electronAPI) {
+      electronAPI.saveSettings(settings);
     }
   }, [settings]);
 

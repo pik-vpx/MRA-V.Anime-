@@ -2,7 +2,8 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, Monitor, Play, RefreshCw, Copy, ExternalLink, Disc3, Disc, Settings, Music, Headphones, FolderOpen, Upload, Volume2 } from 'lucide-react';
 import { recordAudio, setAudioLevelCallback, clearAudioLevelCallback } from './lib/audio';
-import { identifyTrack, findAnimeForTrack, fetchLyrics, TrackData, AnimeData } from './lib/api';
+import { identifyTrack, findAnimeForTrack, fetchLyrics } from './lib/api';
+import type { TrackData, AnimeData } from './lib/api';
 import SettingsPage from './components/Settings';
 
 interface ElectronAPI {
@@ -83,7 +84,7 @@ const [result, setResult] = useState<ResultData | null>(null);
       }
     }
 
-    (window as Window & { electronAPI?: ElectronAPI }).electronAPI.onTriggerListen((triggerMode: 'mic' | 'desktop') => {
+    (window as Window & { electronAPI?: ElectronAPI }).electronAPI?.onTriggerListen?.((triggerMode: 'mic' | 'desktop') => {
       startListeningRef.current?.(triggerMode);
     });
 

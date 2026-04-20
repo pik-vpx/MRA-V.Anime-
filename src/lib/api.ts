@@ -72,7 +72,7 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
   return btoa(binary);
 }
 
-export async function identifyTrack(audioBlob: Blob, signal?: AbortSignal): Promise<TrackData | null> {
+export async function identifyTrack(audioBlob: Blob, _signal?: AbortSignal): Promise<TrackData | null> {
   try {
     console.log('[MRA] Starting audio identification, blob size:', audioBlob.size, 'type:', audioBlob.type);
 
@@ -473,8 +473,8 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
     // IMAGE FALLBACK: If AnisongDB result has no image, try fetching from AnimeThemes
     if (!imageUrl) {
       console.log('[MRA] AnisongDB missing image, trying AnimeThemes for cover...');
-      // Use AnimeThemes as a fallback image source when AnisongDB provides none
-      imageUrl = await fetchAnimeThemesImage(bestEntry.animeENName || bestEntry.animeJPName) || '';
+      const animeName = bestEntry.animeENName || bestEntry.animeJPName;
+      imageUrl = animeName ? (await fetchAnimeThemesImage(animeName) ?? '') : '';
     }
 
     return [{
@@ -550,10 +550,8 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
 }
 
 // 2b. Google AI Overview Fallback (uses Gemini API to identify anime from song info)
-async function findAnimeFromGoogle(title: string, artist: string): Promise<AnimeData[]> {
-  const apiKey = typeof import.meta !== 'undefined' && import.meta.env?.VITE_GOOGLE_GEMINI_API_KEY 
-    ? import.meta.env.VITE_GOOGLE_GEMINI_API_KEY 
-    : (typeof process !== 'undefined' && process.env?.GOOGLE_GEMINI_API_KEY);
+async function findAnimeFromGoogle(_title: string, _artist: string): Promise<AnimeData[]> {
+  const apiKey = import.meta?.env?.VITE_GOOGLE_GEMINI_API_KEY;
 
   if (!apiKey) {
     console.warn('[MRA] Google Gemini API key not configured. Set VITE_GOOGLE_GEMINI_API_KEY in .env');
@@ -569,7 +567,7 @@ async function findAnimeFromGoogle(title: string, artist: string): Promise<Anime
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: `"${title}" by "${artist}" is an anime opening/ending theme. Which anime has this as its OP or ED? Answer ONLY: "AnimeName (OP)" or "AnimeName (ED)". No extra text.` }] }]
+            contents: [{ parts: [{ text: `"${_title}" by "${_artist}" is an anime opening/ending theme. Which anime has this as its OP or ED? Answer ONLY: "AnimeName (OP)" or "AnimeName (ED)". No extra text.` }] }]
           })
         }
       );
