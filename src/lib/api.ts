@@ -552,6 +552,7 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
 // 2b. Google AI Overview Fallback (uses Gemini API to identify anime from song info)
 async function findAnimeFromGoogle(_title: string, _artist: string): Promise<AnimeData[]> {
   const apiKey = import.meta?.env?.VITE_GOOGLE_GEMINI_API_KEY;
+  console.log('[MRA] Checking API key, found:', apiKey ? 'YES' : 'NO');
 
   if (!apiKey) {
     console.warn('[MRA] Google Gemini API key not configured. Set VITE_GOOGLE_GEMINI_API_KEY in .env');
