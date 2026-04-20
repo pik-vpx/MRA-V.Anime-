@@ -551,8 +551,18 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
 
 // 2b. Google AI Overview Fallback (uses Gemini API to identify anime from song info)
 async function findAnimeFromGoogle(_title: string, _artist: string): Promise<AnimeData[]> {
-  const apiKey = import.meta?.env?.VITE_GOOGLE_GEMINI_API_KEY;
-  console.log('[MRA] Checking API key, found:', apiKey ? 'YES' : 'NO');
+  // Try to get from env, fallback to hardcoded for dev
+  let apiKey = import.meta?.env?.VITE_GOOGLE_GEMINI_API_KEY;
+  
+  // Debug: log what's in import.meta.env
+  console.log('[MRA] import.meta.env keys:', Object.keys(import.meta?.env || {}));
+  console.log('[MRA] VITE_ vars:', Object.keys(import.meta?.env || {}).filter(k => k.startsWith('VITE_')));
+  
+  // If not found, try hardcoded fallback (for dev testing only)
+  if (!apiKey) {
+    apiKey = 'AIzaSyDaBJoVU0WjOXiu89kbpATL-EHyNTpDz1k';
+    console.log('[MRA] Using fallback API key');
+  }
 
   if (!apiKey) {
     console.warn('[MRA] Google Gemini API key not configured. Set VITE_GOOGLE_GEMINI_API_KEY in .env');
