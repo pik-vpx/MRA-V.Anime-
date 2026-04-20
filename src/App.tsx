@@ -580,20 +580,19 @@ const [result, setResult] = useState<ResultData | null>(null);
                 </div>
               </div>
               {/* Anime loading indicator */}
-              {animeLoading && (!result.animes || result.animes.length === 0) && (
+              {animeLoading && (
                 <div className="mt-4 flex items-center gap-2 text-indigo-300">
                   <RefreshCw className="w-4 h-4 animate-spin" />
-                  Loading anime info...
+                  Finding anime...
                 </div>
               )}
-              {/* ─── Anime OST ─── */}
+              {/* ─── Anime OST - show instantly when available, image pops when ready ─── */}
               {result.animes && result.animes.length > 0 && (() => {
                 const anime = result.animes[0];
                 return (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 }}
                     className="mt-8 bg-indigo-950/40 border border-indigo-500/20 rounded-2xl p-5 relative overflow-hidden backdrop-blur-xl"
                   >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500" />
@@ -602,8 +601,13 @@ const [result, setResult] = useState<ResultData | null>(null);
                       ANIME OST
                     </div>
                     <div className="flex gap-4 items-start">
-                      {anime.imageUrl && (
+                      {/* Image - shows when fetched, placeholder before */}
+                      {anime.imageUrl ? (
                         <img src={anime.imageUrl} alt="Anime Cover" className="w-28 h-40 rounded-xl bg-indigo-900 object-cover shrink-0 border border-indigo-500/20" />
+                      ) : (
+                        <div className="w-28 h-40 rounded-xl bg-indigo-900/50 shrink-0 border border-indigo-500/20 flex items-center justify-center">
+                          <Disc className="w-8 h-8 text-indigo-600" />
+                        </div>
                       )}
                       <div className="flex-1 min-w-0">
                         <h3 className="text-xl font-bold text-indigo-50">{anime.title}</h3>
