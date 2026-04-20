@@ -47,11 +47,13 @@ export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 
     
     const rawStream = await navigator.mediaDevices.getUserMedia({
       audio: {
+        // @ts-expect-error Chrome-specific constraint
         mandatory: {
           chromeMediaSource: 'desktop',
         }
       },
       video: {
+        // @ts-expect-error Chrome-specific constraint
         mandatory: {
           chromeMediaSource: 'desktop',
           chromeMediaSourceId: sourceId,

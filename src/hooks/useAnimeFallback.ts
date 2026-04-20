@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { findAnimeForTrack, AnimeData } from '../lib/api';
+import { findAnimeForTrack } from '../lib/api';
+import type { AnimeData } from '../lib/api';
 
 export function useAnimeFallback() {
   const [loading, setLoading] = useState(false);

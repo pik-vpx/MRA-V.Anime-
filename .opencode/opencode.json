@@ -20,7 +20,8 @@
     "skills/eval-harness/SKILL.md"
   ],
   "plugin": [
-    "./plugins"
+    "./plugins",
+    "ecc-universal"
   ],
   "agent": {
     "build": {
