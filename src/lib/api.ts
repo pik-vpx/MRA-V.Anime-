@@ -72,7 +72,7 @@ function arrayBufferToBase64(buffer: ArrayBuffer): string {
   return btoa(binary);
 }
 
-export async function identifyTrack(audioBlob: Blob, _signal?: AbortSignal): Promise<TrackData | null> {
+export async function identifyTrack(audioBlob: Blob, signal?: AbortSignal): Promise<TrackData | null> {
   try {
     console.log('[MRA] Starting audio identification, blob size:', audioBlob.size, 'type:', audioBlob.type);
 
@@ -171,7 +171,7 @@ async function fetchAnimeThemesImage(animeName: string): Promise<string | null> 
       if (data?.[0]?.[0]?.[0]) {
         nameVariations.push(data[0][0][0]); // Add Japanese name
       }
-    } catch (e) {
+    } catch {
       // Ignore translation errors
     }
   }
@@ -217,7 +217,7 @@ async function fetchAnimeThemesImage(animeName: string): Promise<string | null> 
       const imgData = await imgRes.json();
       const animeWithImages = imgData.anime?.[0];
       if (animeWithImages?.images?.length > 0) {
-        const large = animeWithImages.images.find((i: any) => i.facet === 'Large Cover');
+        const large = animeWithImages.images.find((i: { facet: string; link: string }) => i.facet === 'Large Cover');
         return large ? large.link : animeWithImages.images[0].link;
       }
     } catch (e) {
@@ -297,7 +297,7 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
     return findAnimeFromGoogle(title, artist);
   }
 
-  let results: any[] = [];
+  let results: AnisongDBResult[] = [];
   try {
     // ── Pass 1: Exact match on both song title AND artist ──
     results = await searchAnisongDB({
@@ -405,7 +405,7 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
       const artistLower = artist.toLowerCase().replace(/\s+/g, ' ').trim();
 
       // Score each result by artist match quality
-      const scored = results.map((r: any) => {
+      const scored = results.map((r: AnisongDBResult) => {
         const songArtist = (r.songArtist || '').toLowerCase();
         const songTitle = (r.songName || '').toLowerCase();
 
@@ -414,8 +414,6 @@ export async function findAnimeForTrack(rawTitle: string, rawArtist: string, sou
 
         // Exact artist match = 150 points (only if exact match)
         if (songArtist === artistLower) score += 150;
-        // Very similar Artist (e.g., "Wakaba" matches "Wakaba (若葉)") = 75 points
-        else if (songArtist.includes(artistLower) || artistLower.includes(songArtist)) score += 75;
         // Artist contains search term or vice versa = 50 points
         else if (songArtist.includes(artistLower) || artistLower.includes(songArtist)) score += 50;
         // Partial word match = 25 points
@@ -614,7 +612,7 @@ export async function fetchLyrics(title: string, artist: string): Promise<string
       return data[0].plainLyrics || "Lyrics not found.";
     }
     return "Lyrics not found.";
-  } catch (e) {
+  } catch {
     return "Could not fetch lyrics.";
   }
 }
