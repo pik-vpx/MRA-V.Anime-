@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
+
+interface SettingsElectronAPI {
+  saveSettings?: (settings: AppSettings) => void;
+}
 import { motion } from 'framer-motion';
 import { Headphones, Keyboard, RefreshCw, Save, ArrowLeft, Settings2, ChevronDown } from 'lucide-react';
 
@@ -70,8 +74,9 @@ function Settings({ onBack }: SettingsProps) {
   useEffect(() => {
     localStorage.setItem('mra-settings', JSON.stringify(settings));
 
-    if ((window as any).electronAPI) {
-      (window as any).electronAPI.saveSettings(settings);
+    const electronAPI = (window as unknown as { electronAPI?: SettingsElectronAPI }).electronAPI;
+    if (electronAPI) {
+      electronAPI.saveSettings?.(settings);
     }
   }, [settings]);
 

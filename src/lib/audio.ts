@@ -1,3 +1,15 @@
+interface ElectronAPI {
+  getSettingsSync?: () => AppSettings | null;
+  getDesktopAudioSource?: () => Promise<string>;
+  saveSettings?: (settings: AppSettings) => void;
+}
+
+interface AppSettings {
+  inputDeviceId: string;
+  outputDeviceId: string;
+  [key: string]: unknown;
+}
+
 let audioLevelCallback: ((level: number) => void) | null = null;
 
 export function setAudioLevelCallback(callback: (level: number) => void) {
@@ -8,15 +20,29 @@ export function clearAudioLevelCallback() {
   audioLevelCallback = null;
 }
 
+function getWindowElectronAPI(): ElectronAPI | undefined {
+  return (window as unknown as { electronAPI?: ElectronAPI }).electronAPI;
+}
+
+function getSettingsFromStorage(): AppSettings | null {
+  try {
+    const saved = localStorage.getItem('mra-settings');
+    return saved ? JSON.parse(saved) : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 5000): Promise<Blob> {
-  const settings = (window as any).electronAPI?.getSettingsSync?.() || getSettingsFromStorage();
+  const settings = getWindowElectronAPI()?.getSettingsSync?.() || getSettingsFromStorage();
   const inputDeviceId = settings?.inputDeviceId || 'default';
   
   let stream: MediaStream;
   
   if (mode === 'desktop') {
-    if (!(window as any).electronAPI) throw new Error("Electron API missing. Are you running this in a regular web browser instead of the Electron app?");
-    const sourceId = await (window as any).electronAPI.getDesktopAudioSource();
+    const electronAPI = getWindowElectronAPI();
+    if (!electronAPI) throw new Error("Electron API missing. Are you running this in a regular web browser instead of the Electron app?");
+    const sourceId = await electronAPI.getDesktopAudioSource?.();
     if (!sourceId) throw new Error("Desktop audio source not found. Ensure the app has screen capture permissions.");
     
     const rawStream = await navigator.mediaDevices.getUserMedia({
@@ -24,13 +50,13 @@ export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 
         mandatory: {
           chromeMediaSource: 'desktop',
         }
-      } as any,
+      },
       video: {
         mandatory: {
           chromeMediaSource: 'desktop',
           chromeMediaSourceId: sourceId,
         }
-      } as any
+      }
     });
     
     const audioTrack = rawStream.getAudioTracks()[0];
@@ -105,11 +131,4 @@ export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 
   });
 }
 
-function getSettingsFromStorage(): any {
-  try {
-    const saved = localStorage.getItem('mra-settings');
-    return saved ? JSON.parse(saved) : {};
-  } catch {
-    return {};
-  }
-}
+// Note: getSettingsFromStorage is defined above
