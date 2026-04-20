@@ -41,6 +41,7 @@
     "icon": "UI temp/kaguya_real.png"
   },
   "dependencies": {
+    "ecc-universal": "^1.10.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.8.0",
     "react": "^19.2.4",

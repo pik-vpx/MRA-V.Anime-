@@ -1,0 +1,5 @@
+name: MRA clone for anime
+dependencies:
+- name: gh@affaan-m/everything-claude-code
+  url: https://github.com/affaan-m/everything-claude-code.git
+dev-dependencies: []

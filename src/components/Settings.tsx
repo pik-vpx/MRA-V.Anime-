@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Headphones, Keyboard, RefreshCw, Save, ArrowLeft, Settings2, ChevronDown } from 'lucide-react';
 
@@ -18,6 +18,7 @@ interface AppSettings {
   rememberWindowSize: boolean;
   searchOnOpen: 'dont_search' | 'mic' | 'desktop';
   searchDuration: 'continue' | '10s' | '20s' | '30s';
+  animeInfoSource: 'animethemes' | 'google';
 }
 
 const DEFAULT_SETTINGS: AppSettings = {
@@ -32,6 +33,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   rememberWindowSize: true,
   searchOnOpen: 'dont_search',
   searchDuration: 'continue',
+  animeInfoSource: 'animethemes',
 };
 
 function Settings({ onBack }: SettingsProps) {
@@ -47,19 +49,7 @@ function Settings({ onBack }: SettingsProps) {
 
   const [recordingHotkey, setRecordingHotkey] = useState<'desktop' | 'mic' | null>(null);
 
-  useEffect(() => {
-    loadDevices();
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('mra-settings', JSON.stringify(settings));
-    
-    if ((window as any).electronAPI) {
-      (window as any).electronAPI.saveSettings(settings);
-    }
-  }, [settings]);
-
-  const loadDevices = async () => {
+  const loadDevices = useCallback(async () => {
     try {
       // Need to request permission first to get device labels
       await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -71,7 +61,19 @@ function Settings({ onBack }: SettingsProps) {
     } catch (e) {
       console.error('Failed to enumerate devices:', e);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadDevices();
+  }, [loadDevices]);
+
+  useEffect(() => {
+    localStorage.setItem('mra-settings', JSON.stringify(settings));
+
+    if ((window as any).electronAPI) {
+      (window as any).electronAPI.saveSettings(settings);
+    }
+  }, [settings]);
 
   const handleHotkeyCapture = (e: React.KeyboardEvent, type: 'desktop' | 'mic') => {
     e.preventDefault();
@@ -80,7 +82,7 @@ function Settings({ onBack }: SettingsProps) {
     if (e.shiftKey) keys.push('Shift');
     if (e.altKey) keys.push('Alt');
     if (e.metaKey) keys.push('Meta');
-    
+
     const key = e.key;
     if (!['Control', 'Shift', 'Alt', 'Meta'].includes(key)) {
       keys.push(key.length === 1 ? key.toUpperCase() : key);
@@ -96,7 +98,7 @@ function Settings({ onBack }: SettingsProps) {
     }
   };
 
-  const update = (key: keyof AppSettings, value: any) => {
+  const update = (key: keyof AppSettings, value: AppSettings[keyof AppSettings]) => {
     setSettings(prev => ({ ...prev, [key]: value }));
   };
 
@@ -200,11 +202,10 @@ function Settings({ onBack }: SettingsProps) {
               tabIndex={0}
               onClick={() => setRecordingHotkey('desktop')}
               onKeyDown={(e) => recordingHotkey === 'desktop' && handleHotkeyCapture(e, 'desktop')}
-              className={`flex-1 bg-slate-800 border rounded-lg px-3 py-2.5 text-sm font-mono cursor-pointer transition-colors ${
-                recordingHotkey === 'desktop'
+              className={`flex-1 bg-slate-800 border rounded-lg px-3 py-2.5 text-sm font-mono cursor-pointer transition-colors ${recordingHotkey === 'desktop'
                   ? 'border-indigo-500 text-indigo-300 animate-pulse'
                   : 'border-slate-700 text-white hover:border-slate-600'
-              }`}
+                }`}
             >
               {recordingHotkey === 'desktop' ? 'Press keys...' : settings.desktopHotkey}
             </div>
@@ -224,11 +225,10 @@ function Settings({ onBack }: SettingsProps) {
               tabIndex={0}
               onClick={() => setRecordingHotkey('mic')}
               onKeyDown={(e) => recordingHotkey === 'mic' && handleHotkeyCapture(e, 'mic')}
-              className={`flex-1 bg-slate-800 border rounded-lg px-3 py-2.5 text-sm font-mono cursor-pointer transition-colors ${
-                recordingHotkey === 'mic'
+              className={`flex-1 bg-slate-800 border rounded-lg px-3 py-2.5 text-sm font-mono cursor-pointer transition-colors ${recordingHotkey === 'mic'
                   ? 'border-indigo-500 text-indigo-300 animate-pulse'
                   : 'border-slate-700 text-white hover:border-slate-600'
-              }`}
+                }`}
             >
               {recordingHotkey === 'mic' ? 'Press keys...' : settings.micHotkey}
             </div>
@@ -349,6 +349,22 @@ function Settings({ onBack }: SettingsProps) {
                 <option value="10s">10 Seconds</option>
                 <option value="20s">20 Seconds</option>
                 <option value="30s">30 Seconds</option>
+              </select>
+              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Anime Info Source */}
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-slate-400">Anime info source</span>
+            <div className="relative">
+              <select
+                value={settings.animeInfoSource}
+                onChange={(e) => update('animeInfoSource', e.target.value)}
+                className="bg-slate-800 border border-slate-700 text-white text-sm rounded-lg px-3 py-2 pr-8 appearance-none cursor-pointer hover:border-slate-600 transition-colors focus:outline-none focus:border-indigo-500"
+              >
+                <option value="animethemes">AnimeThemes.moe (Accurate)</option>
+                <option value="google">Google AI Overview (Low token)</option>
               </select>
               <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
             </div>
