@@ -1,34 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
+import type { AppSettings } from '../types';
+import { DEFAULT_SETTINGS, getElectronAPI } from '../types';
 
-export interface AppSettings {
-  inputDeviceId: string;
-  outputDeviceId: string;
-  desktopHotkey: string;
-  micHotkey: string;
-  minimizeToTray: boolean;
-  trayAction: 'minimize' | 'close';
-  enableDiscordActivity: boolean;
-  rememberWindowLocation: boolean;
-  rememberWindowSize: boolean;
-  searchOnOpen: 'dont_search' | 'mic' | 'desktop';
-  searchDuration: 'continue' | '10s' | '20s' | '30s';
-  animeInfoSource: 'animethemes' | 'google';
-}
-
-const DEFAULT_SETTINGS: AppSettings = {
-  inputDeviceId: 'default',
-  outputDeviceId: 'default',
-  desktopHotkey: 'Control + Shift + D',
-  micHotkey: 'Control + Shift + M',
-  minimizeToTray: true,
-  trayAction: 'minimize',
-  enableDiscordActivity: false,
-  rememberWindowLocation: true,
-  rememberWindowSize: true,
-  searchOnOpen: 'dont_search',
-  searchDuration: 'continue',
-  animeInfoSource: 'animethemes',
-};
+export type { AppSettings } from '../types';
 
 export function useSettings() {
   const [settings, setSettings] = useState<AppSettings>(() => {
@@ -42,7 +16,7 @@ export function useSettings() {
 
   useEffect(() => {
     localStorage.setItem('mra-settings', JSON.stringify(settings));
-    const electronAPI = (window as unknown as { electronAPI?: { saveSettings: (s: AppSettings) => void } }).electronAPI;
+    const electronAPI = getElectronAPI();
     if (electronAPI) {
       electronAPI.saveSettings(settings);
     }

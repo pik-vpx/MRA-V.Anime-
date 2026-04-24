@@ -29,18 +29,14 @@
     "win": {
       "target": [
         {
-          "target": "portable",
+          "target": "dir",
           "arch": [
             "x64"
           ]
         }
       ],
-      "forceCodeSigning": false
+      "icon": "UI temp/kaguya_real.png"
     },
-    "portable": {
-      "artifactName": "${productName}.exe"
-    },
-    "icon": "UI temp/kaguya_real.png",
     "extraResources": [
       {
         "from": ".env",
@@ -50,10 +46,10 @@
         ]
       }
     ],
-    "asar": true,
-    "env": {
-      "VITE_GOOGLE_GEMINI_API_KEY": "AIzaSyDaBJoVU0WjOXiu89kbpATL-EHyNTpDz1k"
-    }
+    "extraMetadata": {
+      "main": "electron/main.cjs"
+    },
+    "asar": true
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

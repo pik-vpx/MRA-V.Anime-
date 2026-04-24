@@ -1,74 +1,68 @@
-# MRA Clone "Anime Edition" Implementation Plan
+# Fix: AnisongDB Returns Anime Name but UI Waits for Image
 
-This document outlines the proposed implementation plan for creating a Windows desktop application that clones the core features of Jadquir's MRA (Music Recognition Application), while adding custom features to detect and copy the anime a song originates from.
+## Problem
 
-## Goal
-Build a beautiful, natively-feeling Windows desktop application that:
-1. Listens to microphone or desktop audio.
-2. Identifies the playing track instantly.
-3. Displays song details, platform links (Spotify, Apple Music, etc.), and lyrics.
-4. **Unique Feature:** Automatically searches for and displays the Anime name the song belongs to.
-5. **Unique Feature:** Provides a "Copy" button specifically for the Anime name.
+When AnisongDB successfully finds the anime name, the UI doesn't show the anime card until `fetchAnimeThemesImage()` completes. This function is **slow** because it performs:
 
-> [!IMPORTANT]
-> **User Review Required**
-> Please review the proposed architecture and APIs below. We will need your confirmation on the tech stack and third-party APIs (like Shazam / AudD for recognition) before we proceed.
+1. A Google Translate API call to get name variations (~500ms)
+2. An AnimeThemes general search request (~500ms-1s)
+3. An AnimeThemes slug-based image lookup (~500ms-1s)
 
----
+**Total delay: ~1.5-3 seconds** before the user sees the anime name, even though the name is already known.
 
-## Proposed Architecture
+## Root Cause Analysis
 
-### Tech Stack
-To deliver the requested **WOW** factor and premium aesthetic (animations, glassmorphism, modern design), we propose using web technologies packaged as a desktop app:
-* **Framework:** Electron with Vite, React, and TypeScript.
-* **Styling:** Vanilla CSS / TailwindCSS (if requested) + Framer Motion for micro-animations.
-* **Audio Capture Mechanism:** WebRTC `navigator.mediaDevices` inside Electron (supports both Mic and Desktop audio capture seamlessly).
+The `App.tsx` already has a 2-phase approach in the **primary path** (lines 119-137):
+1. Call `findAnimeForTrack()` with `{ skipImage: true }` → show anime card immediately
+2. Then fetch images separately and update the card
 
-### Core Systems & APIs
+**However**, the `skipImage` option is only respected in **one code path** in `findAnimeForTrack()` (line 626). There are **three fallback paths** in `api.ts` that still block on `fetchAnimeThemesImage()` before returning:
 
-*   **Audio Recognition (Shazam / AudD):**
-    We will capture a 5-10 second snippet of audio buffer and send it to an audio recognition API. We recommend using **AudD** or the unofficial **Shazam API** via RapidAPI (requires a free API key with a monthly limit). Both return track title, artist, album art, and platform links.
-*   **Anime Detection (VGMdb / Jikan API):**
-    Once we have the Track Name and Artist, we will query an anime database (like the **Jikan REST API for MyAnimeList** or **VGMdb API**) to cross-reference if the track is known as an Anime Opening (OP), Ending (ED), or Original Soundtrack (OST).
-*   **Lyrics Fetching (Lrclib):**
-    We will use a free lyrics API such as **Lrclib** to fetch synchronized or plain lyrics to match the current track.
+| Code Path | Line | Blocks on Image? |
+|-----------|------|-------------------|
+| Primary AnisongDB match | 626-633 | ✅ Respects `skipImage` |
+| AnimeThemes → AnisongDB re-search | 721 | ❌ **Always blocks** |
+| AnimeThemes → AnisongDB fuzzy match | 749 | ❌ **Always blocks** |
+| AnimeThemes direct fallback | 764 | ❌ **Always blocks** |
 
----
+## Proposed Changes
 
-## File Structure & Components
+### API Layer (`src/lib/api.ts`)
 
-The codebase will be initialized as a modern `electron-vite` project.
+#### [MODIFY] [api.ts](file:///a:/MRA%20clone%20for%20anime/src/lib/api.ts)
 
-### Electron Main Process (`/src/main`)
-*   `main.ts`: Initializes the Windows app, removes standard window framing to allow custom titlebars, and manages system tray features if needed.
-*   `audioHandler.ts`: Handles permissions and logic for routing desktop vs. microphone audio streams.
+Apply the `skipImage` option to **all** code paths that call `fetchAnimeThemesImage()`:
 
-### React Renderer (`/src/renderer`)
-*   `App.tsx`: Main layout, handling the core state (Listening -> Analyzing -> Result).
-*   **Components:**
-    *   `RecordButton.tsx`: A vibrant, animated pulsing button that user clicks to start/stop listening.
-    *   `TrackResult.tsx`: Shows Album Art (with smooth gradients derived from the image), Track Name, Artist, and Platform Links.
-    *   `AnimeIntegration.tsx` **[NEW]**: A specific UI card that displays the detected Anime title, origin (e.g., OP 1, ED 2), and the **Copy Anime Name** button.
-    *   `LyricsView.tsx`: Displays scrolling or static lyrics.
+**Line 721** — AnimeThemes → AnisongDB re-search path:
+```diff
+-              const imageUrl = bestAnisong.animeImage || (await fetchAnimeThemesImage(anime.name)) || '';
++              const imageUrl = options?.skipImage ? '' : (bestAnisong.animeImage || (await fetchAnimeThemesImage(anime.name)) || '');
+```
 
----
+**Line 749** — AnimeThemes → fuzzy match path:
+```diff
+-                  const imgUrl = matched.animeImage || (await fetchAnimeThemesImage(matched.animeENName || matched.animeJPName || anime.name)) || '';
++                  const imgUrl = options?.skipImage ? '' : (matched.animeImage || (await fetchAnimeThemesImage(matched.animeENName || matched.animeJPName || anime.name)) || '');
+```
 
-## Open Questions
+**Line 764** — AnimeThemes direct fallback:
+```diff
+-        const imageUrl = await fetchAnimeThemesImage(anime.name) || '';
++        const imageUrl = options?.skipImage ? '' : (await fetchAnimeThemesImage(anime.name) || '');
+```
 
-> [!CAUTION]
-> **To proceed, I need your input on the following items:**
+These are **3 one-line changes** in a single file. The `App.tsx` already handles the 2-phase display correctly — it just needs the API to actually skip images when asked.
 
-1. **APIs**: Are you okay with using a third-party recognition service like RapidAPI's Shazam API (which will require you to get a free API key) or would you prefer me to look into something else?
-2. **Tech Stack**: Does the Electron + React stack sound good to you? It allows for the most visually stunning interfaces with very responsive developer tooling.
-3. **Anime Matching**: Anime song titles frequently appear under various aliases (Japanese Romaji vs. English). If a song belongs to multiple animes or a game, do you want to list all of them, or just the top match?
-
----
+> [!NOTE]
+> The primary AnisongDB path (line 626) already works correctly with `skipImage`. This fix extends that behavior to the 3 fallback paths.
 
 ## Verification Plan
 
-### Automated/Unit Verification
-*   We will test with sample MP3s (mic input simulation) covering popular anime tracks (e.g., *Gurenge* from Demon Slayer) to ensure the Title -> Anime Name pipeline works accurately.
+### Manual Testing
+1. Run `npm run dev`
+2. Identify a song that uses one of the fallback paths (e.g. a song that AnisongDB finds but has no image)
+3. Verify: anime card appears **immediately** with the disc placeholder icon
+4. Verify: image loads in ~1-3 seconds and replaces the placeholder without flickering
 
-### Manual Verification
-*   **Mic Check**: Launching the app on Windows, speaking or playing music on a phone nearby, and verifying it successfully identifies the track.
-*   **Desktop Audio Check**: Playing a YouTube video of an Anime opening and ensuring the app captures the Desktop audio stream, identifies it, shows the correct anime, and that the copy button correctly populates the clipboard.
+### Console Logging
+- Check for `[MRA] AnisongDB missing image, trying AnimeThemes for cover...` appearing **after** the anime card is already visible on screen

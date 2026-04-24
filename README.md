@@ -1,48 +1,36 @@
-# MRA Anime Edition - Running Instructions
+# MRA Anime Edition
+
+🎵 **Music Recognition App** that identifies anime songs and matches them to their source anime — powered by Shazam, AnisongDB, AnimeThemes, and Google Gemini AI.
+
+## Features
+
+- 🎵 **Song Identification** — Identify songs via microphone, desktop audio, or file upload
+- 🎬 **Anime Matching** — Multi-pass search across AnisongDB + AnimeThemes with Romaji translation
+- 🖼️ **Cover Art** — High-quality anime images from AnimeThemes.moe (lazy-loaded for instant UI)
+- 📝 **Lyrics** — Real-time lyrics from Lrclib
+- 🤖 **AI Fallback** — Google Gemini for obscure tracks when databases fail
+- ⚡ **Instant Results** — Anime name shown immediately; cover art loads in the background
+- 🎨 **Modern UI** — Dark theme with Framer Motion animations
+- ⌨️ **Global Hotkeys** — Trigger from anywhere with customizable shortcuts
+
+---
 
 ## Quick Start
 
-### Option 1: Run Built EXE (Easiest)
+### Run Built EXE (Easiest)
 ```
 release\win-unpacked\MRA Anime Edition.exe
 ```
-Double-click to run the portable executable.
 
----
+### Development Mode
 
-## Development Mode
+**Prerequisites:** Node.js 18+, npm 9+
 
-### Prerequisites
-- Node.js 18+
-- npm 9+
-
-### Install Dependencies
 ```bash
 npm install
+npm run dev            # Web dev server → http://localhost:5173
+npm run electron:dev   # Electron desktop app with hot reload
 ```
-
-### Run Web Dev Server (Browser)
-```bash
-npm run dev
-```
-Then open: http://localhost:5173
-
-### Run Electron App (Desktop)
-```bash
-npm run electron:dev
-```
-This opens the Electron window with:
-- Vite dev server on http://localhost:5173
-- Hot reload enabled
-
-### Debug Electron
-After running `npm run electron:dev`:
-1. Open Chrome and go to: http://localhost:9222
-2. Or press F12 in the Electron window for DevTools
-
----
-
-## Build EXE
 
 ### Build for Production
 ```bash
@@ -52,57 +40,115 @@ Output: `release\win-unpacked\MRA Anime Edition.exe`
 
 ---
 
-## Features
+## How It Works
 
-- 🎵 **Song Identification** - Identify songs via microphone or desktop audio
-- 🎬 **Anime Matching** - Auto-detect anime from song title/artist
-- 🖼️ **Cover Art** - Fetch anime images from AnimeThemes
-- 📝 **Lyrics** - Display lyrics when available
-- 🤖 **Google Gemini Fallback** - AI-powered anime lookup when primary APIs fail
+```
+Audio Input → Shazam API → Track Identified
+                              ↓
+                   AnisongDB Multi-Pass Search
+                   (exact → romaji → partial → fuzzy)
+                              ↓
+              ┌───── Found? ──────┐
+              ↓                   ↓
+         AnisongDB Result    AnimeThemes Song Search
+              ↓                   ↓
+         Rank & Score        Cross-Reference w/ AnisongDB
+              ↓                   ↓
+              └───── Merge ───────┘
+                       ↓
+              Google Gemini AI (last resort)
+                       ↓
+              UI: Anime Card + Cover Art (lazy)
+```
+
+### Matching Algorithm
+1. **Exact title + artist** match via AnisongDB
+2. **Romaji translation** of Japanese titles (Google Translate API)
+3. **Partial/fuzzy matching** with Levenshtein distance thresholds
+4. **Cross-referencing** AnimeThemes results back to AnisongDB for alignment
+5. **Google Gemini AI** fallback for tracks not in any database
+
+---
+
+## Project Structure
+
+```
+src/
+├── App.tsx                    # Main UI component
+├── types.ts                   # Shared types (AppSettings, ElectronAPI)
+├── lib/
+│   ├── api.ts                 # Orchestrator (AnisongDB → AnimeThemes → Gemini)
+│   ├── shazam.ts              # Audio fingerprinting via Shazam API
+│   ├── anisongdb.ts           # Multi-pass anime song database search
+│   ├── animethemes.ts         # Cover art & song-based anime lookup
+│   ├── romaji.ts              # Japanese → Romaji translation
+│   ├── gemini.ts              # Google Gemini AI fallback
+│   ├── lyrics.ts              # Lrclib lyrics fetching
+│   ├── text-utils.ts          # Query cleaning, normalization, fuzzy matching
+│   └── audio.ts               # Mic/desktop audio recording
+├── hooks/
+│   ├── useAnimeSearch.ts      # 2-phase anime search (instant name → lazy image)
+│   └── useSettings.ts         # Settings persistence hook
+├── components/
+│   └── Settings.tsx           # Settings page
+└── utils/
+    └── logger.ts              # Environment-aware logging
+
+electron/
+├── main.cjs                   # Electron main process
+└── preload.cjs                # IPC bridge
+```
 
 ---
 
 ## Environment Variables
 
-Create a `.env` file (or copy from `.env.example`) with the following variables:
+Create a `.env` file with:
 
-| Variable | Description |
-|----------|-------------|
-| `VITE_GOOGLE_GEMINI_API_KEY` | Google Gemini API key for AI fallback anime lookup (optional) |
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_GOOGLE_GEMINI_API_KEY` | Google Gemini API key for AI fallback | Optional |
 
-Example:
 ```bash
 VITE_GOOGLE_GEMINI_API_KEY=your-api-key-here
 ```
 
 ---
 
-## Logger Utility
+## Keyboard Shortcuts
 
-The project uses a custom logger (`src/utils/logger.ts`) that respects the environment:
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+Shift+M` | Toggle microphone listening |
+| `Ctrl+Shift+D` | Toggle desktop audio listening |
 
-- In **development** (`NODE_ENV=development` or Vite dev mode): logs are enabled
-- In **production**: only errors are logged
-
-Replace `console.log/warn/error` calls with the logger for consistent behavior:
-
-```typescript
-import { logger } from './utils/logger';
-
-logger.log('Message');   // Only logs in dev
-logger.warn('Warning'); // Only logs in dev  
-logger.error('Error');  // Always logs
-logger.info('Info');    // Only logs in dev
-```
-- ⚡ **Fast Response** - Optimized matching algorithm
-- 🎨 **Modern UI** - Beautiful dark theme with animations
+Shortcuts are customizable in Settings.
 
 ---
 
-## Keyboard Shortcuts (when app is in background)
+## Tech Stack
 
-- **Ctrl+Shift+M** - Toggle microphone listening
-- **Ctrl+Shift+D** - Toggle desktop audio listening
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| React | 19 | UI framework |
+| TypeScript | 5.x | Type safety |
+| Vite | 8 | Dev server & bundler |
+| Tailwind CSS | 4 | Styling |
+| Framer Motion | — | Animations |
+| Electron | 41 | Desktop app shell |
+
+---
+
+## API Dependencies
+
+| API | Purpose | Auth |
+|-----|---------|------|
+| [Shazam (RapidAPI)](https://rapidapi.com/apidojo/api/shazam) | Audio fingerprinting | API key (built-in) |
+| [AnisongDB](https://anisongdb.com) | Anime song database | None |
+| [AnimeThemes.moe](https://api.animethemes.moe) | Cover art & song lookup | None |
+| [Google Translate](https://translate.googleapis.com) | Romaji translation | None |
+| [Google Gemini](https://ai.google.dev) | AI fallback | API key (optional) |
+| [Lrclib](https://lrclib.net) | Lyrics | None |
 
 ---
 
@@ -110,59 +156,25 @@ logger.info('Info');    // Only logs in dev
 
 ### Port 5173 already in use
 ```bash
-# Kill existing process
 npx kill-port 5173
 npm run dev
 ```
 
 ### Electron won't start
 ```bash
-# Clear cache and rebuild
 rm -rf node_modules/.vite
 npm run electron:dev
 ```
 
 ### Code signing error during build (Windows)
-This is normal - the EXE is still created successfully in `release\win-unpacked/`
-
----
-
-## Project Structure
-
-```
-MRA Anime/
-├── src/
-│   ├── App.tsx           # Main UI
-│   ├── lib/
-│   │   ├── api.ts        # Song matching API
-│   │   └── audio.ts      # Audio recording
-│   └── components/
-│       └── Settings.tsx  # Settings page
-├── electron/
-│   ├── main.cjs          # Electron main process
-│   └── preload.cjs       # IPC bridge
-├── release/
-│   └── win-unpacked/
-│       └── MRA Anime Edition.exe  # Built app
-└── package.json
-```
-
----
-
-## Tech Stack
-
-- React 19 + TypeScript
-- Vite
-- Tailwind CSS 4
-- Framer Motion
-- Electron 41
+This is expected — the unsigned EXE is still created in `release\win-unpacked\`.
 
 ---
 
 ## Credits
 
-- Shazam API for song identification
-- AnisongDB for anime matching
-- AnimeThemes.moe for cover art
-- Lrclib.net for lyrics
-# MRA-V.Anime-
+- [Shazam API](https://rapidapi.com/apidojo/api/shazam) for audio fingerprinting
+- [AnisongDB](https://anisongdb.com) for anime song database
+- [AnimeThemes.moe](https://animethemes.moe) for cover art
+- [Lrclib.net](https://lrclib.net) for lyrics
+- [Google Gemini](https://ai.google.dev) for AI fallback

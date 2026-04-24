@@ -1,14 +1,9 @@
-interface ElectronAPI {
-  getSettingsSync?: () => AppSettings | null;
-  getDesktopAudioSource?: () => Promise<string>;
-  saveSettings?: (settings: AppSettings) => void;
-}
+/**
+ * Audio recording module — captures mic or desktop audio for fingerprinting.
+ */
 
-interface AppSettings {
-  inputDeviceId: string;
-  outputDeviceId: string;
-  [key: string]: unknown;
-}
+import type { AppSettings } from '../types';
+import { getElectronAPI } from '../types';
 
 let audioLevelCallback: ((level: number) => void) | null = null;
 
@@ -18,10 +13,6 @@ export function setAudioLevelCallback(callback: (level: number) => void) {
 
 export function clearAudioLevelCallback() {
   audioLevelCallback = null;
-}
-
-function getWindowElectronAPI(): ElectronAPI | undefined {
-  return (window as unknown as { electronAPI?: ElectronAPI }).electronAPI;
 }
 
 function getSettingsFromStorage(): AppSettings | null {
@@ -34,13 +25,13 @@ function getSettingsFromStorage(): AppSettings | null {
 }
 
 export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 5000): Promise<Blob> {
-  const settings = getWindowElectronAPI()?.getSettingsSync?.() || getSettingsFromStorage();
+  const electronAPI = getElectronAPI();
+  const settings = electronAPI?.getSettingsSync?.() || getSettingsFromStorage();
   const inputDeviceId = settings?.inputDeviceId || 'default';
   
   let stream: MediaStream;
   
   if (mode === 'desktop') {
-    const electronAPI = getWindowElectronAPI();
     if (!electronAPI) throw new Error("Electron API missing. Are you running this in a regular web browser instead of the Electron app?");
     const sourceId = await electronAPI.getDesktopAudioSource?.();
     if (!sourceId) throw new Error("Desktop audio source not found. Ensure the app has screen capture permissions.");
@@ -132,5 +123,3 @@ export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 
     }, durationMs);
   });
 }
-
-// Note: getSettingsFromStorage is defined above

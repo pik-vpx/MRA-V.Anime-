@@ -1,44 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
-interface SettingsElectronAPI {
-  saveSettings?: (settings: AppSettings) => void;
-}
 import { motion } from 'framer-motion';
 import { Headphones, Keyboard, RefreshCw, Save, ArrowLeft, Settings2, ChevronDown } from 'lucide-react';
+import type { AppSettings } from '../types';
+import { DEFAULT_SETTINGS, getElectronAPI } from '../types';
 
 interface SettingsProps {
   onBack: () => void;
 }
 
-interface AppSettings {
-  inputDeviceId: string;
-  outputDeviceId: string;
-  desktopHotkey: string;
-  micHotkey: string;
-  minimizeToTray: boolean;
-  trayAction: 'minimize' | 'close';
-  enableDiscordActivity: boolean;
-  rememberWindowLocation: boolean;
-  rememberWindowSize: boolean;
-  searchOnOpen: 'dont_search' | 'mic' | 'desktop';
-  searchDuration: 'continue' | '10s' | '20s' | '30s';
-  animeInfoSource: 'animethemes' | 'google';
-}
-
-const DEFAULT_SETTINGS: AppSettings = {
-  inputDeviceId: 'default',
-  outputDeviceId: 'default',
-  desktopHotkey: 'Control + Shift + D',
-  micHotkey: 'Control + Shift + M',
-  minimizeToTray: true,
-  trayAction: 'minimize',
-  enableDiscordActivity: false,
-  rememberWindowLocation: true,
-  rememberWindowSize: true,
-  searchOnOpen: 'dont_search',
-  searchDuration: 'continue',
-  animeInfoSource: 'animethemes',
-};
 
 function Settings({ onBack }: SettingsProps) {
   const [settings, setSettings] = useState<AppSettings>(() => {
@@ -55,7 +24,6 @@ function Settings({ onBack }: SettingsProps) {
 
   const loadDevices = useCallback(async () => {
     try {
-      // Need to request permission first to get device labels
       await navigator.mediaDevices.getUserMedia({ audio: true });
       const devices = await navigator.mediaDevices.enumerateDevices();
       setAudioDevices({
@@ -68,15 +36,17 @@ function Settings({ onBack }: SettingsProps) {
   }, []);
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     loadDevices();
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [loadDevices]);
 
   useEffect(() => {
     localStorage.setItem('mra-settings', JSON.stringify(settings));
 
-    const electronAPI = (window as unknown as { electronAPI?: SettingsElectronAPI }).electronAPI;
+    const electronAPI = getElectronAPI();
     if (electronAPI) {
-      electronAPI.saveSettings?.(settings);
+      electronAPI.saveSettings(settings);
     }
   }, [settings]);
 

@@ -221,20 +221,21 @@ No user prompt needed:
 
 ### Model Selection Strategy
 
-**Haiku** (90% of Sonnet capability, 3x cost savings):
-- Lightweight agents with frequent invocation
-- Pair programming and code generation
-- Worker agents in multi-agent systems
+OpenCode supports multiple models - use the right model for each task:
 
-**Sonnet** (Best coding model):
-- Main development work
-- Orchestrating multi-agent workflows
-- Complex coding tasks
+| Model | Best For | Speed |
+|--------|---------|-------|
+| minimax-m2.1-free | Fast coding, lightweight tasks | Fastest |
+| gpt-5.1-codex | Code review, pair programming | Fast |
+| claude-sonnet-4-5 | Complex reasoning, planning | Medium |
+| claude-opus-4-5 | Deep analysis, architecture | Slower |
 
-**Opus** (Deepest reasoning):
-- Complex architectural decisions
-- Maximum reasoning requirements
-- Research and analysis tasks
+### When to Use Each Model
+
+- **Fast tasks** (single file edits, reads): minimax-m2.1-free
+- **Code generation, testing**: gpt-5.1-codex or minimax-m2.1
+- **Planning, architecture**: claude-sonnet-4-5 or opus
+- **Security-sensitive work**: claude-sonnet-4-5
 
 ### Context Window Management
 

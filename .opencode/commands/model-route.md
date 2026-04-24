@@ -1,6 +1,6 @@
 # Model Route Command
 
-Recommend the best model tier for the current task by complexity and budget.
+Recommend the best model for the current task by complexity and budget.
 
 ## Usage
 
@@ -8,9 +8,11 @@ Recommend the best model tier for the current task by complexity and budget.
 
 ## Routing Heuristic
 
-- `haiku`: deterministic, low-risk mechanical changes
-- `sonnet`: default for implementation and refactors
-- `opus`: architecture, deep review, ambiguous requirements
+- `minimax-m2.1-free`: deterministic, single-file edits, quick fixes
+- `gpt-5.1-codex`: code generation, testing, pair programming
+- `claude-sonnet-4-5`: default for implementation, refactors
+- `claude-opus-4-5`: architecture, deep review, ambiguous requirements
+- `gemini-2.5-pro`: large context tasks, research
 
 ## Required Output
 
