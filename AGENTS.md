@@ -8,10 +8,29 @@
 ## Tech Stack
 React 19, TypeScript, Vite, Tailwind CSS 4, Framer Motion, Electron
 
+## OpenCode Multi-Model Configuration
+
+| Agent | Model | Use Case |
+|-------|-------|----------|
+| build | minimax-m2.1-free | Primary coding (fast) |
+| planning | claude-sonnet-4-5 | Complex planning |
+| code-review | openai/gpt-5.1-codex | Code review |
+| security | claude-sonnet-4-5 | Security analysis |
+| fast | minimax-m2.1-free | Lightweight tasks |
+
+### Supported Models
+- **minimax-m2.1-free**: Fastest, code generation
+- **gpt-5.1-codex**: Code review, testing
+- **claude-sonnet-4-5**: Complex reasoning, planning
+- **claude-opus-4-5**: Deep analysis
+- **gemini-2.5-pro**: Large context tasks
+
+### Commands
+- `/model-route` - Recommend best model for task
+
 ## Known Issues (Pre-existing)
 - 25 lint errors (mostly `@typescript-eslint/no-explicit-any`)
 - Settings.tsx: `loadDevices` used before declared (React hook order)
-- api.ts: `romajiTitle` scope issue at line 359 (fixed in this session)
 
 ## Critical: AnimeThemes Image Fetching
 In `src/lib/api.ts`, `fetchAnimeThemesImage()` uses a 2-step approach:

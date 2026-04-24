@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { app, BrowserWindow, ipcMain, desktopCapturer, globalShortcut, Tray, Menu, nativeImage } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
@@ -220,7 +221,7 @@ ipcMain.handle('gemini-ask', async (event, { title, artist }) => {
   
   try {
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
     
     const prompt = `"${title}" by "${artist}" is an anime opening (OP) or ending (ED) theme. Which anime uses this song? Answer format: "AnimeName (OP)" or just "AnimeName"`;
     

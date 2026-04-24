@@ -39,7 +39,8 @@ const changedFilesTool: ToolDefinition = tool({
       .optional()
       .describe("Output format: tree for terminal display, json for structured data (default: tree)"),
   },
-  async execute(args, context) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async execute(args, _context) {
     const filter = args.filter === "all" || !args.filter ? undefined : (args.filter as ChangeType)
     const format = args.format ?? "tree"
 

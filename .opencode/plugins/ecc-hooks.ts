@@ -136,10 +136,9 @@ export const ECCHooksPlugin: ECCHooksPluginFn = async ({
      * Triggers: After edit tool completes on .ts/.tsx files
      * Action: Runs tsc --noEmit to check for type errors
      */
-    "tool.execute.after": async (
-      input: { tool: string; callID?: string; args?: { filePath?: string; file_path?: string; path?: string } },
-      output: unknown
-    ) => {
+  "tool.execute.after": async (
+    input: { tool: string; callID?: string; args?: { filePath?: string; file_path?: string; path?: string } }
+  ) => {
       const filePath = getFilePath(input.args as Record<string, unknown>)
       if (input.tool === "edit" && filePath) {
         recordChange(filePath, "modified")

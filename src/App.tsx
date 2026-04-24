@@ -2,36 +2,23 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, Monitor, Play, RefreshCw, Copy, ExternalLink, Disc3, Disc, Settings, Music, Headphones, FolderOpen, Upload, Volume2 } from 'lucide-react';
 import { recordAudio, setAudioLevelCallback, clearAudioLevelCallback } from './lib/audio';
-import { identifyTrack, findAnimeForTrack, fetchLyrics } from './lib/api';
+import { identifyTrack, fetchLyrics } from './lib/api';
 import type { TrackData, AnimeData } from './lib/api';
+import type { AppSettings } from './types';
+import { DEFAULT_SETTINGS, getElectronAPI } from './types';
+import { useAnimeSearch } from './hooks/useAnimeSearch';
 import SettingsPage from './components/Settings';
 
-interface ElectronAPI {
-  onTriggerListen: (callback: (mode: 'mic' | 'desktop') => void) => void;
-  removeTriggerListen?: () => void;
-  saveSettings: (settings: AppSettings) => void;
-}
-
 type Page = 'home' | 'settings';
-
-interface AppSettings {
-  animeInfoSource: 'animethemes' | 'google';
-  searchOnOpen: 'dont_search' | 'mic' | 'desktop';
-  searchDuration: 'continue' | '10s' | '20s' | '30s';
-  minimizeToTray: boolean;
-  trayAction: 'minimize' | 'close';
-}
+type ResultData = TrackData & { animes?: AnimeData[]; lyrics?: string };
 
 function App() {
   const [searchAbortController, setSearchAbortController] = useState<AbortController | null>(null);
-  const [animeLoading, setAnimeLoading] = useState(false);
   const [page, setPage] = useState<Page>('home');
   const [listening, setListening] = useState(false);
   const [mode, setMode] = useState<'mic' | 'desktop'>('mic');
   const [analyzing, setAnalyzing] = useState(false);
-  type ResultData = TrackData & { animes?: AnimeData[]; lyrics?: string; };
-
-const [result, setResult] = useState<ResultData | null>(null);
+  const [result, setResult] = useState<ResultData | null>(null);
   const [dragging, setDragging] = useState(false);
   const [ready, setReady] = useState(false);
   const [audioLevel, setAudioLevel] = useState(0);
@@ -39,24 +26,14 @@ const [result, setResult] = useState<ResultData | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const startListeningRef = useRef<((mode: 'mic' | 'desktop') => void) | null>(null);
 
+  const { animeLoading, searchAnime, cancelSearch } = useAnimeSearch();
+
   const getSettings = useCallback((): AppSettings => {
     try {
       const saved = localStorage.getItem('mra-settings');
-      return saved ? JSON.parse(saved) : {
-        animeInfoSource: 'animethemes',
-        searchOnOpen: 'dont_search',
-        searchDuration: 'continue',
-        minimizeToTray: true,
-        trayAction: 'minimize'
-      };
+      return saved ? { ...DEFAULT_SETTINGS, ...JSON.parse(saved) } : DEFAULT_SETTINGS;
     } catch {
-      return {
-        animeInfoSource: 'animethemes',
-        searchOnOpen: 'dont_search',
-        searchDuration: 'continue',
-        minimizeToTray: true,
-        trayAction: 'minimize'
-      };
+      return DEFAULT_SETTINGS;
     }
   }, []);
 
@@ -65,7 +42,8 @@ const [result, setResult] = useState<ResultData | null>(null);
   }, []);
 
   useEffect(() => {
-    if (!ready || !(window as Window & { electronAPI?: ElectronAPI }).electronAPI) return;
+    const electronAPI = getElectronAPI();
+    if (!ready || !electronAPI) return;
 
     const settings = getSettings();
     if (settings.searchOnOpen !== 'dont_search' && startListeningRef.current) {
@@ -84,70 +62,74 @@ const [result, setResult] = useState<ResultData | null>(null);
       }
     }
 
-    (window as Window & { electronAPI?: ElectronAPI }).electronAPI?.onTriggerListen?.((triggerMode: 'mic' | 'desktop') => {
+    electronAPI.onTriggerListen?.((triggerMode: 'mic' | 'desktop') => {
       startListeningRef.current?.(triggerMode);
     });
 
     return () => {
-      (window as Window & { electronAPI?: ElectronAPI }).electronAPI?.removeTriggerListen?.();
+      electronAPI.removeTriggerListen?.();
     };
   }, [ready, getSettings]);
 
+  // Helper: fetch anime + lyrics for a matched track
+  const fetchAnimeAndLyrics = useCallback(
+    (trackData: TrackData, controller: AbortController) => {
+      const settings = getSettings();
+
+      // Anime search (2-phase: instant name → lazy image)
+      searchAnime(
+        trackData.title,
+        trackData.artist,
+        settings.animeInfoSource,
+        (animes) => {
+          if (!controller.signal.aborted) {
+            setResult((prev) => (prev ? { ...prev, animes } : null));
+          }
+        },
+        controller.signal,
+      );
+
+      // Lyrics (independent background fetch)
+      fetchLyrics(trackData.title, trackData.artist).then((lyricsData) => {
+        if (!controller.signal.aborted) {
+          const finalLyrics = lyricsData !== 'Lyrics not found.' ? lyricsData : trackData.lyrics;
+          setResult((prev) => (prev ? { ...prev, lyrics: finalLyrics } : null));
+        }
+      });
+    },
+    [getSettings, searchAnime],
+  );
+
   // Shared logic: take an audio blob, identify it, find anime + lyrics
-  const processAudioBlob = async (audioBlob: Blob) => {
-    const settings = getSettings();
-    // Abort any previous search
-    if (searchAbortController) {
-      searchAbortController.abort();
-    }
-    const controller = new AbortController();
-    setSearchAbortController(controller);
-    try {
-      setAnalyzing(true);
-      const trackData = await identifyTrack(audioBlob, controller.signal);
-      if (controller.signal.aborted) return;
-      if (trackData) {
-        // Show song info immediately, without anime/lyrics yet
-        setResult({
-          ...trackData,
-          animes: [],
-          lyrics: ''
-        });
-        
-        // FETCH ANIME IN BACKGROUND - show when ready
-        setAnimeLoading(true);
-        findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource)
-          .then(animeDataArray => {
-            if (!controller.signal.aborted) {
-              setResult(prev => prev ? { ...prev, animes: animeDataArray } : null);
-            }
-          })
-          .finally(() => {
-            if (!controller.signal.aborted) setAnimeLoading(false);
-          });
-        
-        // FETCH LYRICS IN BACKGROUND - show when ready (separate from anime)
-        fetchLyrics(trackData.title, trackData.artist)
-          .then(lyricsData => {
-            if (!controller.signal.aborted) {
-              const finalLyrics = lyricsData !== "Lyrics not found." ? lyricsData : trackData.lyrics;
-              setResult(prev => prev ? { ...prev, lyrics: finalLyrics } : null);
-            }
-          });
-      } else {
-        alert("Could not identify the song.");
+  const processAudioBlob = useCallback(
+    async (audioBlob: Blob) => {
+      if (searchAbortController) {
+        searchAbortController.abort();
       }
-    } catch (e) {
-      if (e instanceof Error && e.name === 'AbortError') {
-        console.log('[MRA] Search aborted');
-      } else {
-        alert("Error recognizing audio: " + (e instanceof Error ? e.message : String(e)));
+      const controller = new AbortController();
+      setSearchAbortController(controller);
+      try {
+        setAnalyzing(true);
+        const trackData = await identifyTrack(audioBlob);
+        if (controller.signal.aborted) return;
+        if (trackData) {
+          setResult({ ...trackData, animes: [], lyrics: '' });
+          fetchAnimeAndLyrics(trackData, controller);
+        } else {
+          alert('Could not identify the song.');
+        }
+      } catch (e) {
+        if (e instanceof Error && e.name === 'AbortError') {
+          console.log('[MRA] Search aborted');
+        } else {
+          alert('Error recognizing audio: ' + (e instanceof Error ? e.message : String(e)));
+        }
+      } finally {
+        setAnalyzing(false);
       }
-    } finally {
-      setAnalyzing(false);
-      setAnimeLoading(false);
-    }
-  };
+    },
+    [fetchAnimeAndLyrics, searchAbortController],
+  );
 
   const listeningRef = useRef(false);
 
@@ -161,7 +143,6 @@ const [result, setResult] = useState<ResultData | null>(null);
   };
 
   const startListening = async (listenMode: 'mic' | 'desktop') => {
-    // Cancel any ongoing search
     if (searchAbortController) {
       searchAbortController.abort();
     }
@@ -195,20 +176,16 @@ const [result, setResult] = useState<ResultData | null>(null);
       setCurrentDevice(listenMode === 'mic' ? 'Microphone' : 'Desktop Audio');
       listeningRef.current = true;
 
-      // Pipeline: record next chunk while previous is being analyzed
       let pendingIdentify: Promise<TrackData | null> | null = null;
 
       while (listeningRef.current) {
-        // Check if duration limit reached
         if (durationMs && Date.now() - startTime >= durationMs) {
           console.log('[MRA] Duration limit reached, stopping...');
           break;
         }
 
-        // Start recording (this runs for 5 seconds)
         const recordPromise = recordAudio(listenMode, 5000);
 
-        // While recording, check if previous identify finished
         if (pendingIdentify) {
           const trackData = await pendingIdentify;
           pendingIdentify = null;
@@ -216,39 +193,20 @@ const [result, setResult] = useState<ResultData | null>(null);
           if (!listeningRef.current) break;
 
           if (trackData) {
-            // Found a match! Show track immediately
             setListening(false);
-            setResult({
-              ...trackData,
-              animes: [],
-              lyrics: ''
-            });
-            
-            // FETCH ANIME IN BACKGROUND
-            setAnimeLoading(true);
-            const settings = getSettings();
-            findAnimeForTrack(trackData.title, trackData.artist, settings.animeInfoSource)
-              .then(animeDataArray => {
-                if (!controller.signal.aborted) {
-                  setResult(prev => prev ? { ...prev, animes: animeDataArray } : null);
-                }
-              })
-              .finally(() => {
-                if (!controller.signal.aborted) setAnimeLoading(false);
-              });
+            setResult({ ...trackData, animes: [], lyrics: '' });
+            fetchAnimeAndLyrics(trackData, controller);
             listeningRef.current = false;
             return;
           }
           console.log('[MRA] No match on previous chunk, still listening...');
         }
 
-        // Wait for current recording to finish
         const audioBlob = await recordPromise;
         if (!listeningRef.current) break;
 
-        // Fire off identification in background (non-blocking) with abort support
         setAnalyzing(true);
-        pendingIdentify = identifyTrack(audioBlob, controller.signal).finally(() => {
+        pendingIdentify = identifyTrack(audioBlob).finally(() => {
           if (listeningRef.current) setAnalyzing(false);
         });
       }
@@ -256,7 +214,7 @@ const [result, setResult] = useState<ResultData | null>(null);
       if (e instanceof Error && e.name === 'AbortError') {
         console.log('[MRA] Listening aborted');
       } else {
-        console.error("Error recognizing audio:", e instanceof Error ? e.message : String(e));
+        console.error('Error recognizing audio:', e instanceof Error ? e.message : String(e));
       }
     } finally {
       listeningRef.current = false;
@@ -267,35 +225,43 @@ const [result, setResult] = useState<ResultData | null>(null);
 
   startListeningRef.current = startListening;
 
-  // Cancel current search/listening
   const handleCancel = () => {
     if (searchAbortController) {
       searchAbortController.abort();
       setSearchAbortController(null);
     }
     stopListening();
+    cancelSearch();
     setResult(null);
     setAnalyzing(false);
-    setAnimeLoading(false);
     setListening(false);
   };
 
-  const handleFileSelect = async (file: File) => {
-    const validTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/flac', 'audio/mp4', 'audio/webm', 'audio/aac', 'video/mp4', 'video/webm'];
-    if (!validTypes.includes(file.type) && !file.name.match(/\.(mp3|wav|ogg|flac|m4a|webm|aac|mp4)$/i)) {
-      alert("Please use an audio file (MP3, WAV, OGG, FLAC, M4A, etc.)");
-      return;
-    }
-    const blob = new Blob([await file.arrayBuffer()], { type: file.type || 'audio/mpeg' });
-    await processAudioBlob(blob);
-  };
+  const handleFileSelect = useCallback(
+    async (file: File) => {
+      const validTypes = [
+        'audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/flac',
+        'audio/mp4', 'audio/webm', 'audio/aac', 'video/mp4', 'video/webm',
+      ];
+      if (!validTypes.includes(file.type) && !file.name.match(/\.(mp3|wav|ogg|flac|m4a|webm|aac|mp4)$/i)) {
+        alert('Please use an audio file (MP3, WAV, OGG, FLAC, M4A, etc.)');
+        return;
+      }
+      const blob = new Blob([await file.arrayBuffer()], { type: file.type || 'audio/mpeg' });
+      await processAudioBlob(blob);
+    },
+    [processAudioBlob],
+  );
 
-  const onDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) handleFileSelect(file);
-  }, [handleFileSelect]);
+  const onDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      setDragging(false);
+      const file = e.dataTransfer.files?.[0];
+      if (file) handleFileSelect(file);
+    },
+    [handleFileSelect],
+  );
 
   const onDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -401,14 +367,12 @@ const [result, setResult] = useState<ResultData | null>(null);
                 <RefreshCw className="w-4 h-4 animate-spin" />
                 ANALYZING AUDIO...
               </motion.p>
-              {/* Cancel Button */}
               <button
                 onClick={handleCancel}
                 className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded"
               >
                 Cancel
               </button>
-
             </motion.div>
           ) : listening ? (
             <motion.div
@@ -442,14 +406,12 @@ const [result, setResult] = useState<ResultData | null>(null);
               >
                 LISTENING TO {mode === 'mic' ? 'MICROPHONE' : 'DESKTOP'}...
               </motion.p>
-              {/* Cancel Button */}
               <button
                 onClick={handleCancel}
                 className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded"
               >
                 Cancel
               </button>
-
             </motion.div>
           ) : !result ? (
             <motion.div
@@ -480,7 +442,6 @@ const [result, setResult] = useState<ResultData | null>(null);
               </p>
 
               <div className="w-full max-w-md space-y-4">
-                {/* Open File */}
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-slate-900/70 border border-slate-700 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 hover:border-slate-600 hover:text-white transition-all group"
@@ -489,7 +450,6 @@ const [result, setResult] = useState<ResultData | null>(null);
                   Open a file (or drag & drop)
                 </button>
 
-                {/* Listen Microphone */}
                 <button
                   onClick={() => startListening('mic')}
                   className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-slate-900/70 border border-slate-700 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 hover:border-slate-600 hover:text-white transition-all group"
@@ -498,7 +458,6 @@ const [result, setResult] = useState<ResultData | null>(null);
                   Listen Microphone
                 </button>
 
-                {/* Listen Desktop Audio */}
                 <button
                   onClick={() => startListening('desktop')}
                   className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-slate-900/70 border border-slate-700 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 hover:border-slate-600 hover:text-white transition-all group"
@@ -525,7 +484,6 @@ const [result, setResult] = useState<ResultData | null>(null);
                       <Play className="w-10 h-10 text-white fill-white" />
                     </div>
                   </div>
-                  {/* Copy Music Name Button */}
                   <button
                     onClick={() => navigator.clipboard.writeText(`${result.artist} - ${result.title}`)}
                     className="mt-3 w-full flex items-center justify-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-xs text-slate-300 hover:text-white transition-all active:scale-95"
@@ -579,6 +537,7 @@ const [result, setResult] = useState<ResultData | null>(null);
                   </div>
                 </div>
               </div>
+
               {/* Anime loading indicator */}
               {animeLoading && (
                 <div className="mt-4 flex items-center gap-2 text-indigo-300">
@@ -586,7 +545,8 @@ const [result, setResult] = useState<ResultData | null>(null);
                   Finding anime...
                 </div>
               )}
-              {/* ─── Anime OST - show instantly when available, image pops when ready ─── */}
+
+              {/* ─── Anime OST Card ─── */}
               {result.animes && result.animes.length > 0 && (() => {
                 const anime = result.animes[0];
                 return (
@@ -601,7 +561,6 @@ const [result, setResult] = useState<ResultData | null>(null);
                       ANIME OST
                     </div>
                     <div className="flex gap-4 items-start">
-                      {/* Image - shows when fetched, placeholder before */}
                       {anime.imageUrl ? (
                         <img src={anime.imageUrl} alt="Anime Cover" className="w-28 h-40 rounded-xl bg-indigo-900 object-cover shrink-0 border border-indigo-500/20" />
                       ) : (
@@ -631,7 +590,6 @@ const [result, setResult] = useState<ResultData | null>(null);
                   </motion.div>
                 );
               })()}
-
 
               {/* ─── Bottom Actions ─── */}
               <div className="mt-6 flex justify-center pb-2">
