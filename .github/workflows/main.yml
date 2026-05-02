@@ -6,6 +6,9 @@ on:
       - 'v*.*.*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -38,6 +41,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'latest-build' }}
+          name: ${{ github.ref_type == 'tag' && github.ref_name || 'Latest Build' }}
           files: release/MRA-Anime-Edition-Windows.7z
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
