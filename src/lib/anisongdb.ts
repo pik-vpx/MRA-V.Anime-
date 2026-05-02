@@ -4,7 +4,7 @@
  */
 
 import { logger } from '../utils/logger';
-import { normalizeTitle, fuzzyMatch, levenshtein } from './text-utils';
+import { normalizeTitle, fuzzyMatch, levenshtein, splitRomajiParticles } from './text-utils';
 import { textToRomaji } from './romaji';
 
 export interface AnisongDBResult {
@@ -88,6 +88,18 @@ export async function multiPassSearch(
   );
   if (results.length > 0) return results;
 
+  // Pass 1.3: Particle-split exact (e.g., "Hitominokotae" → "Hitomi no Kotae")
+  const splitTitle = splitRomajiParticles(config.title);
+  if (splitTitle) {
+    results = await searchAnisongDB(buildSearchBody(config, false, splitTitle));
+    logger.log(
+      `Pass 1.3 (particle-split exact "${splitTitle}"):`,
+      results.length,
+      'results',
+    );
+    if (results.length > 0) return results;
+  }
+
   // Pass 1.5: Romaji exact
   const romajiTitle = await textToRomaji(config.title);
   if (romajiTitle) {
@@ -98,6 +110,18 @@ export async function multiPassSearch(
       'results',
     );
     if (results.length > 0) return results;
+
+    // Pass 1.7: Particle-split on Romaji result
+    const splitRomaji = splitRomajiParticles(romajiTitle);
+    if (splitRomaji && splitRomaji !== romajiTitle) {
+      results = await searchAnisongDB(buildSearchBody(config, false, splitRomaji));
+      logger.log(
+        `Pass 1.7 (Romaji particle-split exact "${splitRomaji}"):`,
+        results.length,
+        'results',
+      );
+      if (results.length > 0) return results;
+    }
   }
 
   // Pass 2: Partial title

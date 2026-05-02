@@ -7,8 +7,10 @@ const normalizeTitle = (str) => {
   if (!str) return '';
   return str
     .toLowerCase()
-    .replace(/[^\w\s]/g, '') // Remove punctuation
-    .replace(/\s+/g, ' ')     // Collapse multiple spaces
+    .replace(/[～〜]/g, ' ')    // Fullwidth tilde to space
+    .replace(/-/g, ' ')         // Dashes to spaces
+    .replace(/[^\w\s]/g, '')    // Remove remaining punctuation
+    .replace(/\s+/g, ' ')       // Collapse multiple spaces
     .trim();
 };
 
@@ -200,5 +202,137 @@ describe('title similarity thresholds', () => {
   test('"Be a flower" ~ "Be a flower" should have zero distance', () => {
     const dist = levenshtein(normalizeTitle('be a flower'), normalizeTitle('be a flower'));
     expect(dist).toBe(0);
+  });
+});
+
+// ─── NEW: Romaji Particle Splitting Tests ───
+
+const { splitRomajiParticles, cleanQueryTerm } = (() => {
+  // Inline implementations for test runner (no ESM imports in Jest CJS)
+  const ROMAJI_PARTICLES = [
+    'shite', 'kara', 'made', 'dake', 'demo', 'mono', 'teki',
+    'nai', 'tai', 'tte', 'shi',
+    'wo', 'wa', 'no', 'ni', 'de', 'ga', 'to', 'mo', 'ka', 'he', 'yo', 'ne', 'na', 'e', 'o',
+  ];
+
+  const splitRomajiParticles = (title) => {
+    if (!title || title.includes(' ')) return null;
+    const lower = title.toLowerCase();
+    for (const particle of ROMAJI_PARTICLES) {
+      const idx = lower.indexOf(particle, 1);
+      if (idx <= 0) continue;
+      const charBefore = lower[idx - 1];
+      if (!'aiueon'.includes(charBefore)) continue;
+      const afterIdx = idx + particle.length;
+      if (afterIdx < lower.length) {
+        const charAfter = lower[afterIdx];
+        if ('aiueo'.includes(charAfter) && particle.length === 1) continue;
+      }
+      const before = title.slice(0, idx);
+      const part = title.slice(idx, idx + particle.length);
+      const after = title.slice(idx + particle.length);
+      const splitAfter = splitRomajiParticles(after);
+      return `${before} ${part} ${splitAfter || after}`.replace(/\s+/g, ' ').trim();
+    }
+    return null;
+  };
+
+  const cleanQueryTerm = (str) => {
+    if (!str) return '';
+    return str
+      .replace(/[([]\s*(?:live|recorded|acoustic|live\s*version)[^)\]]*[)\]]/gi, '')
+      .replace(/[([]\s*[^)\]]*(?:feat\.|ft\.|featuring|cv:)[^)\]]*[)\]]/gi, '')
+      .replace(/-\s*(?:feat\.|ft\.|featuring|cv:).*/gi, '')
+      .replace(/[([]\s*[^)\]]*(?:tv\s*size|tv\s*version)[^)\]]*[)\]]/gi, '')
+      .replace(/[([]\s*[^)\]]*(?:acoustic|karaoke|remix|cover|piano|ballad|version|instrumental|album\s*mix|single\s*mix|original\s*mix|extended|short|full|edit|radio\s*edit|remaster(?:ed)?|off\s*vocal)[^)\]]*[)\]]/gi, '')
+      .replace(/\s*-\s*(?:instrumental|album\s*mix|acoustic|karaoke|remix|off\s*vocal|tv\s*size)\s*$/gi, '')
+      .replace(/\s+with\s+[^-]+/gi, '')
+      .replace(/[～〜]/g, '-')
+      .replace(/[\uff01-\uff5e]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
+      .replace(/\s*-\s*/g, ' - ')
+      .replace(/\s*-\s*$/, '')
+      .replace(/^\s*-\s*/, '')
+      .replace(/\+/g, '')
+      .replace(/[☆★]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  return { splitRomajiParticles, cleanQueryTerm };
+})();
+
+describe('splitRomajiParticles', () => {
+  test('splits "Hitominokotae" → contains "no" and "hitomi"', () => {
+    const result = splitRomajiParticles('Hitominokotae');
+    expect(result).not.toBeNull();
+    expect(result.toLowerCase()).toContain('no');
+    expect(result.toLowerCase()).toContain('hitomi');
+  });
+
+  test('splits "Seishunnoenbu" → contains "no"', () => {
+    const result = splitRomajiParticles('Seishunnoenbu');
+    expect(result).not.toBeNull();
+    expect(result.toLowerCase()).toContain('no');
+  });
+
+  test('splits "Kasukadetashika" → contains "de"', () => {
+    const result = splitRomajiParticles('Kasukadetashika');
+    expect(result).not.toBeNull();
+    expect(result.toLowerCase()).toContain('de');
+  });
+
+  test('returns null for already spaced strings', () => {
+    expect(splitRomajiParticles('Hitomi no Kotae')).toBeNull();
+  });
+
+  test('returns null for empty string', () => {
+    expect(splitRomajiParticles('')).toBeNull();
+  });
+
+  test('returns null when no particle is found', () => {
+    expect(splitRomajiParticles('abcxyz')).toBeNull();
+  });
+});
+
+describe('cleanQueryTerm - suffix stripping', () => {
+  test('removes (Album Mix)', () => {
+    expect(cleanQueryTerm('Fuzaketenaize(Album Mix)')).not.toContain('Album Mix');
+  });
+
+  test('removes (instrumental)', () => {
+    expect(cleanQueryTerm('Hitominokotae (instrumental)')).not.toContain('instrumental');
+  });
+
+  test('removes trailing "- Instrumental"', () => {
+    const result = cleanQueryTerm('Hitominokotae - Instrumental');
+    expect(result).not.toContain('Instrumental');
+    expect(result).toContain('Hitominokotae');
+  });
+
+  test('normalizes fullwidth tilde ～ to dash', () => {
+    const result = cleanQueryTerm('Two souls～toward the truth～');
+    expect(result).not.toContain('～');
+    expect(result).toContain('toward the truth');
+  });
+
+  test('removes (Remastered)', () => {
+    expect(cleanQueryTerm('Song Title (Remastered)')).not.toContain('Remastered');
+  });
+
+  test('removes (Off Vocal)', () => {
+    expect(cleanQueryTerm('Song Title (Off Vocal)')).not.toContain('Off Vocal');
+  });
+});
+
+describe('normalizeTitle - special character handling', () => {
+  test('normalizes ～ so both forms match', () => {
+    const a = normalizeTitle('Two souls -toward the truth-');
+    const b = normalizeTitle('Two souls～toward the truth～');
+    expect(a).toBe(b);
+  });
+
+  test('strips dashes/tildes for comparison', () => {
+    const result = normalizeTitle('Two souls～toward the truth～');
+    expect(result).toBe('two souls toward the truth');
   });
 });

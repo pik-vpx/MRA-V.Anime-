@@ -70,11 +70,21 @@ export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 
     stream = await navigator.mediaDevices.getUserMedia(constraints);
   }
 
+  // Workaround for Chromium bug where desktop audio stream analyser returns zeros
+  // By playing the stream in a muted audio element, we force the audio graph to process it.
+  const hiddenAudioEl = new Audio();
+  hiddenAudioEl.muted = true;
+  hiddenAudioEl.srcObject = stream;
+  hiddenAudioEl.play().catch(e => console.warn('Hidden audio play failed:', e));
+
   const audioContext = new AudioContext();
   const source = audioContext.createMediaStreamSource(stream);
   const analyser = audioContext.createAnalyser();
   analyser.fftSize = 256;
   source.connect(analyser);
+  if (audioContext.state === 'suspended') {
+    audioContext.resume().catch(e => console.warn('AudioContext resume failed:', e));
+  }
 
   const dataArray = new Uint8Array(analyser.frequencyBinCount);
   
@@ -99,6 +109,8 @@ export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 
 
     mediaRecorder.onstop = () => {
       clearInterval(levelInterval);
+      hiddenAudioEl.pause();
+      hiddenAudioEl.srcObject = null;
       stream.getTracks().forEach(track => track.stop());
       audioContext.close();
       if (audioLevelCallback) audioLevelCallback(0);
@@ -108,6 +120,8 @@ export async function recordAudio(mode: 'mic' | 'desktop', durationMs: number = 
 
     mediaRecorder.onerror = (e) => {
       clearInterval(levelInterval);
+      hiddenAudioEl.pause();
+      hiddenAudioEl.srcObject = null;
       stream.getTracks().forEach(track => track.stop());
       audioContext.close();
       if (audioLevelCallback) audioLevelCallback(0);
