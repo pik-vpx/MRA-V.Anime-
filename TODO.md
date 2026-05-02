@@ -38,5 +38,13 @@
 
 ## Remaining Tasks
 
-- [ ] Integration test with live audio (manual verification)
-- [ ] Update README with new flow description
+- [x] Integration test with live audio (manual verification)
+- [x] Update README with new flow description
+- [ ] issue of name from song title 墨須 With M.O.N - M.O.Nのテーマ but on database song name and artist is Hey! Smith!!  • Smith with M.O.N : need to check this 
+- [x] song name like Noria - Hitominokotae (instrumental) but pattern like on all website database is Hitomi no Kotae → **Fixed: `splitRomajiParticles()` + `cleanQueryTerm()` strips `(instrumental)`**
+- [x] song name like DIALOGUE+ - Kasukadetashika but pattern like on all website database is Kasuka de tashika → **Fixed: `splitRomajiParticles()` inserts spaces at particle boundaries**
+- [x] Necry Talkie - Fuzaketenaize(Album Mix) delete (Album Mix) from song name → **Fixed: `cleanQueryTerm()` now strips `(Album Mix)`**
+- [x] きら☆ぴか - Hanawopu-n but in database song name is Hana o Puun → **Fixed: `splitRomajiParticles()` handles `wo` particle**
+- [x] fripSide - Two souls -toward the truth- but in database song name is Two souls～toward the truth～ → **Fixed: `normalizeTitle()` normalizes both `～` and `-` to spaces**
+- [x] Centimillimental - Seishunnoenbu but in database song name is Seishun no Enbu → **Fixed: `splitRomajiParticles()` allows `n` (ん) as particle boundary**
+

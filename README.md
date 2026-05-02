@@ -1,6 +1,6 @@
 # MRA Anime Edition
 
-🎵 **Music Recognition App** that identifies anime songs and matches them to their source anime — powered by Shazam, AnisongDB, AnimeThemes, and Google Gemini AI.
+🎵 **Music Recognition App** that identifies anime songs and matches them to their source anime — powered by Shazam, AnisongDB, AnimeThemes.
 
 ## Features
 
@@ -8,7 +8,7 @@
 - 🎬 **Anime Matching** — Multi-pass search across AnisongDB + AnimeThemes with Romaji translation
 - 🖼️ **Cover Art** — High-quality anime images from AnimeThemes.moe (lazy-loaded for instant UI)
 - 📝 **Lyrics** — Real-time lyrics from Lrclib
-- 🤖 **AI Fallback** — Google Gemini for obscure tracks when databases fail
+- 🤖 **AI Fallback** — Disabled (Google Gemini not functional)
 - ⚡ **Instant Results** — Anime name shown immediately; cover art loads in the background
 - 🎨 **Modern UI** — Dark theme with Framer Motion animations
 - ⌨️ **Global Hotkeys** — Trigger from anywhere with customizable shortcuts
@@ -42,6 +42,8 @@ Output: `release\win-unpacked\MRA Anime Edition.exe`
 
 ## How It Works
 
+> **Note:** Recent updates improve title handling by stripping extra tags (e.g., "(Instrumental)", "(Album Mix)") and generic "with ..." patterns, and enhance fuzzy matching thresholds for better AnimeThemes fallback.
+
 ```
 Audio Input → Shazam API → Track Identified
                               ↓
@@ -56,17 +58,32 @@ Audio Input → Shazam API → Track Identified
               ↓                   ↓
               └───── Merge ───────┘
                        ↓
-              Google Gemini AI (last resort)
+               No AI fallback (Gemini disabled)
                        ↓
-              UI: Anime Card + Cover Art (lazy)
+               UI: Anime Card + Cover Art (lazy)
 ```
+
+## Updated Flow
+
+The orchestrator now includes additional cleaning steps:
+- Removes "(Instrumental)", "(Album Mix)", and other version tags.
+- Strips generic "with <text>" patterns before a dash.
+- Fuzzy matching thresholds have been tuned to handle spacing variations and missing characters.
+
+These changes improve handling of titles such as:
+- `Noria - Hitominokotae (instrumental)` → matches `Hitomi no Kotae`
+- `fripSide - Two souls -toward the truth-` → matches `Two souls～toward the truth～`
+- `Centimillimental - Seishunnoenbu` → matches `Seishun no Enbu`
+- `Necry Talkie - Fuzaketenaize(Album Mix)` → correctly stripped `(Album Mix)`
+- `きら☆ぴか - Hanawopu-n` → special characters normalized.
+
 
 ### Matching Algorithm
 1. **Exact title + artist** match via AnisongDB
 2. **Romaji translation** of Japanese titles (Google Translate API)
 3. **Partial/fuzzy matching** with Levenshtein distance thresholds
 4. **Cross-referencing** AnimeThemes results back to AnisongDB for alignment
-5. **Google Gemini AI** fallback for tracks not in any database
+5. **No AI fallback** – Gemini disabled
 
 ---
 
@@ -77,12 +94,12 @@ src/
 ├── App.tsx                    # Main UI component
 ├── types.ts                   # Shared types (AppSettings, ElectronAPI)
 ├── lib/
-│   ├── api.ts                 # Orchestrator (AnisongDB → AnimeThemes → Gemini)
+│   ├── api.ts                 # Orchestrator (AnisongDB → AnimeThemes)
 │   ├── shazam.ts              # Audio fingerprinting via Shazam API
 │   ├── anisongdb.ts           # Multi-pass anime song database search
 │   ├── animethemes.ts         # Cover art & song-based anime lookup
 │   ├── romaji.ts              # Japanese → Romaji translation
-│   ├── gemini.ts              # Google Gemini AI fallback
+│   ├── gemini.ts              # Google Gemini AI fallback (disabled)
 │   ├── lyrics.ts              # Lrclib lyrics fetching
 │   ├── text-utils.ts          # Query cleaning, normalization, fuzzy matching
 │   └── audio.ts               # Mic/desktop audio recording
@@ -107,7 +124,7 @@ Create a `.env` file with:
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `VITE_GOOGLE_GEMINI_API_KEY` | Google Gemini API key for AI fallback | Optional |
+| `VITE_GOOGLE_GEMINI_API_KEY` | Google Gemini API key (currently not used) | Optional |
 
 ```bash
 VITE_GOOGLE_GEMINI_API_KEY=your-api-key-here
@@ -147,7 +164,7 @@ Shortcuts are customizable in Settings.
 | [AnisongDB](https://anisongdb.com) | Anime song database | None |
 | [AnimeThemes.moe](https://api.animethemes.moe) | Cover art & song lookup | None |
 | [Google Translate](https://translate.googleapis.com) | Romaji translation | None |
-| [Google Gemini](https://ai.google.dev) | AI fallback | API key (optional) |
+| [Google Gemini](https://ai.google.dev) | AI fallback (disabled) | API key (optional) |
 | [Lrclib](https://lrclib.net) | Lyrics | None |
 
 ---
